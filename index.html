@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architectural Modular Home Systems | Only Realty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Supabase JS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- EmailJS Library for client-side emailing -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root {
+    --primary-dark: #001740;
+    --primary-blue: #AD244B;
+    --text-dark: #222222;
+    --text-gray: #666666;
+    --bg-light: #f4f7f6;
+    --white: #FFFFFF;
+    --whatsapp-green: #25D366;
+    --transition: all 0.3s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    padding-bottom: 70px; /* Space for sticky footer */
+  }
+
+  .agent-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 340px;
+    height: 100vh;
+    background: var(--white);
+    z-index: 2000;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.08);
+    overflow-y: auto;
+  }
+  .agent-cover {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--primary-dark);
+  }
+  .agent-profile-wrap {
+    padding: 0 20px;
+    margin-top: -55px;
+  }
+  .agent-profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    border: 4px solid var(--white);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: var(--white);
+  }
+  
+  .agent-info { padding: 15px 20px; }
+  .agent-name { font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 3px; }
+  .agent-tagline { font-size: 13px; color: var(--text-gray); margin-bottom: 2px; }
+  .agent-role { font-size: 12px; color: #888; }
+  .agent-agency { font-size: 12px; color: var(--text-gray); margin-top: 10px; margin-bottom: 15px; }
+  .agent-badges { display: flex; gap: 8px; margin-bottom: 25px; }
+  .agent-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .badge-primary { background: var(--primary-dark); color: var(--white); }
+  .badge-outline { border: 1px solid #ddd; color: var(--primary-dark); }
+  
+  .agent-actions { display: flex; justify-content: space-between; margin-bottom: 30px; text-align: center; }
+  .action-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: var(--text-gray); transition: var(--transition); width: 45px;}
+  .action-icon { width: 42px; height: 42px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; justify-content: center; align-items: center; font-size: 15px; }
+  .action-btn:hover .action-icon { background: var(--primary-blue); }
+  .action-btn.whatsapp .action-icon { background: var(--whatsapp-green); }
+  .action-text { font-size: 10px; font-weight: 600; }
+  .agent-socials { padding: 0 20px 30px; }
+  .socials-title { font-size: 12px; color: var(--text-gray); margin-bottom: 15px; }
+  .social-icons-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .social-icon-btn {
+    width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ccc;
+    color: var(--text-gray); display: flex; justify-content: center; align-items: center;
+    text-decoration: none; font-size: 15px; transition: var(--transition);
+  }
+  .social-icon-btn:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+
+  @media (min-width: 993px) {
+    body { margin-left: 340px; }
+    .sticky-footer { width: calc(100% - 340px); left: 340px; }
+  }
+  @media (max-width: 992px) {
+    .agent-panel { position: relative; width: 100%; height: auto; box-shadow: none; border-bottom: 1px solid #eee; z-index: 1;}
+    .sticky-footer { width: 100%; left: 0; }
+  }
+
+  .top-bar {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 40px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .top-bar a { color: var(--white); text-decoration: none; margin-right: 20px; }
+
+  header {
+    background-color: var(--white);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .brand { display: flex; align-items: center; gap: 15px; }
+  .brand img { height: 45px; }
+  .brand h1 { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+  .brand p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 600; font-size: 14px; }
+
+  .hero {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 80px 40px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+  }
+  .hero-content { flex: 1.2; }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+  .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+  .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 30px; color: #d0dbe3; max-width: 90%; }
+  .hero-btns { display: flex; gap: 15px; }
+  .btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+  }
+  .btn-primary { background-color: var(--primary-blue); color: var(--white); }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-white { background-color: var(--white); color: var(--primary-dark); }
+  .btn-wa { background-color: var(--whatsapp-green); color: var(--white); }
+
+  .advantages-card {
+    flex: 0.8;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    color: var(--primary-dark);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  .advantages-card h3 { font-size: 18px; margin-bottom: 20px; font-weight: 800; }
+  .adv-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  .adv-row:last-child { border-bottom: none; }
+  .adv-row span:last-child { font-weight: 700; text-align: right; }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 10;
+  }
+  @media (max-width: 992px) {
+    .features {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  .feature-card {
+    background: var(--white);
+    padding: 25px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  .feature-card i { font-size: 28px; color: var(--primary-blue); margin-bottom: 15px; }
+  .feature-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .feature-card p { font-size: 12px; color: var(--text-gray); line-height: 1.5; }
+
+  .finance-features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1024px) {
+    .finance-features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .finance-features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .section-container { padding: 80px 40px; }
+  .bg-light { background-color: var(--bg-light); }
+  .section-title { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
+  .section-subtitle { font-size: 15px; color: var(--text-gray); margin-bottom: 30px; }
+
+  .filters { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+  .filter-btn {
+    background: #f0f4f8; border: none; padding: 10px 20px; border-radius: 20px;
+    font-weight: 700; font-size: 13px; color: var(--primary-dark); cursor: pointer;
+    transition: var(--transition);
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--primary-dark); color: var(--white); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+  .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  .card-img { width: 100%; height: 200px; object-fit: cover; }
+  .card-content { padding: 20px; }
+  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; }
+  .card-price { font-weight: 700; color: var(--primary-blue); font-size: 16px; margin-bottom: 15px; display: block; }
+
+  .roi-section { display: flex; gap: 40px; flex-wrap: wrap; }
+  .roi-form { flex: 1.2; background: var(--white); padding: 30px; border-radius: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; min-width: 300px; }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group label { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .form-group input, .form-group select, .form-group textarea { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; color: var(--text-dark); background: var(--white); outline: none; transition: border-color 0.3s; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-blue); }
+  .roi-form .btn { grid-column: 1 / -1; justify-content: center; width: 100%; }
+  
+  .roi-results { flex: 0.8; background: var(--white); padding: 30px; border-radius: 10px; min-width: 300px; }
+  .roi-results h3 { font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+  
+  .enquire-section { background-color: var(--primary-dark); color: var(--white); padding: 80px 40px; }
+  .enquire-section .section-title { color: var(--white); }
+  .enquire-section .section-subtitle { color: #d0dbe3; }
+  .contact-form { max-width: 600px; margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .contact-form .full-width { grid-column: 1 / -1; }
+
+  .sticky-footer {
+    position: fixed; bottom: 0;
+    background: var(--primary-dark); color: var(--white); padding: 15px 40px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 2000;
+    border-top: 3px solid var(--primary-blue);
+  }
+  .footer-brand { display: flex; align-items: center; gap: 12px; }
+  .footer-brand img { height: 35px; border-radius: 50%; }
+  .footer-brand h4 { font-size: 14px; font-weight: 800; }
+  .footer-brand p { font-size: 11px; color: #a0b2c0; margin-top: 3px; }
+  .footer-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  
+  .card-action-btn { display: flex; flex-direction: column; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; width: 52px; color: var(--text-gray); font-family: inherit; }
+  .card-action-btn .ca-icon { width: 38px; height: 38px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: var(--transition); }
+  .card-action-btn:hover .ca-icon { background: var(--primary-blue); }
+  .card-action-btn.wa .ca-icon { background: var(--whatsapp-green); }
+  .card-action-btn span.ca-label { font-size: 9px; font-weight: 700; }
+  .card-action-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  .card-img-wrap { position: relative; }
+  .cart-toggle {
+    position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.92); border: none; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; font-size: 15px; color: var(--primary-dark); box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    transition: var(--transition);
+  }
+  .cart-toggle:hover { background: var(--primary-blue); color: var(--white); }
+  .cart-toggle.added { background: var(--primary-blue); color: var(--white); }
+
+  .wishlist-panel {
+    position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+    z-index: 6000; display: flex; align-items: flex-start;
+  }
+  .wishlist-tab {
+    width: 58px; height: 110px; flex-shrink: 0; background: var(--primary-dark); color: var(--white);
+    border-radius: 10px 0 0 10px; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 6px; cursor: pointer; font-size: 20px;
+    box-shadow: -4px 0 24px rgba(0,0,0,.18);
+  }
+  .wishlist-tab-count {
+    background: var(--primary-blue); border-radius: 50%; width: 22px; height: 22px; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wishlist-body {
+    position: absolute; top: 0; right: 58px; width: 400px; max-height: 90vh; overflow-y: auto;
+    background: var(--white); border-radius: 10px 0 0 10px; box-shadow: -4px 0 24px rgba(0,0,0,.18);
+    padding: 0; opacity: 0; visibility: hidden; transform: translateX(10px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  }
+  .wishlist-panel.expanded .wishlist-body {
+    opacity: 1; visibility: visible; transform: translateX(0); padding: 24px;
+  }
+  .wishlist-body h3 { font-size: 18px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; }
+  .wishlist-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+  .action-sub { font-size: 13px; color: var(--text-gray); margin-bottom: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; }
+  .cart-item-row button { background: none; border: none; color: var(--primary-blue); cursor: pointer; font-size: 16px; }
+  .action-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-gray); cursor: pointer; }
+  @media (max-width: 640px) {
+    .wishlist-body { width: 88vw; }
+  }
+  #loading-state { text-align: center; padding: 40px; font-weight: 700; color: var(--primary-dark); }
+
+  .qr-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none;
+    align-items: center; justify-content: center; z-index: 6000; padding: 20px;
+  }
+  .qr-overlay.show { display: flex; }
+  .qr-modal {
+    background: #fff; border-radius: 12px; padding: 30px; text-align: center;
+    max-width: 320px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  }
+  .qr-modal h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 16px; }
+  .qr-modal img { width: 220px; height: 220px; margin: 0 auto 15px; border-radius: 8px; }
+  .qr-modal p { font-size: 12px; color: var(--text-gray); word-break: break-all; margin-bottom: 15px; }
+  .qr-close-btn {
+    background: var(--primary-dark); color: #fff; border: none; padding: 10px 20px;
+    border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer;
+  }
+  .share-toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+    background: var(--primary-dark); color: #fff; padding: 10px 18px; border-radius: 8px;
+    font-size: 13px; z-index: 6000; display: none;
+  }
+  .share-toast.show { display: block; }
+
+  /* Gallery Modal Styles */
+  .gallery-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none;
+    flex-direction: column; align-items: center; justify-content: center; z-index: 7000; padding: 20px;
+  }
+  .gallery-overlay.show { display: flex; }
+  .gallery-content { position: relative; max-width: 1000px; width: 100%; text-align: center; }
+  .gallery-img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  .gallery-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 100%;
+    display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none;
+  }
+  .gallery-nav-btn {
+    width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.2);
+    border: none; color: white; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; transition: var(--transition); pointer-events: auto;
+  }
+  .gallery-nav-btn:hover { background: var(--primary-blue); }
+  .gallery-close {
+    position: absolute; top: -50px; right: 0; background: none; border: none;
+    color: white; font-size: 30px; cursor: pointer;
+  }
+  .gallery-counter { color: white; margin-top: 15px; font-size: 14px; font-weight: 600; }
+  .view-gallery-btn {
+    margin-top: 12px; font-size: 12px; font-weight: 700; color: var(--primary-dark);
+    background: #f0f4f8; border: none; padding: 8px 15px; border-radius: 4px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition);
+  }
+  .view-gallery-btn:hover { background: var(--primary-dark); color: white; }
+</style>
+</head>
+<body>
+
+<div class="agent-panel">
+  <div class="agent-cover" style="background-image: url('https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg');"></div>
+  <div class="agent-profile-wrap">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/headshot%20jlg.png" alt="Agent Profile" class="agent-profile-img">
+  </div>
+  <div class="agent-info">
+    <h2 class="agent-name">Jacques La Grange</h2>
+    <div class="agent-tagline">Your Real Estate Expert</div>
+    <div class="agent-role">Principal</div>
+    <div class="agent-agency">Only Realty Property Group</div>
+  
+    <div class="agent-badges">
+      <div class="agent-badge badge-primary"><i class="fas fa-shield-alt"></i> Premier Agent</div>
+      <div class="agent-badge badge-outline"><i class="fas fa-check-circle"></i> FFC Verified</div>
+    </div>
+  
+    <div class="agent-actions">
+      <a href="#" id="cfg-call" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-phone-alt"></i></div><span class="action-text">Call</span></a>
+      <a href="#" id="cfg-email" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-envelope"></i></div><span class="action-text">Email</span></a>
+      <a href="#" id="cfg-chat" class="action-btn whatsapp" target="_blank" rel="noopener"><div class="action-icon"><i class="fab fa-whatsapp"></i></div><span class="action-text">Chat</span></a>
+      <a href="javascript:void(0)" id="cfg-scan" class="action-btn" onclick="openQrModal()"><div class="action-icon"><i class="fas fa-qrcode"></i></div><span class="action-text">Scan</span></a>
+      <a href="javascript:void(0)" id="cfg-share" class="action-btn" onclick="shareProfile()"><div class="action-icon"><i class="fas fa-share-alt"></i></div><span class="action-text">Share</span></a>
+      <a href="javascript:void(0)" id="cfg-save" class="action-btn" onclick="saveContactCard()"><div class="action-icon"><i class="fas fa-id-card"></i></div><span class="action-text">Save</span></a>
+    </div>
+  </div>
+   <div class="agent-socials">
+    <div class="socials-title">Connect with me on</div>
+    <div class="social-icons-grid">
+      <a href="#" id="cfg-fb" class="social-icon-btn" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" id="cfg-ig" class="social-icon-btn" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="#" id="cfg-li" class="social-icon-btn" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" id="cfg-yt" class="social-icon-btn" title="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      <a href="#" id="cfg-google" class="social-icon-btn" title="Google Business" target="_blank" rel="noopener"><i class="fab fa-google"></i></a>
+      <a href="#" id="cfg-tt" class="social-icon-btn" title="TikTok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+      <a href="#" id="cfg-web" class="social-icon-btn" title="Website" target="_blank" rel="noopener"><i class="fas fa-globe"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="qr-overlay" id="qrOverlay">
+  <div class="qr-modal">
+    <h3>Scan to save contact</h3>
+    <img id="qrImage" src="" alt="QR code">
+    <p id="qrUrlText"></p>
+    <button class="qr-close-btn" onclick="closeQrModal()">Close</button>
+  </div>
+</div>
+<div class="share-toast" id="shareToast">Link copied to clipboard</div>
+
+<div class="wishlist-panel" id="wishlistPanel" onmouseenter="expandWishlist()" onmouseleave="collapseWishlist()">
+  <div class="wishlist-tab" onclick="toggleWishlistMobile()">
+    <i class="fas fa-heart"></i>
+    <span class="wishlist-tab-count" id="wishlistTabCount">0</span>
+  </div>
+  <div class="wishlist-body">
+    <h3>Your Enquiry Wishlist</h3>
+    <div id="wishlistItemsList"></div>
+
+    <div id="wishlistContactSection">
+      <p class="action-sub">Add your details once - then chat, call, email, book, or request documents instantly.</p>
+      <div class="form-group"><label>Full Name*</label><input type="text" id="wlName"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Mobile*</label><input type="text" id="wlMobile"></div>
+        <div class="form-group"><label>Email*</label><input type="email" id="wlEmail"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" id="wlCity"></div>
+        <div class="form-group"><label>Suburb</label><input type="text" id="wlSuburb"></div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:10px;" onclick="saveWishlistContact()">Save My Details</button>
+      <span id="wishlistStatus" style="font-size:12px;color:var(--text-gray);display:block;margin-top:8px;text-align:center;"></span>
+    </div>
+
+    <div id="wishlistActionsSection" style="display:none;">
+      <p class="action-sub" id="wishlistSavedLine"></p>
+      <div class="wishlist-actions">
+        <button class="card-action-btn wa" onclick="wishlistAction('whatsapp')"><span class="ca-icon"><i class="fab fa-whatsapp"></i></span><span class="ca-label">Chat</span></button>
+        <button class="card-action-btn" onclick="wishlistAction('call')"><span class="ca-icon"><i class="fas fa-phone-alt"></i></span><span class="ca-label">Call</span></button>
+        <button class="card-action-btn" onclick="wishlistAction('email')"><span class="ca-icon"><i class="fas fa-envelope"></i></span><span class="ca-label">Email</span></button>
+        <button class="card-action-btn" onclick="wishlistAction('appointment')"><span class="ca-icon"><i class="fas fa-calendar-check"></i></span><span class="ca-label">Book</span></button>
+        <button class="card-action-btn" onclick="wishlistAction('brochure')"><span class="ca-icon"><i class="fas fa-file-pdf"></i></span><span class="ca-label">Brochure</span></button>
+        <button class="card-action-btn" onclick="wishlistAction('finance')"><span class="ca-icon"><i class="fas fa-hand-holding-usd"></i></span><span class="ca-label">Finance</span></button>
+      </div>
+      <span id="wishlistActionStatus" style="font-size:12px;color:var(--text-gray);display:block;margin-top:8px;text-align:center;"></span>
+      <button class="action-close" style="float:none;font-size:11px;color:var(--text-gray);margin-top:10px;" onclick="clearWishlistContact()">Not you? Change details</button>
+    </div>
+  </div>
+</div>
+
+<div class="gallery-overlay" id="galleryOverlay">
+  <div class="gallery-content">
+    <button class="gallery-close" onclick="closeGallery()">&times;</button>
+    <h3 id="galleryTitle" style="color:white; margin-bottom:15px; font-weight:700;"></h3>
+    <img id="galleryImage" src="" class="gallery-img" alt="Gallery Image">
+    <div class="gallery-nav">
+      <button class="gallery-nav-btn" onclick="prevGalleryImage()"><i class="fas fa-chevron-left"></i></button>
+      <button class="gallery-nav-btn" onclick="nextGalleryImage()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="gallery-counter" id="galleryCounter"></div>
+  </div>
+</div>
+
+<div class="top-bar">
+  <div>
+    <a href="tel:+27791785335"><i class="fas fa-phone-alt"></i> +27 41 378 1124</a>
+    <a href="mailto:jacques@onlyrealty.co.za"><i class="fas fa-envelope"></i> jacques@onlyrealty.co.za</a>
+  </div>
+  <div>Only Realty Group</div>
+</div>
+
+<header>
+  <div class="brand">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idyTC8R-hQ_1.jpeg" alt="Only Realty Property Group">
+    <div>
+      <h1>Architectural Modular Home Systems</h1>
+      <p>Powered by Only Realty Group</p>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#roi-calculator">ROI Calculator</a>
+    <a href="#finance">Finance</a>
+    <a href="#enquire">Enquire</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Only Realty Group Portfolio Line</div>
+    <h2>Precision Engineered Architectural Systems</h2>
+    <p>Architectural Modular Home Systems transforms advanced lightweight steel frame engineering into luxury residential, hospitality and commercial real estate assets with accelerated deployment, lifetime structural warranties and measurable investment returns.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn btn-primary"><i class="fas fa-building"></i> Explore Portfolio</a>
+      <a href="#enquire" class="btn btn-white"><i class="fas fa-comments"></i> Request Consultation</a>
+    </div>
+  </div>
+   <div class="advantages-card">
+    <h3>Oracle 3D Investment Advantages</h3>
+    <div class="adv-row"><span>Construction System</span><span>LSF Certified</span></div>
+    <div class="adv-row"><span>Structural Warranty</span><span>Lifetime</span></div>
+    <div class="adv-row"><span>Factory Build Cycle</span><span>12 Weeks</span></div>
+    <div class="adv-row"><span>On-Site Installation</span><span>1-3 Weeks</span></div>
+    <div class="adv-row"><span>VAT Recovery</span><span>15%</span></div>
+    <div class="adv-row"><span>Energy Compliance</span><span>SANS 10400+</span></div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <i class="fas fa-shield-alt"></i>
+    <h4>Lifetime Structural Warranty</h4>
+    <p>Lightweight Steel Frame construction engineered for long-term reliability.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-fire-extinguisher"></i>
+    <h4>Fire & Moisture Protection</h4>
+    <p>Multi-layer protection against environmental degradation.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-thermometer-half"></i>
+    <h4>Thermal Efficiency</h4>
+    <p>Exceeds national SANS energy standards.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-truck"></i>
+    <h4>Rapid Deployment</h4>
+    <p>Factory-built systems with minimal site disruption.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-coins"></i>
+    <h4>VAT Advantages</h4>
+    <p>Qualifying entities may claim VAT recovery benefits.</p>
+  </div>
+</section>
+
+<section id="portfolio" class="section-container">
+  <h2 class="section-title">Product Ecosystem Portfolio</h2>
+  <p class="section-subtitle">Residential, commercial, hospitality and specialty modular architectural systems.</p>
+   <div id="filter-container" class="filters">
+    <!-- Populated via JS -->
+  </div>
+
+  <div id="loading-state">Loading Portfolio...</div>
+  <div id="product-grid" class="grid">
+    <!-- Populated via JS -->
+  </div>
+</section>
+
+<section id="roi-calculator" class="section-container bg-light">
+  <h2 class="section-title">ROI & Investment Calculator</h2>
+  <p class="section-subtitle">Evaluate hospitality, rental and investment opportunities instantly.</p>
+   <div class="roi-section">
+    <form id="roiForm" class="roi-form" onsubmit="event.preventDefault(); calculateFrontEndROI();">
+      <div class="form-group">
+        <label>Purchase Price (ZAR)</label>
+        <input type="number" id="roiPrice" placeholder="e.g. 1500000" required>
+      </div>
+      <div class="form-group">
+        <label>Monthly Rental</label>
+        <input type="number" id="roiRental" placeholder="e.g. 15000">
+      </div>
+      <div class="form-group">
+        <label>Nightly Rate</label>
+        <input type="number" id="roiNightly" placeholder="e.g. 2500">
+      </div>
+      <div class="form-group">
+        <label>Occupancy %</label>
+        <input type="number" id="roiOcc" placeholder="e.g. 60" max="100">
+      </div>
+      <div class="form-group full-width">
+        <label>Annual Expenses</label>
+        <input type="number" id="roiExp" placeholder="e.g. 25000" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Calculate ROI</button>
+    </form>
+
+    <div class="roi-results">
+      <h3>Projected Performance</h3>
+      <div class="adv-row"><span>Annual Revenue</span><span id="resRev">R0</span></div>
+      <div class="adv-row"><span>Net Income</span><span id="resNet">R0</span></div>
+      <div class="adv-row"><span>ROI %</span><span id="resPerc">0%</span></div>
+      <div class="adv-row"><span>Payback Period</span><span id="resYears">0 Years</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="finance" class="section-container">
+  <h2 class="section-title">Invest In Smarter Living - New Finance Option</h2>
+  <p class="section-subtitle">BVB Group, proudly representing Oracle 3D, in partnership with United Capital Group - rent-to-buy / operating lease finance for your Oracle 3D pod.</p>
+
+  <div class="finance-features-grid">
+    <div class="feature-card"><i class="fas fa-percent"></i><h4>0% Deposit</h4><p>No deposit applicable to start.</p></div>
+    <div class="feature-card"><i class="fas fa-file-invoice-dollar"></i><h4>Fully Tax Deductible</h4><p>Rentals are a deductible operating expense.</p></div>
+    <div class="feature-card"><i class="fas fa-receipt"></i><h4>VAT Spread</h4><p>VAT spread over the rental period, claimable monthly if VAT registered.</p></div>
+    <div class="feature-card"><i class="fas fa-university"></i><h4>Not Considered Loan Exposure</h4><p>Rentals aren't treated as a balance sheet liability.</p></div>
+    <div class="feature-card"><i class="fas fa-check-circle"></i><h4>No Balloon Payment</h4><p>Nothing owed at the end of the rental term.</p></div>
+    <div class="feature-card"><i class="fas fa-key"></i><h4>Option To Own</h4><p>Own the asset at term-end for a small ownership fee.</p></div>
+    <div class="feature-card"><i class="fas fa-file-signature"></i><h4>Documents Required</h4><p>Signed finance application form, latest 6 months' bank statements, latest financials.</p></div>
+    <div class="feature-card" style="background-color: var(--primary-dark); cursor:pointer; display:flex; flex-direction:column; justify-content:center; align-items:center;" onclick="document.getElementById('financeType').value='Equipment finance'; window.location.href='#enquire';">
+      <i class="fas fa-hand-holding-usd" style="color: white !important; margin-bottom: 15px;"></i>
+      <h4 style="color: white !important; margin-bottom: 10px;">Apply for Finance</h4>
+      <p style="color: rgba(255,255,255,0.9) !important;">Start your application process today.</p>
+    </div>
+  </div>
+</section>
+
+<section id="enquire" class="enquire-section">
+  <h2 class="section-title">Ready To Discuss A Project?</h2>
+  <p class="section-subtitle">Speak directly with Jacques La Grange regarding Architectural Modular Home Systems, development opportunities, hospitality investments or bespoke structural solutions.</p>
+   <form class="contact-form" onsubmit="event.preventDefault(); submitFrontendLead();">
+    <div class="form-group"><input type="text" id="leadName" placeholder="Full Name" required></div>
+    <div class="form-group"><input type="email" id="leadEmail" placeholder="Email Address" required></div>
+    <div class="form-group"><input type="tel" id="leadPhone" placeholder="Phone Number" required></div>
+    <div class="form-group"><input type="text" id="leadInterest" placeholder="Area of Interest"></div>
+    <div class="form-group">
+      <select id="financeType">
+        <option value="">General Enquiry (no finance)</option>
+        <option value="Equipment finance">Finance - Equipment Finance</option>
+        <option value="Business Loan">Finance - Business Loan</option>
+        <option value="Practice Buy-in or Buy-out">Finance - Practice Buy-in/Buy-out</option>
+        <option value="Personal Loan">Finance - Personal Loan</option>
+      </select>
+    </div>
+    <div class="form-group full-width"><textarea id="leadMsg" rows="4" placeholder="Message" required></textarea></div>
+    
+    <!-- Area to display non-intrusive feedback -->
+    <div id="formFeedback" class="full-width" style="font-size: 13px; margin-bottom: 5px;"></div>
+    
+    <button type="submit" id="submitBtn" class="btn btn-white full-width">Send Message</button>
+  </form>
+</section>
+
+<div class="sticky-footer">
+  <div class="footer-brand">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png" alt="Only Realty">
+    <div>
+      <h4>Architectural Modular Home Systems</h4>
+      <p>Residential | Commercial | Hospitality</p>
+      <p style="opacity:.5;font-size:9px;">build 2026-08-03-GH-PAGES</p>
+    </div>
+  </div>
+  <div class="footer-actions">
+    <a href="#" id="footer-chat" class="btn btn-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="#" id="footer-call" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call</a>
+    <a href="#" id="footer-email" class="btn btn-white"><i class="fas fa-envelope"></i> Email</a>
+  </div>
+</div>
+
+<script>
+  // Configuration - UPDATE THESE FOR EMAILJS
+  var EMAILJS_PUBLIC_KEY = "b91Y8xn_adp6Xtt__"; 
+  var EMAILJS_SERVICE_ID = "service_89xrunl";
+  var EMAILJS_TEMPLATE_ID = "template_74dyh3p";
+
+  var SUPABASE_URL = "https://jmztkqukornrftdbeyto.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_0HHJeRxOPjoPuOpnBrXgWQ_0rv24fr1";
+  var _supabase;
+  
+  // Create a more robust initialization function
+  async function initSupabaseClient() {
+    return new Promise(function(resolve, reject) {
+      var attempts = 0;
+      var maxAttempts = 50; 
+      
+      var checkInterval = setInterval(function() {
+        attempts++;
+        if (typeof supabase !== 'undefined') {
+          clearInterval(checkInterval);
+          try {
+            _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+              auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+            });
+            resolve();
+          } catch (initErr) {
+            reject(new Error('Failed to create Supabase client: ' + initErr.message));
+          }
+        } else if (attempts >= maxAttempts) {
+          clearInterval(checkInterval);
+          reject(new Error('The Supabase library failed to load from CDN.'));
+        }
+      }, 100);
+    });
+  }
+
+  // Initialize EmailJS
+  if (EMAILJS_PUBLIC_KEY !== "YOUR_EMAILJS_PUBLIC_KEY") {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
+  var agentLinksSetup = {
+    actionButtons: {
+      call: "tel:+27791785335",
+      email: "mailto:jacques@onlyrealty.co.za",
+      chat: "https://wa.me/27791785335"
+    },
+    socialButtons: {
+      facebook: "https://facebook.com/OnlyRealty",
+      instagram: "https://instagram.com/OnlyRealty",
+      linkedin: "https://linkedin.com/company/only-realty",
+      youtube: "https://www.youtube.com/@onlyrealty9935",
+      googleBusiness: "https://share.google/1CG08IikzyDdD4RW6",
+      tiktok: "https://www.tiktok.com/@onlyrealtycoastal",
+      website: "https://www.onlyrealty.co.za"
+    }
+  };
+
+  function applyAgentLinks() {
+    document.getElementById('cfg-call').href = agentLinksSetup.actionButtons.call;
+    document.getElementById('cfg-email').href = agentLinksSetup.actionButtons.email;
+    document.getElementById('cfg-chat').href = agentLinksSetup.actionButtons.chat;
+    document.getElementById('footer-call').href = agentLinksSetup.actionButtons.call;
+    document.getElementById('footer-email').href = agentLinksSetup.actionButtons.email;
+    document.getElementById('footer-chat').href = agentLinksSetup.actionButtons.chat;
+    document.getElementById('cfg-fb').href = agentLinksSetup.socialButtons.facebook;
+    document.getElementById('cfg-ig').href = agentLinksSetup.socialButtons.instagram;
+    document.getElementById('cfg-li').href = agentLinksSetup.socialButtons.linkedin;
+    document.getElementById('cfg-yt').href = agentLinksSetup.socialButtons.youtube;
+    document.getElementById('cfg-google').href = agentLinksSetup.socialButtons.googleBusiness;
+    document.getElementById('cfg-tt').href = agentLinksSetup.socialButtons.tiktok;
+    document.getElementById('cfg-web').href = agentLinksSetup.socialButtons.website;
+  }
+
+  function openQrModal() {
+    var vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:La Grange;Jacques;;;',
+      'FN:Jacques La Grange',
+      'ORG:Only Realty Property Group',
+      'TITLE:Principal',
+      'TEL;TYPE=WORK,VOICE:+27791785335',
+      'EMAIL:jacques@onlyrealty.co.za',
+      'URL:https://www.onlyrealty.co.za',
+      'PHOTO;VALUE=uri:https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png',
+      'END:VCARD'
+    ].join('\n');
+    
+    var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(vcard);
+    document.getElementById('qrImage').src = qrApi;
+    document.getElementById('qrUrlText').textContent = 'Scan to save Jacques La Grange to your contacts';
+    document.getElementById('qrOverlay').classList.add('show');
+  }
+  function closeQrModal() {
+    document.getElementById('qrOverlay').classList.remove('show');
+  }
+
+  async function shareProfile() {
+    var shareData = {
+      title: 'Jacques La Grange - Only Realty Group',
+      text: 'Architectural Modular Home Systems - Only Realty Group',
+      url: window.location.href
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch (e) { }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+    } catch (e) {
+      var temp = document.createElement('textarea');
+      temp.value = shareData.url;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+    showToastMsg('Link copied to clipboard');
+  }
+
+  function saveContactCard() {
+    var vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:La Grange;Jacques;;;',
+      'FN:Jacques La Grange',
+      'ORG:Only Realty Property Group',
+      'TITLE:Principal',
+      'TEL;TYPE=WORK,VOICE:+27791785335',
+      'EMAIL:jacques@onlyrealty.co.za',
+      'URL:https://www.onlyrealty.co.za',
+      'PHOTO;VALUE=uri:https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png',
+      'END:VCARD'
+    ].join('\n');
+    var blob = new Blob([vcard], { type: 'text/vcard' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Jacques-La-Grange-OnlyRealty.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  var globalData = [];
+
+  async function boot() {
+    applyAgentLinks();
+    var loadingState = document.getElementById('loading-state');
+    
+    try {
+      await initSupabaseClient();
+      await fetchPortfolioFromSupabase();
+    } catch (err) {
+      console.error('Boot error:', err);
+      if (loadingState) {
+        loadingState.style.display = 'block';
+        loadingState.innerHTML = '<div style="color:red; padding:20px;">Initialization Error: ' + err.message + '</div>';
+      }
+    }
+    renderWishlistPanel();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  var brochureMap = {};
+  var galleryMap = {};
+  var planMap = {};
+
+  async function fetchPortfolioFromSupabase() {
+    var results = await Promise.all([
+      _supabase.from('products').select('*'),
+      _supabase.from('brochures').select('*'),
+      _supabase.from('product_images').select('*').order('display_order', { ascending: true }),
+      _supabase.from('product_plans').select('*').order('display_order', { ascending: true })
+    ]);
+    
+    var products = results[0].data;
+    var error = results[0].error;
+    var brochures = results[1].data;
+    var galleryImages = results[2].data || [];
+    var planImages = results[3].data || [];
+
+    document.getElementById('loading-state').style.display = 'none';
+
+    if (error) {
+      document.getElementById('product-grid').innerHTML = '<p style="color:red;">Error loading products.</p>';
+      return;
+    }
+    
+    brochureMap = {};
+    (brochures || []).forEach(function(b) {
+      if (!brochureMap[b.product_id]) brochureMap[b.product_id] = b.file_url;
+    });
+
+    galleryMap = {};
+    planMap = {};
+
+    (products || []).forEach(function(p) {
+      galleryMap[p.id] = p.ImageURL ? [normalizeStorageUrl(p.ImageURL)] : [];
+      planMap[p.id] = [];
+    });
+
+    galleryImages.forEach(function(img) {
+      var url = normalizeStorageUrl(img.image_url);
+      if (galleryMap[img.product_id] && galleryMap[img.product_id].indexOf(url) === -1) {
+        galleryMap[img.product_id].push(url);
+      }
+    });
+
+    planImages.forEach(function(img) {
+      var url = normalizeStorageUrl(img.image_url);
+      if (planMap[img.product_id] && planMap[img.product_id].indexOf(url) === -1) {
+        planMap[img.product_id].push(url);
+      }
+    });
+
+    globalData = products || [];
+  
+    var uniqueCategories = [];
+    for (var i = 0; i < globalData.length; i++) {
+      var cat = globalData[i].Category;
+      if (cat && uniqueCategories.indexOf(cat) === -1) uniqueCategories.push(cat);
+    }
+    var categories = ['All'].concat(uniqueCategories);
+  
+    var filterDiv = document.getElementById('filter-container');
+    filterDiv.innerHTML = categories.map(function(cat, i) {
+      return '<button class="filter-btn ' + (i===0 ? 'active' : '') + '" onclick="filterGrid(\'' + String(cat).replace(/'/g, "\\'") + '\', this)">' + cat + '</button>';
+    }).join('');
+
+    renderGrid(globalData);
+  }
+
+  function filterGrid(category, btnElem) {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btnElem.classList.add('active');
+    var filtered = category === 'All' ? globalData : globalData.filter(function(p) { return p.Category === category; });
+    renderGrid(filtered);
+  }
+
+  function renderGrid(data) {
+    var grid = document.getElementById('product-grid');
+    if (data.length === 0) {
+      grid.innerHTML = '<p style="grid-column:1/-1;">No products found.</p>';
+      return;
+    }
+  
+    var storageBaseUrl = 'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/';
+
+    grid.innerHTML = data.map(function(p) {
+      var titleEsc = String(p.Title || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      var priceEsc = String(p.Price || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      var inCart = isInCart(p.id) ? 'added' : '';
+      var imgUrl = p.ImageURL && p.ImageURL.includes('http') ? p.ImageURL : (p.ImageURL ? storageBaseUrl + p.ImageURL : 'https://placehold.co/400x300?text=No+Image');
+      
+      var galleryBtn = (galleryMap[p.id] || []).length > 1 ? '<button class="view-gallery-btn" onclick="openGallery(\'' + p.id + '\')"><i class="fas fa-images"></i> View Gallery (' + galleryMap[p.id].length + ')</button>' : '';
+      var planBtn = (planMap[p.id] || []).length > 0 ? '<button class="view-gallery-btn" style="margin-top:5px; background:var(--primary-blue); color:white;" onclick="openPlan(\'' + p.id + '\')"><i class="fas fa-map"></i> View Plan (' + planMap[p.id].length + ')</button>' : '';
+
+      return '<div class="card">' +
+        '<div class="card-img-wrap">' +
+          '<img src="' + imgUrl + '" class="card-img" alt="' + p.Title + '">' +
+          '<button class="cart-toggle ' + inCart + '" data-id="' + p.id + '" onclick="toggleCartItem(\'' + p.id + '\', \'' + titleEsc + '\', \'' + priceEsc + '\', this)" aria-label="Add to enquiry list"><i class="fas fa-heart"></i></button>' +
+        '</div>' +
+        '<div class="card-content">' +
+          '<span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">' + (p.Category || '') + '</span>' +
+          '<h4 class="card-title">' + p.Title + '</h4>' +
+          '<span class="card-price">' + p.Price + '</span>' +
+          '<div style="display:flex; flex-direction:column; gap:5px;">' + galleryBtn + planBtn + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function calculateFrontEndROI() {
+    var price = parseFloat(document.getElementById('roiPrice').value) || 0;
+    var monthlyRental = parseFloat(document.getElementById('roiRental').value) || 0;
+    var nightlyRate = parseFloat(document.getElementById('roiNightly').value) || 0;
+    var occupancy = parseFloat(document.getElementById('roiOcc').value) || 0;
+    var expenses = parseFloat(document.getElementById('roiExp').value) || 0;
+  
+    var annualRevenue = nightlyRate > 0 && occupancy > 0 ? nightlyRate * 365 * (occupancy / 100) : monthlyRental * 12;
+    var netIncome = annualRevenue - expenses;
+    var roiPercent = price > 0 ? ((netIncome / price) * 100).toFixed(2) : 0;
+    var paybackYears = netIncome > 0 ? (price / netIncome).toFixed(1) : 0;
+
+    document.getElementById('resRev').innerText = 'R ' + annualRevenue.toLocaleString('en-ZA');
+    document.getElementById('resNet').innerText = 'R ' + netIncome.toLocaleString('en-ZA');
+    document.getElementById('resPerc').innerText = roiPercent + '%';
+    document.getElementById('resYears').innerText = paybackYears + ' Years';
+  }
+
+  var currentGalleryImages = [];
+  var currentGalleryIndex = 0;
+
+  function openGallery(productId) {
+    currentGalleryImages = galleryMap[productId] || [];
+    if (currentGalleryImages.length === 0) return;
+    document.getElementById('galleryTitle').innerText = 'Product Gallery';
+    currentGalleryIndex = 0;
+    updateGalleryView();
+    document.getElementById('galleryOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openPlan(productId) {
+    currentGalleryImages = planMap[productId] || [];
+    if (currentGalleryImages.length === 0) return;
+    document.getElementById('galleryTitle').innerText = 'Floor Plan';
+    currentGalleryIndex = 0;
+    updateGalleryView();
+    document.getElementById('galleryOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    document.getElementById('galleryOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function updateGalleryView() {
+    document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
+    document.getElementById('galleryCounter').textContent = 'Image ' + (currentGalleryIndex + 1) + ' of ' + currentGalleryImages.length;
+  }
+
+  function nextGalleryImage() { currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length; updateGalleryView(); }
+  function prevGalleryImage() { currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length; updateGalleryView(); }
+
+  var FINANCE_PDF_URL = 'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/Documents/Oracle3D-Finance-Application-Form.pdf';
+  var BOOKING_URL = 'https://calendar.app.google/XpZyH5CEfTzSeqp57';
+  var AGENT_WHATSAPP = '27791785335';
+  var AGENT_EMAIL = 'jacques@onlyrealty.co.za';
+
+  var savedContactMemory = null;
+  var enquiryCart = [];
+
+  function getSavedContact() { return savedContactMemory; }
+  function saveContact(c) { savedContactMemory = c; }
+  function clearWishlistContact() { savedContactMemory = null; renderWishlistPanel(); }
+
+  function showToastMsg(msg) {
+    var toast = document.getElementById('shareToast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 3000);
+  }
+
+  function isInCart(id) { return enquiryCart.some(function(i) { return i.id === id; }); }
+
+  function toggleCartItem(id, title, price, btnEl) {
+    if (isInCart(id)) {
+      enquiryCart = enquiryCart.filter(function(i) { return i.id !== id; });
+      btnEl.classList.remove('added');
+    } else {
+      enquiryCart.push({ id: id, title: title, price: price });
+      btnEl.classList.add('added');
+    }
+    renderWishlistPanel();
+  }
+
+  function removeCartItem(id) {
+    enquiryCart = enquiryCart.filter(function(i) { return i.id !== id; });
+    document.querySelectorAll('.cart-toggle').forEach(function(btn) { if (btn.dataset.id === id) btn.classList.remove('added'); });
+    renderWishlistPanel();
+  }
+
+  function expandWishlist() { document.getElementById('wishlistPanel').classList.add('expanded'); }
+  function collapseWishlist() { document.getElementById('wishlistPanel').classList.remove('expanded'); }
+  function toggleWishlistMobile() { document.getElementById('wishlistPanel').classList.toggle('expanded'); }
+
+  function renderWishlistPanel() {
+    document.getElementById('wishlistTabCount').textContent = enquiryCart.length;
+    var list = document.getElementById('wishlistItemsList');
+    list.innerHTML = enquiryCart.length === 0 ? '<p style="color:var(--text-gray);font-size:13px;">Tap the heart on any product to add it here.</p>' : enquiryCart.map(function(item) {
+      return '<div class="cart-item-row"><span>' + item.title + ' - ' + item.price + '</span><button onclick="removeCartItem(\'' + item.id + '\')">&times;</button></div>';
+    }).join('');
+
+    var saved = getSavedContact();
+    document.getElementById('wishlistContactSection').style.display = saved ? 'none' : 'block';
+    document.getElementById('wishlistActionsSection').style.display = saved ? 'block' : 'none';
+    if (saved) document.getElementById('wishlistSavedLine').textContent = saved.name + ' - ' + saved.mobile;
+  }
+
+  function saveWishlistContact() {
+    var name = document.getElementById('wlName').value.trim();
+    var mobile = document.getElementById('wlMobile').value.trim();
+    var email = document.getElementById('wlEmail').value.trim();
+    if (!name || !mobile || !email) {
+      document.getElementById('wishlistStatus').textContent = 'Name, mobile and email are all required.';
+      return;
+    }
+    saveContact({ name, mobile, email, city: document.getElementById('wlCity').value, suburb: document.getElementById('wlSuburb').value });
+    renderWishlistPanel();
+  }
+
+  async function wishlistAction(actionType) {
+    var contact = getSavedContact();
+    if (!contact || enquiryCart.length === 0) return;
+
+    var titles = enquiryCart.map(function(i) { return i.title; }).join(', ');
+    var message = 'Hi, I\'m interested in: ' + titles + '. Please send more info.';
+    var statusEl = document.getElementById('wishlistActionStatus');
+    statusEl.textContent = 'Please wait...';
+
+    if (_supabase) {
+      await _supabase.from('leads').insert([{
+        name: contact.name, email: contact.email, phone: contact.mobile,
+        interest: titles, message: message, enquiry_type: actionType
+      }]);
+    }
+
+    switch (actionType) {
+      case 'whatsapp': window.open('https://wa.me/' + AGENT_WHATSAPP + '?text=' + encodeURIComponent(message), '_blank'); statusEl.textContent = ''; break;
+      case 'call': window.location.href = 'tel:+' + AGENT_WHATSAPP; statusEl.textContent = ''; break;
+      case 'email': window.location.href = 'mailto:' + AGENT_EMAIL + '?subject=' + encodeURIComponent('Enquiry: ' + titles) + '&body=' + encodeURIComponent(message); statusEl.textContent = ''; break;
+      case 'appointment': window.open(BOOKING_URL, '_blank'); statusEl.textContent = ''; break;
+      case 'brochure':
+      case 'finance':
+        var docs = actionType === 'finance' 
+          ? [{ title: 'Finance Application', url: FINANCE_PDF_URL }]
+          : enquiryCart.filter(function(i) { return !!brochureMap[i.id]; }).map(function(i) { return { title: i.title, url: normalizeStorageUrl(brochureMap[i.id]) }; });
+        
+        if (docs.length === 0) { statusEl.textContent = 'No documents available.'; break; }
+        
+        if (EMAILJS_PUBLIC_KEY === "YOUR_EMAILJS_PUBLIC_KEY") {
+          statusEl.textContent = 'Email service not configured. Please contact the agent.';
+          break;
+        }
+
+        try {
+          var linksText = docs.map(d => `- ${d.title}: ${d.url}`).join('\n');
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            to_email: contact.email,
+            to_name: contact.name,
+            document_links: linksText,
+            agent_name: "Jacques La Grange"
+          });
+          statusEl.textContent = '';
+          showToastMsg('Document(s) sent to ' + contact.email);
+        } catch (e) {
+          statusEl.textContent = 'Error sending email: ' + (e.text || e);
+        }
+        break;
+    }
+  }
+
+  function normalizeStorageUrl(raw) {
+    var base = 'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/';
+    return raw ? (raw.includes('http') ? raw : base + raw) : null;
+  }
+
+  async function submitFrontendLead() {
+    var btn = document.getElementById('submitBtn');
+    var feedback = document.getElementById('formFeedback');
+    var originalText = btn.innerText;
+    btn.innerText = 'Sending...';
+    btn.disabled = true;
+
+    var payload = {
+      name: document.getElementById('leadName').value,
+      email: document.getElementById('leadEmail').value,
+      phone: document.getElementById('leadPhone').value,
+      interest: document.getElementById('leadInterest').value,
+      message: document.getElementById('leadMsg').value,
+      enquiry_type: document.getElementById('financeType').value ? 'finance' : 'general'
+    };
+
+    if (_supabase) {
+      var res = await _supabase.from('leads').insert([payload]);
+      if (!res.error) {
+        btn.innerText = 'Sent Successfully!';
+        btn.style.backgroundColor = 'var(--whatsapp-green)';
+        document.querySelector('.contact-form').reset();
+        setTimeout(function() { btn.innerText = originalText; btn.style.backgroundColor = ''; btn.disabled = false; }, 3000);
+      } else {
+        feedback.textContent = 'Error: ' + res.error.message;
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }
+    }
+  }
+</script>
+</body></html>

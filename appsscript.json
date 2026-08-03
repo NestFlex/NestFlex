@@ -1,0 +1,14 @@
+{
+  "timeZone": "Africa/Johannesburg",
+  "dependencies": {},
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE"
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.webapp.deploy",
+    "https://www.googleapis.com/auth/script.send_mail"
+  ],
+  "runtimeVersion": "V8"
+}
