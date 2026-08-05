@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="NestFlex | Your home, your way, faster.">
 <meta name="twitter:description" content="NestFlex helps home buyers find faster, more flexible modular housing options.">
 <meta name="twitter:image" content="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png">
+<link rel="icon" type="image/png" href="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png">
 <title>NestFlex | Your home, your way, faster.</title>
 <link rel="canonical" href="https://nestflex.github.io/NestFlex/">
 <script type="application/ld+json">
@@ -472,6 +473,15 @@
     cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition);
   }
   .view-gallery-btn:hover { background: var(--primary-dark); color: white; }
+  .faq-section { background-color: var(--white); }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+  .faq-question { font-weight: 700; font-size: 16px; color: var(--primary-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-top: 15px; display: none; }
+  .faq-item.active .faq-answer { display: block; }
+  .faq-item.active .faq-question i { transform: rotate(180deg); }
+  .faq-question i { transition: transform 0.3s ease; font-size: 12px; }
+
 </style>
 </head>
 <body>
@@ -597,6 +607,7 @@
   <nav class="nav-links">
     <a href="#portfolio">Portfolio</a>
     <a href="#roi-calculator">ROI Calculator</a>
+    <a href="#faq">FAQ</a>
     <a href="#finance">Finance</a>
     <a href="#enquire">Enquire</a>
   </nav>
@@ -701,6 +712,55 @@
     </div>
   </div>
 </section>
+
+<section id="faq" class="section-container faq-section">
+  <div class="faq-container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Common enquiries regarding NestFlex Architectural Modular Systems.</p>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What is the standard build time for a NestFlex home? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Our factory build cycle is typically 12 weeks, with on-site installation and finishing taking between 1 to 3 weeks depending on the complexity of the site and the specific system chosen.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Are these homes compliant with South African building regulations? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Yes, all NestFlex systems are LSF (Lightweight Steel Frame) certified and exceed national SANS 10400 energy and structural standards, including thermal efficiency and fire protection requirements.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Do you provide financing for modular homes? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        We facilitate finance applications through our partner networks. Because our systems carry structural warranties and full certifications, they are increasingly recognized by major South African financial institutions for residential bonding.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Can I recover VAT on my modular home investment? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Qualifying commercial entities and property investors may be eligible for VAT recovery (currently 15%) on their modular housing assets. We recommend consulting with your tax advisor to confirm eligibility for your specific investment structure.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What kind of warranty is provided? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        NestFlex systems come with a Lifetime Structural Warranty on the core steel framework, giving you peace of mind regarding the longevity and durability of your real estate asset.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleFaq(elem) {
+    var item = elem.parentElement;
+    item.classList.toggle('active');
+  }
+</script>
 
 <section id="finance" class="section-container">
   <h2 class="section-title">Invest In Smarter Living - New Finance Option</h2>
