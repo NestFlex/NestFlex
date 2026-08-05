@@ -81,6 +81,15 @@
   ]
 }
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PLACEHOLDER');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -759,6 +768,9 @@
   function toggleFaq(elem) {
     var item = elem.parentElement;
     item.classList.toggle('active');
+    if (item.classList.contains('active')) {
+      gtag('event', 'faq_view', { 'question': elem.innerText.trim() });
+    }
   }
 </script>
 
@@ -985,6 +997,7 @@
       }
     }
     renderWishlistPanel();
+    gtag('event', isInCart(id) ? 'add_to_wishlist' : 'remove_from_wishlist', { 'product_id': id, 'title': title });
   }
 
   if (document.readyState === 'loading') {
@@ -1118,6 +1131,7 @@
     document.getElementById('resNet').innerText = 'R ' + netIncome.toLocaleString('en-ZA');
     document.getElementById('resPerc').innerText = roiPercent + '%';
     document.getElementById('resYears').innerText = paybackYears + ' Years';
+    gtag('event', 'calculate_roi', { 'price': price, 'roi_percent': roiPercent });
   }
 
   var currentGalleryImages = [];
@@ -1126,6 +1140,7 @@
   function openGallery(productId) {
     currentGalleryImages = galleryMap[productId] || [];
     if (currentGalleryImages.length === 0) return;
+    gtag('event', 'view_gallery', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Product Gallery';
     currentGalleryIndex = 0;
     updateGalleryView();
@@ -1136,6 +1151,7 @@
   function openPlan(productId) {
     currentGalleryImages = planMap[productId] || [];
     if (currentGalleryImages.length === 0) return;
+    gtag('event', 'view_plan', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Floor Plan';
     currentGalleryIndex = 0;
     updateGalleryView();
@@ -1186,6 +1202,7 @@
       btnEl.classList.add('added');
     }
     renderWishlistPanel();
+    gtag('event', isInCart(id) ? 'add_to_wishlist' : 'remove_from_wishlist', { 'product_id': id, 'title': title });
   }
 
   function removeCartItem(id) {
@@ -1238,6 +1255,8 @@
         interest: titles, message: message, enquiry_type: actionType
       }]);
     }
+
+    gtag('event', 'wishlist_action', { 'action_type': actionType, 'products': titles });
 
     switch (actionType) {
       case 'whatsapp': window.open('https://wa.me/' + AGENT_WHATSAPP + '?text=' + encodeURIComponent(message), '_blank'); statusEl.textContent = ''; break;
@@ -1298,6 +1317,7 @@
     if (_supabase) {
       var res = await _supabase.from('leads').insert([payload]);
       if (!res.error) {
+        gtag('event', 'lead_submission', { 'enquiry_type': payload.enquiry_type });
         btn.innerText = 'Sent Successfully!';
         btn.style.backgroundColor = 'var(--whatsapp-green)';
         document.querySelector('.contact-form').reset();

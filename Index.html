@@ -81,6 +81,15 @@
   ]
 }
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PLACEHOLDER');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -473,6 +482,15 @@
     cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition);
   }
   .view-gallery-btn:hover { background: var(--primary-dark); color: white; }
+  .faq-section { background-color: var(--white); }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+  .faq-question { font-weight: 700; font-size: 16px; color: var(--primary-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-top: 15px; display: none; }
+  .faq-item.active .faq-answer { display: block; }
+  .faq-item.active .faq-question i { transform: rotate(180deg); }
+  .faq-question i { transition: transform 0.3s ease; font-size: 12px; }
+
 </style>
 </head>
 <body>
@@ -598,6 +616,7 @@
   <nav class="nav-links">
     <a href="#portfolio">Portfolio</a>
     <a href="#roi-calculator">ROI Calculator</a>
+    <a href="#faq">FAQ</a>
     <a href="#finance">Finance</a>
     <a href="#enquire">Enquire</a>
   </nav>
@@ -702,6 +721,58 @@
     </div>
   </div>
 </section>
+
+<section id="faq" class="section-container faq-section">
+  <div class="faq-container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">Common enquiries regarding NestFlex Architectural Modular Systems.</p>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What is the standard build time for a NestFlex home? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Our factory build cycle is typically 12 weeks, with on-site installation and finishing taking between 1 to 3 weeks depending on the complexity of the site and the specific system chosen.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Are these homes compliant with South African building regulations? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Yes, all NestFlex systems are LSF (Lightweight Steel Frame) certified and exceed national SANS 10400 energy and structural standards, including thermal efficiency and fire protection requirements.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Do you provide financing for modular homes? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        We facilitate finance applications through our partner networks. Because our systems carry structural warranties and full certifications, they are increasingly recognized by major South African financial institutions for residential bonding.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Can I recover VAT on my modular home investment? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        Qualifying commercial entities and property investors may be eligible for VAT recovery (currently 15%) on their modular housing assets. We recommend consulting with your tax advisor to confirm eligibility for your specific investment structure.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What kind of warranty is provided? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-answer">
+        NestFlex systems come with a Lifetime Structural Warranty on the core steel framework, giving you peace of mind regarding the longevity and durability of your real estate asset.
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleFaq(elem) {
+    var item = elem.parentElement;
+    item.classList.toggle('active');
+    if (item.classList.contains('active')) {
+      gtag('event', 'faq_view', { 'question': elem.innerText.trim() });
+    }
+  }
+</script>
 
 <section id="finance" class="section-container">
   <h2 class="section-title">Invest In Smarter Living - New Finance Option</h2>
@@ -926,6 +997,7 @@
       }
     }
     renderWishlistPanel();
+    gtag('event', isInCart(id) ? 'add_to_wishlist' : 'remove_from_wishlist', { 'product_id': id, 'title': title });
   }
 
   if (document.readyState === 'loading') {
@@ -1059,6 +1131,7 @@
     document.getElementById('resNet').innerText = 'R ' + netIncome.toLocaleString('en-ZA');
     document.getElementById('resPerc').innerText = roiPercent + '%';
     document.getElementById('resYears').innerText = paybackYears + ' Years';
+    gtag('event', 'calculate_roi', { 'price': price, 'roi_percent': roiPercent });
   }
 
   var currentGalleryImages = [];
@@ -1067,6 +1140,7 @@
   function openGallery(productId) {
     currentGalleryImages = galleryMap[productId] || [];
     if (currentGalleryImages.length === 0) return;
+    gtag('event', 'view_gallery', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Product Gallery';
     currentGalleryIndex = 0;
     updateGalleryView();
@@ -1077,6 +1151,7 @@
   function openPlan(productId) {
     currentGalleryImages = planMap[productId] || [];
     if (currentGalleryImages.length === 0) return;
+    gtag('event', 'view_plan', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Floor Plan';
     currentGalleryIndex = 0;
     updateGalleryView();
@@ -1127,6 +1202,7 @@
       btnEl.classList.add('added');
     }
     renderWishlistPanel();
+    gtag('event', isInCart(id) ? 'add_to_wishlist' : 'remove_from_wishlist', { 'product_id': id, 'title': title });
   }
 
   function removeCartItem(id) {
@@ -1179,6 +1255,8 @@
         interest: titles, message: message, enquiry_type: actionType
       }]);
     }
+
+    gtag('event', 'wishlist_action', { 'action_type': actionType, 'products': titles });
 
     switch (actionType) {
       case 'whatsapp': window.open('https://wa.me/' + AGENT_WHATSAPP + '?text=' + encodeURIComponent(message), '_blank'); statusEl.textContent = ''; break;
@@ -1239,6 +1317,7 @@
     if (_supabase) {
       var res = await _supabase.from('leads').insert([payload]);
       if (!res.error) {
+        gtag('event', 'lead_submission', { 'enquiry_type': payload.enquiry_type });
         btn.innerText = 'Sent Successfully!';
         btn.style.backgroundColor = 'var(--whatsapp-green)';
         document.querySelector('.contact-form').reset();
