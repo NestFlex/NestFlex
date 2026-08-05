@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nestflex.github.io/NestFlex/sitemap.xml
