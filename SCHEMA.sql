@@ -71,11 +71,45 @@ ALTER TABLE product_images ENABLE ROW LEVEL SECURITY;
 ALTER TABLE product_plans ENABLE ROW LEVEL SECURITY;
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 
--- Create public read policies
-CREATE POLICY "Public Access" ON products FOR SELECT USING (true);
-CREATE POLICY "Public Access" ON brochures FOR SELECT USING (true);
-CREATE POLICY "Public Access" ON product_images FOR SELECT USING (true);
-CREATE POLICY "Public Access" ON product_plans FOR SELECT USING (true);
+-- 6. Quotes Table (Client Portal)
+CREATE TABLE IF NOT EXISTS quotes (
+  id BIGSERIAL PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  user_email TEXT NOT NULL,
+  full_name TEXT,
+  phone_number TEXT,
+  finance_type TEXT,
+  pod_purpose TEXT,
+  installation_address TEXT,
+  infra_status JSONB, -- {electricity: bool, water: bool, sewage: bool}
+  additional_info TEXT,
+  status TEXT DEFAULT 'Submitted', -- Submitted, Review, Accepted, Signed
+  quote_amount DECIMAL,
+  quote_file_url TEXT,
+  team_notes TEXT
+);
 
--- Create insert-only policy for leads
-CREATE POLICY "Insert Leads" ON leads FOR INSERT WITH CHECK (true);
+-- 7. Quote Documents Table
+CREATE TABLE IF NOT EXISTS quote_documents (
+  id BIGSERIAL PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  quote_id BIGINT REFERENCES quotes(id) ON DELETE CASCADE,
+  file_url TEXT NOT NULL,
+  document_type TEXT -- ID Copy, Bank Statement, etc.
+);
+
+-- Enable RLS for new tables
+ALTER TABLE quotes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE quote_documents ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for quotes
+CREATE POLICY "Users can insert their own quotes" ON quotes FOR INSERT WITH CHECK (true);
+CREATE POLICY "Users can view their own quotes" ON quotes FOR SELECT USING (true); -- In a real app, filter by email
+
+-- Create policies for quote_documents
+CREATE POLICY "Users can insert their own docs" ON quote_documents FOR INSERT WITH CHECK (true);
+CREATE POLICY "Users can view their own docs" ON quote_documents FOR SELECT USING (true);
+
+-- Create indexes for performance
+CREATE INDEX IF NOT EXISTS idx_quotes_user_email ON quotes(user_email);
+CREATE INDEX IF NOT EXISTS idx_quote_documents_quote_id ON quote_documents(quote_id);

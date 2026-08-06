@@ -101,7 +101,8 @@
 <style>
   :root {
     --primary-dark: #001740;
-    --primary-blue: #AD244B;
+    --primary-blue: #1e3a8a; /* Updated to NestFlex Deep Blue */
+    --accent-red: #AD244B;
     --text-dark: #222222;
     --text-gray: #666666;
     --bg-light: #f4f7f6;
@@ -109,6 +110,85 @@
     --whatsapp-green: #25D366;
     --transition: all 0.3s ease;
   }
+
+  /* Quote Portal Styles */
+  .portal-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,23,64,0.9); z-index: 9000;
+    display: none; justify-content: center; align-items: center;
+    padding: 20px; backdrop-filter: blur(10px);
+  }
+  .portal-modal.show { display: flex; }
+  .portal-content {
+    background: var(--white); width: 100%; max-width: 800px; max-height: 90vh;
+    border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.4);
+  }
+  .portal-header {
+    padding: 24px 32px; background: var(--primary-dark); color: var(--white);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .portal-header h3 { font-size: 20px; font-weight: 800; }
+  .portal-close { background: none; border: none; color: var(--white); font-size: 28px; cursor: pointer; opacity: 0.7; transition: 0.3s; }
+  .portal-close:hover { opacity: 1; }
+  
+  .portal-body { padding: 32px; overflow-y: auto; flex: 1; }
+  .portal-step { display: none; }
+  .portal-step.active { display: block; animation: slideIn 0.4s ease; }
+  
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .portal-nav { display: flex; gap: 8px; margin-bottom: 24px; }
+  .portal-dot { height: 6px; flex: 1; border-radius: 3px; background: #e2e8f0; transition: 0.3s; }
+  .portal-dot.active { background: var(--primary-blue); }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  
+  .input-wrap { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .input-wrap label { font-size: 13px; font-weight: 700; color: var(--primary-dark); }
+  .input-wrap input, .input-wrap select, .input-wrap textarea {
+    padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; font-size: 14px;
+  }
+  
+  .check-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 10px; }
+  .check-item { display: flex; justify-content: space-between; align-items: center; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #f1f5f9; cursor: pointer; }
+  .check-item input { width: 18px; height: 18px; }
+
+  .upload-area {
+    border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px 20px; text-align: center;
+    transition: 0.3s; cursor: pointer; margin-top: 10px;
+  }
+  .upload-area:hover { border-color: var(--primary-blue); background: #f8fafc; }
+  .upload-area i { font-size: 32px; color: #94a3b8; margin-bottom: 12px; }
+  .file-list { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+  .file-item { font-size: 12px; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; display: flex; justify-content: space-between; }
+
+  .portal-footer { padding: 24px 32px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+  .btn-prev { background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-gray); }
+  .btn-next { background: var(--primary-blue); color: var(--white); padding: 12px 32px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+  .btn-next:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+  /* Dashboard Styles */
+  .portal-dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+  .dash-status { font-size: 12px; font-weight: 800; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; background: #e0f2fe; color: #0369a1; }
+  
+  .timeline-list { margin-top: 20px; border-left: 2px solid #e2e8f0; padding-left: 24px; position: relative; }
+  .timeline-item { position: relative; margin-bottom: 30px; }
+  .timeline-item::after {
+    content: ''; position: absolute; left: -31px; top: 0; width: 12px; height: 12px;
+    border-radius: 50%; background: #cbd5e1; border: 3px solid var(--white);
+  }
+  .timeline-item.done::after { background: var(--whatsapp-green); }
+  .timeline-item.active::after { background: var(--primary-blue); box-shadow: 0 0 0 4px rgba(30,58,138,0.2); }
+  .timeline-item h5 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .timeline-item p { font-size: 12px; color: var(--text-gray); line-height: 1.5; }
+
+  .quote-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 20px; text-align: center; }
+  .quote-box h4 { font-size: 24px; margin-bottom: 8px; }
+  .quote-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+  .btn-outline { background: var(--white); border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  .btn-accept { background: var(--whatsapp-green); color: var(--white); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
   html {
     scroll-behavior: smooth;
@@ -597,6 +677,135 @@
   </div>
 </div>
 
+<div class="portal-modal" id="quotePortal">
+  <div class="portal-content">
+    <div class="portal-header">
+      <h3>NestFlex Quote Portal</h3>
+      <button class="portal-close" onclick="closeQuotePortal()">&times;</button>
+    </div>
+    
+    <div class="portal-body">
+      <!-- Wizard View -->
+      <div id="portalWizard" class="portal-step active">
+        <div class="portal-nav">
+          <div class="portal-dot active" data-step="1"></div>
+          <div class="portal-dot" data-step="2"></div>
+          <div class="portal-dot" data-step="3"></div>
+        </div>
+        
+        <!-- Step 1: Basics -->
+        <div class="wizard-pane active" data-step="1">
+          <h4 style="margin-bottom:20px;">Let's start with the basics</h4>
+          <div class="form-grid">
+            <div class="input-wrap">
+              <label>Full Name</label>
+              <input type="text" id="qFullName" placeholder="Your Name">
+            </div>
+            <div class="input-wrap">
+              <label>Email Address</label>
+              <input type="email" id="qEmail" placeholder="your@email.com">
+            </div>
+            <div class="input-wrap">
+              <label>Phone Number</label>
+              <input type="text" id="qPhone" placeholder="+27...">
+            </div>
+            <div class="input-wrap">
+              <label>Finance Type</label>
+              <select id="qFinance">
+                <option value="Cash">Cash</option>
+                <option value="Bond">Bond</option>
+                <option value="Investor">Investor/Commercial</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 2: Site Details -->
+        <div class="wizard-pane" data-step="2" style="display:none;">
+          <h4 style="margin-bottom:20px;">Site Requirements</h4>
+          <div class="input-wrap">
+            <label>Installation Address or GPS Coordinates</label>
+            <input type="text" id="qAddress" placeholder="Street, City, Suburb">
+          </div>
+          <p style="font-size:13px; font-weight:700; margin-top:10px;">Infrastructure Available:</p>
+          <div class="check-grid">
+            <label class="check-item">
+              <span>Electricity Connected</span>
+              <input type="checkbox" id="qInfraElec">
+            </label>
+            <label class="check-item">
+              <span>Water Available</span>
+              <input type="checkbox" id="qInfraWater">
+            </label>
+            <label class="check-item">
+              <span>Sewage/Septic Ready</span>
+              <input type="checkbox" id="qInfraSewage">
+            </label>
+          </div>
+        </div>
+        
+        <!-- Step 3: Documents -->
+        <div class="wizard-pane" data-step="3" style="display:none;">
+          <h4 style="margin-bottom:20px;">Required Documents</h4>
+          <p style="font-size:13px; color:var(--text-gray);">Please upload your ID Copy and latest Bank Statement (for finance) or Site Plan.</p>
+          <div class="upload-area" onclick="document.getElementById('qFilePicker').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to upload or drag & drop</p>
+            <input type="file" id="qFilePicker" multiple style="display:none" onchange="handleFileSelect(this)">
+          </div>
+          <div id="qFileList" class="file-list"></div>
+        </div>
+      </div>
+      
+      <!-- Dashboard View (Shown after submission) -->
+      <div id="portalDash" class="portal-step">
+        <div class="portal-dash-header">
+          <div>
+            <h4 id="dashWelcome">Hello, Name</h4>
+            <p style="font-size:12px; color:var(--text-gray);">Quote ID: #<span id="dashQuoteId">---</span></p>
+          </div>
+          <div class="dash-status" id="dashStatusLabel">Submitted</div>
+        </div>
+        
+        <div id="quoteReadyArea" style="display:none;">
+           <div class="quote-box">
+             <p style="font-size:12px; color:var(--text-gray); margin-bottom:10px;">YOUR QUOTE IS READY</p>
+             <h4 id="quoteAmountDisplay">R0.00</h4>
+             <div class="quote-actions">
+               <button class="btn-outline" id="btnDownloadQuote"><i class="fas fa-download"></i> View PDF</button>
+               <button class="btn-accept" id="btnAcceptQuote">Accept & Sign</button>
+             </div>
+           </div>
+        </div>
+
+        <div class="timeline-list">
+          <div class="timeline-item done">
+            <h5>1. Site Inspection & Requirements</h5>
+            <p>Completed. We have received your site details and documents.</p>
+          </div>
+          <div class="timeline-item active" id="tlItemReview">
+            <h5>2. Technical Review & Costing</h5>
+            <p>Our team is currently reviewing your infrastructure and requirements.</p>
+          </div>
+          <div class="timeline-item" id="tlItemReady">
+            <h5>3. Quote Ready for Acceptance</h5>
+            <p>Final technical quote and payment schedule loaded for review.</p>
+          </div>
+          <div class="timeline-item">
+            <h5>4. Manufacturing & Installation</h5>
+            <p>Procurement of LSF systems and logistics coordination.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="portal-footer" id="portalFooter">
+      <button class="btn-prev" id="btnPrev" style="visibility:hidden;" onclick="wizardPrev()">Back</button>
+      <button class="btn-next" id="btnNext" onclick="wizardNext()">Next</button>
+    </div>
+  </div>
+</div>
+
 <div class="top-bar">
   <div>
     <a href="tel:+27791785335"><i class="fas fa-phone-alt"></i> +27 41 378 1124</a>
@@ -619,6 +828,7 @@
     <a href="#faq">FAQ</a>
     <a href="#finance">Finance</a>
     <a href="#enquire">Enquire</a>
+    <a href="javascript:void(0)" onclick="openQuotePortal()" style="background:var(--primary-blue); color:white; padding:8px 16px; border-radius:6px; font-weight:700;">Get Quote</a>
   </nav>
 </header>
 
@@ -628,8 +838,8 @@
     <h2>NestFlex | Architectural Modular Home Systems</h2>
     <p>Architectural Modular Home Systems combine advanced lightweight steel frame engineering with accelerated deployment, lifetime structural warranties, and measurable investment returns. As the authorised representative for this exclusive portfolio, Jacques La Grange at Only Realty Group is your direct point of contact — from first enquiry through to move-in.</p>
     <div class="hero-btns">
-      <a href="#portfolio" class="btn btn-primary"><i class="fas fa-building"></i> Explore Portfolio</a>
-      <a href="#enquire" class="btn btn-white"><i class="fas fa-comments"></i> Request Consultation</a>
+      <a href="javascript:void(0)" onclick="openQuotePortal()" class="btn btn-primary" style="background:var(--primary-blue); border-color:var(--primary-blue);"><i class="fas fa-file-invoice"></i> Request Digital Quote</a>
+      <a href="#portfolio" class="btn btn-white"><i class="fas fa-building"></i> Explore Portfolio</a>
     </div>
   </div>
    <div class="advantages-card">
@@ -1327,6 +1537,187 @@
         btn.innerText = originalText;
         btn.disabled = false;
       }
+    }
+  }
+
+  // --- Quote Portal Logic ---
+  var currentWizardStep = 1;
+  var selectedFiles = [];
+  var activeQuoteId = localStorage.getItem('nestflex_quote_id');
+
+  function openQuotePortal() {
+    document.getElementById('quotePortal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    if (activeQuoteId) {
+      showPortalDashboard(activeQuoteId);
+    } else {
+      showPortalWizard();
+    }
+  }
+
+  function closeQuotePortal() {
+    document.getElementById('quotePortal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function showPortalWizard() {
+    document.getElementById('portalWizard').style.display = 'block';
+    document.getElementById('portalDash').style.display = 'none';
+    document.getElementById('portalFooter').style.display = 'flex';
+    currentWizardStep = 1;
+    updateWizardUI();
+  }
+
+  async function showPortalDashboard(id) {
+    document.getElementById('portalWizard').style.display = 'none';
+    document.getElementById('portalDash').style.display = 'block';
+    document.getElementById('portalFooter').style.display = 'none';
+    if (!_supabase) return;
+    const { data, error } = await _supabase.from('quotes').select('*').eq('id', id).single();
+    if (data) {
+      document.getElementById('dashWelcome').textContent = 'Hello, ' + data.full_name.split(' ')[0];
+      document.getElementById('dashQuoteId').textContent = data.id;
+      document.getElementById('dashStatusLabel').textContent = data.status;
+      document.getElementById('dashStatusLabel').className = 'dash-status status-' + data.status.toLowerCase();
+      if (data.status === 'Review' || data.status === 'Accepted' || data.status === 'Signed') {
+        document.getElementById('tlItemReview').classList.add('done');
+        document.getElementById('tlItemReview').classList.remove('active');
+        document.getElementById('tlItemReady').classList.add('active');
+      }
+      if (data.quote_file_url) {
+        document.getElementById('quoteReadyArea').style.display = 'block';
+        document.getElementById('quoteAmountDisplay').textContent = 'R' + parseFloat(data.quote_amount).toLocaleString();
+        document.getElementById('btnDownloadQuote').onclick = function() { window.open(data.quote_file_url, '_blank'); };
+        document.getElementById('btnAcceptQuote').onclick = function() { acceptQuote(data.id); };
+        if (data.status === 'Accepted' || data.status === 'Signed') {
+           document.getElementById('btnAcceptQuote').textContent = 'Accepted';
+           document.getElementById('btnAcceptQuote').disabled = true;
+           document.getElementById('btnAcceptQuote').style.opacity = '0.5';
+        }
+      }
+    }
+  }
+
+  async function acceptQuote(id) {
+    if (!confirm('By accepting, you agree to the terms and technical specifications of this quote. Proceed?')) return;
+    const { error } = await _supabase.from('quotes').update({ status: 'Accepted' }).eq('id', id);
+    if (!error) {
+      showToastMsg('Quote Accepted! Our team will contact you shortly.');
+      showPortalDashboard(id);
+    }
+  }
+
+  function updateWizardUI() {
+    document.querySelectorAll('.wizard-pane').forEach(function(p) { p.style.display = 'none'; });
+    document.querySelector('.wizard-pane[data-step="' + currentWizardStep + '"]').style.display = 'block';
+    document.querySelectorAll('.portal-dot').forEach(function(d) { d.classList.toggle('active', d.dataset.step <= currentWizardStep); });
+    document.getElementById('btnPrev').style.visibility = currentWizardStep === 1 ? 'hidden' : 'visible';
+    document.getElementById('btnNext').textContent = currentWizardStep === 3 ? 'Submit Request' : 'Next';
+  }
+
+  function wizardNext() {
+    if (currentWizardStep < 3) {
+      currentWizardStep++;
+      updateWizardUI();
+    } else {
+      submitQuoteRequest();
+    }
+  }
+
+  function wizardPrev() {
+    if (currentWizardStep > 1) {
+      currentWizardStep--;
+      updateWizardUI();
+    }
+  }
+
+  function handleFileSelect(input) {
+    for (var i = 0; i < input.files.length; i++) {
+      selectedFiles.push(input.files[i]);
+    }
+    renderFileList();
+  }
+
+  function renderFileList() {
+    const list = document.getElementById('qFileList');
+    list.innerHTML = selectedFiles.map(function(f, i) {
+      return '<div class="file-item"><span>' + f.name + '</span><i class="fas fa-trash" onclick="removeFile(' + i + ')" style="cursor:pointer; color:var(--accent-red);"></i></div>';
+    }).join('');
+  }
+
+  function removeFile(i) {
+    selectedFiles.splice(i, 1);
+    renderFileList();
+  }
+
+  async function submitQuoteRequest() {
+    const btn = document.getElementById('btnNext');
+    const originalText = btn.textContent;
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    
+    const payload = {
+      user_email: document.getElementById('qEmail').value,
+      full_name: document.getElementById('qFullName').value,
+      phone_number: document.getElementById('qPhone').value,
+      finance_type: document.getElementById('qFinance').value,
+      installation_address: document.getElementById('qAddress').value,
+      infra_status: {
+        electricity: document.getElementById('qInfraElec').checked,
+        water: document.getElementById('qInfraWater').checked,
+        sewage: document.getElementById('qInfraSewage').checked
+      },
+      status: 'Submitted'
+    };
+
+    if (!payload.user_email || !payload.full_name) {
+      alert('Email and Name are required.');
+      btn.textContent = originalText;
+      btn.disabled = false;
+      return;
+    }
+
+    try {
+      const { data: quote, error: quoteError } = await _supabase.from('quotes').insert([payload]).select().single();
+      if (quoteError) throw quoteError;
+
+      let docLinks = [];
+      for (var i = 0; i < selectedFiles.length; i++) {
+        var file = selectedFiles[i];
+        const filePath = 'quotes/' + quote.id + '/' + Date.now() + '_' + file.name;
+        const { error: uploadError } = await _supabase.storage.from('client-uploads').upload(filePath, file);
+        if (!uploadError) {
+          const { data } = _supabase.storage.from('client-uploads').getPublicUrl(filePath);
+          docLinks.push(data.publicUrl);
+          await _supabase.from('quote_documents').insert([{ quote_id: quote.id, file_url: data.publicUrl, document_type: 'Client Upload' }]);
+        }
+      }
+
+      // Trigger EmailJS Notification to Team (Jacques)
+      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "YOUR_EMAILJS_PUBLIC_KEY") {
+        const templateParams = {
+          to_email: 'jacques@onlyrealty.co.za',
+          from_name: payload.full_name,
+          client_email: payload.user_email,
+          client_phone: payload.phone_number,
+          address: payload.installation_address,
+          infra: `Elec: ${payload.infra_status.electricity}, Water: ${payload.infra_status.water}, Sewage: ${payload.infra_status.sewage}`,
+          finance: payload.finance_type,
+          doc_links: docLinks.join('\n')
+        };
+        
+        // Note: You should create a 'quote_request' template in EmailJS with these variables
+        await emailjs.send(EMAILJS_SERVICE_ID, 'template_sk3cq0u', templateParams);
+      }
+
+      localStorage.setItem('nestflex_quote_id', quote.id);
+      activeQuoteId = quote.id;
+      showToastMsg('Quote request submitted successfully!');
+      showPortalDashboard(quote.id);
+    } catch (e) {
+      alert('Error submitting request: ' + e.message);
+      btn.textContent = originalText;
+      btn.disabled = false;
     }
   }
 </script>

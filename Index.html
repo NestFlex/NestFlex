@@ -1317,8 +1317,7 @@
     if (_supabase) {
       var res = await _supabase.from('leads').insert([payload]);
       if (!res.error) {
-        gtag('event', 'lead_submission', { 'enquiry_type': payload.enquiry_type });
-        btn.innerText = 'Sent Successfully!';
+        gtag('event', 'lead_submission', { 'enquiry_type': payload.enquiry_type         btn.innerText = 'Sent Successfully!';
         btn.style.backgroundColor = 'var(--whatsapp-green)';
         document.querySelector('.contact-form').reset();
         setTimeout(function() { btn.innerText = originalText; btn.style.backgroundColor = ''; btn.disabled = false; }, 3000);
