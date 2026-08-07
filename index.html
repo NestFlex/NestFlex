@@ -841,7 +841,7 @@
     <h2>NestFlex | Architectural Modular Home Systems</h2>
     <p>Architectural Modular Home Systems combine advanced lightweight steel frame engineering with accelerated deployment, lifetime structural warranties, and measurable investment returns. As the authorised representative for this exclusive portfolio, Jacques La Grange at Only Realty Group is your direct point of contact — from first enquiry through to move-in.</p>
     <div class="hero-btns">
-      <a href="javascript:void(0)" onclick="openQuotePortal()" class="btn btn-primary" style="background:var(--primary-blue); border-color:var(--primary-blue);"><i class="fas fa-file-invoice"></i> Request Digital Quote</a>
+      <a href="javascript:void(0)" onclick="openQuotePortal(true)" class="btn btn-primary" style="background:var(--primary-blue); border-color:var(--primary-blue);"><i class="fas fa-file-invoice"></i> Request Digital Quote</a>
       <a href="#portfolio" class="btn btn-white"><i class="fas fa-building"></i> Explore Portfolio</a>
     </div>
   </div>
@@ -1548,7 +1548,11 @@
   var selectedFiles = [];
   var activeQuoteId = localStorage.getItem('nestflex_quote_id');
 
-  function openQuotePortal() {
+  function openQuotePortal(forceReset) {
+    if (forceReset) {
+      localStorage.removeItem('nestflex_quote_id');
+      activeQuoteId = null;
+    }
     document.getElementById('quotePortal').classList.add('show');
     document.body.style.overflow = 'hidden';
     if (activeQuoteId) {
