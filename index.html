@@ -762,7 +762,10 @@
         <div class="portal-dash-header">
           <div>
             <h4 id="dashWelcome">Hello, Name</h4>
-            <p style="font-size:12px; color:var(--text-gray);">Quote ID: #<span id="dashQuoteId">---</span></p>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <p style="font-size:12px; color:var(--text-gray);">Quote ID: #<span id="dashQuoteId">---</span></p>
+              <button onclick="resetPortal()" style="background:none; border:none; color:var(--primary-blue); font-size:11px; font-weight:700; cursor:pointer; text-decoration:underline; padding:0;">(New Request)</button>
+            </div>
           </div>
           <div class="dash-status" id="dashStatusLabel">Submitted</div>
         </div>
@@ -1558,6 +1561,13 @@
   function closeQuotePortal() {
     document.getElementById('quotePortal').classList.remove('show');
     document.body.style.overflow = '';
+  }
+
+  function resetPortal() {
+    if (!confirm('Start a new quote request? This will clear your current view.')) return;
+    localStorage.removeItem('nestflex_quote_id');
+    activeQuoteId = null;
+    showPortalWizard();
   }
 
   function showPortalWizard() {
