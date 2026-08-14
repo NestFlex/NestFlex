@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS products (
   "Price" TEXT,
   "Category" TEXT,
   "ImageURL" TEXT,
-  description TEXT
+  description TEXT,
+  matterport_url TEXT,
+  video_url TEXT
 );
 
 CREATE TABLE IF NOT EXISTS brochures (

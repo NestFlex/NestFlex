@@ -668,8 +668,12 @@
   <div class="gallery-content">
     <button class="gallery-close" onclick="closeGallery()">&times;</button>
     <h3 id="galleryTitle" style="color:white; margin-bottom:15px; font-weight:700;"></h3>
-    <img id="galleryImage" src="" class="gallery-img" alt="Gallery Image">
-    <div class="gallery-nav">
+    <div id="galleryMediaContainer">
+      <img id="galleryImage" src="" class="gallery-img" alt="Gallery Image">
+      <iframe id="galleryMatterport" src="" frameborder="0" allowfullscreen allow="xr-spatial-tracking" style="width:100%; height:60vh; display:none; border-radius:8px;"></iframe>
+      <video id="galleryVideo" controls style="width:100%; height:60vh; display:none; border-radius:8px;"></video>
+    </div>
+    <div class="gallery-nav" id="galleryNav">
       <button class="gallery-nav-btn" onclick="prevGalleryImage()"><i class="fas fa-chevron-left"></i></button>
       <button class="gallery-nav-btn" onclick="nextGalleryImage()"><i class="fas fa-chevron-right"></i></button>
     </div>
@@ -1313,6 +1317,9 @@
       var galleryBtn = (galleryMap[p.id] || []).length > 1 ? '<button class="view-gallery-btn" onclick="openGallery(\'' + p.id + '\')"><i class="fas fa-images"></i> View Gallery (' + galleryMap[p.id].length + ')</button>' : '';
       var planBtn = (planMap[p.id] || []).length > 0 ? '<button class="view-gallery-btn" style="margin-top:5px; background:var(--primary-blue); color:white;" onclick="openPlan(\'' + p.id + '\')"><i class="fas fa-map"></i> View Plan (' + planMap[p.id].length + ')</button>' : '';
 
+      var matterportBtn = p.matterport_url ? '<button class="view-gallery-btn" style="margin-top:0px; background:#000; color:white;" onclick="openVirtualTour(\'matterport\', \'' + p.matterport_url + '\')"><i class="fas fa-vr-cardboard"></i> 3D Tour</button>' : '';
+      var videoBtn = p.video_url ? '<button class="view-gallery-btn" style="margin-top:0px; background:#AD244B; color:white;" onclick="openVirtualTour(\'video\', \'' + p.video_url + '\')"><i class="fas fa-video"></i> Video Tour</button>' : '';
+
       return '<div class="card">' +
         '<div class="card-img-wrap">' +
           '<img src="' + imgUrl + '" class="card-img" alt="' + p.Title + '">' +
@@ -1322,7 +1329,7 @@
           '<span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">' + (p.Category || '') + '</span>' +
           '<h4 class="card-title">' + p.Title + '</h4>' +
           '<span class="card-price">' + p.Price + '</span>' +
-          '<div style="display:flex; flex-direction:column; gap:5px;">' + galleryBtn + planBtn + '</div>' +
+          '<div style="display:flex; flex-direction:column; gap:5px;">' + galleryBtn + planBtn + matterportBtn + videoBtn + '</div>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -1356,7 +1363,7 @@
     gtag('event', 'view_gallery', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Product Gallery';
     currentGalleryIndex = 0;
-    updateGalleryView();
+    updateGalleryView('image');
     document.getElementById('galleryOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   }
@@ -1367,7 +1374,15 @@
     gtag('event', 'view_plan', { 'product_id': productId });
     document.getElementById('galleryTitle').innerText = 'Floor Plan';
     currentGalleryIndex = 0;
-    updateGalleryView();
+    updateGalleryView('image');
+    document.getElementById('galleryOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openVirtualTour(type, url) {
+    gtag('event', 'view_virtual_tour', { 'tour_type': type });
+    document.getElementById('galleryTitle').innerText = type === 'matterport' ? '3D Matterport Tour' : 'Video Tour';
+    updateGalleryView(type, url);
     document.getElementById('galleryOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
   }
@@ -1375,15 +1390,46 @@
   function closeGallery() {
     document.getElementById('galleryOverlay').classList.remove('show');
     document.body.style.overflow = '';
+    // Stop video/matterport if active
+    document.getElementById('galleryMatterport').src = '';
+    document.getElementById('galleryVideo').pause();
+    document.getElementById('galleryVideo').src = '';
   }
 
-  function updateGalleryView() {
-    document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
-    document.getElementById('galleryCounter').textContent = 'Image ' + (currentGalleryIndex + 1) + ' of ' + currentGalleryImages.length;
+  function updateGalleryView(mode, url) {
+    var img = document.getElementById('galleryImage');
+    var mp = document.getElementById('galleryMatterport');
+    var vid = document.getElementById('galleryVideo');
+    var nav = document.getElementById('galleryNav');
+    var counter = document.getElementById('galleryCounter');
+
+    // Reset visibility
+    img.style.display = 'none';
+    mp.style.display = 'none';
+    vid.style.display = 'none';
+    nav.style.display = 'none';
+    counter.style.display = 'none';
+
+    if (mode === 'image') {
+      img.src = currentGalleryImages[currentGalleryIndex];
+      img.style.display = 'inline-block';
+      if (currentGalleryImages.length > 1) {
+        nav.style.display = 'flex';
+        counter.style.display = 'block';
+        counter.textContent = 'Image ' + (currentGalleryIndex + 1) + ' of ' + currentGalleryImages.length;
+      }
+    } else if (mode === 'matterport') {
+      mp.src = url;
+      mp.style.display = 'block';
+    } else if (mode === 'video') {
+      vid.src = url;
+      vid.style.display = 'block';
+      vid.play();
+    }
   }
 
-  function nextGalleryImage() { currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length; updateGalleryView(); }
-  function prevGalleryImage() { currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length; updateGalleryView(); }
+  function nextGalleryImage() { currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length; updateGalleryView('image'); }
+  function prevGalleryImage() { currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length; updateGalleryView('image'); }
 
   var FINANCE_PDF_URL = 'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/Documents/NestFlex-Finance-Application-Form.pdf';
   var BOOKING_URL = 'https://calendar.app.google/XpZyH5CEfTzSeqp57';
