@@ -595,6 +595,7 @@
       <a href="#" id="cfg-call" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-phone-alt"></i></div><span class="action-text">Call</span></a>
       <a href="#" id="cfg-email" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-envelope"></i></div><span class="action-text">Email</span></a>
       <a href="#" id="cfg-chat" class="action-btn whatsapp" target="_blank" rel="noopener"><div class="action-icon"><i class="fab fa-whatsapp"></i></div><span class="action-text">Chat</span></a>
+      <a href="#" id="cfg-book" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-calendar-alt"></i></div><span class="action-text">Book</span></a>
       <a href="javascript:void(0)" id="cfg-scan" class="action-btn" onclick="openQrModal()"><div class="action-icon"><i class="fas fa-qrcode"></i></div><span class="action-text">Scan</span></a>
       <a href="javascript:void(0)" id="cfg-share" class="action-btn" onclick="shareProfile()"><div class="action-icon"><i class="fas fa-share-alt"></i></div><span class="action-text">Share</span></a>
       <a href="javascript:void(0)" id="cfg-save" class="action-btn" onclick="saveContactCard()"><div class="action-icon"><i class="fas fa-id-card"></i></div><span class="action-text">Save</span></a>
@@ -1156,7 +1157,8 @@
     actionButtons: {
       call: "tel:+27791785335",
       email: "mailto:jacques@onlyrealty.co.za",
-      chat: "https://wa.me/27791785335"
+      chat: "https://wa.me/27791785335",
+      book: "https://calendar.app.google/zx8uqExAY9EqDoeV8"
     },
     socialButtons: {
       facebook: "https://facebook.com/OnlyRealty",
@@ -1173,6 +1175,7 @@
     document.getElementById('cfg-call').href = agentLinksSetup.actionButtons.call;
     document.getElementById('cfg-email').href = agentLinksSetup.actionButtons.email;
     document.getElementById('cfg-chat').href = agentLinksSetup.actionButtons.chat;
+    document.getElementById('cfg-book').href = agentLinksSetup.actionButtons.book;
     document.getElementById('footer-call').href = agentLinksSetup.actionButtons.call;
     document.getElementById('footer-email').href = agentLinksSetup.actionButtons.email;
     document.getElementById('footer-chat').href = agentLinksSetup.actionButtons.chat;
@@ -1490,7 +1493,7 @@
   function prevGalleryImage() { currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length; updateGalleryView('image'); }
 
   var FINANCE_PDF_URL = 'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/Documents/NestFlex-Finance-Application-Form.pdf';
-  var BOOKING_URL = 'https://calendar.app.google/XpZyH5CEfTzSeqp57';
+  var BOOKING_URL = 'https://calendar.app.google/zx8uqExAY9EqDoeV8';
   var AGENT_WHATSAPP = '27791785335';
   var AGENT_EMAIL = 'jacques@onlyrealty.co.za';
 
