@@ -165,8 +165,8 @@
   .file-item { font-size: 12px; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; display: flex; justify-content: space-between; }
 
   .portal-footer { padding: 24px 32px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
-  .btn-prev { background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-gray); }
-  .btn-next { background: var(--primary-blue); color: var(--white); padding: 12px 32px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+  .btn-prev { background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-gray); padding: 12px 24px; font-family: inherit; font-size: 14px; }
+  .btn-next { background: var(--primary-blue); color: var(--white); padding: 12px 32px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: inherit; font-size: 14px; min-width: 160px; }
   .btn-next:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
   /* Dashboard Styles */
@@ -187,8 +187,8 @@
   .quote-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 20px; text-align: center; }
   .quote-box h4 { font-size: 24px; margin-bottom: 8px; }
   .quote-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
-  .btn-outline { background: var(--white); border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-  .btn-accept { background: var(--whatsapp-green); color: var(--white); border: none; padding: 10px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+  .btn-outline { background: var(--white); border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 14px; min-width: 140px; }
+  .btn-accept { background: var(--whatsapp-green); color: var(--white); border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 14px; min-width: 140px; }
 
   html {
     scroll-behavior: smooth;
@@ -200,7 +200,7 @@
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-dark);
-    padding-bottom: 70px; /* Space for sticky footer */
+    padding-bottom: 80px; /* Space for sticky footer */
   }
 
   .agent-panel {
@@ -303,8 +303,14 @@
   .brand img { height: 45px; }
   .brand h1 { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
   .brand p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
-  .nav-links { display: flex; gap: 30px; }
-  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 600; font-size: 14px; }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 14px; position: relative; transition: var(--transition); }
+  .nav-links a:not([style*="background"]):hover { color: var(--primary-blue); }
+  .nav-links a:not([style*="background"]):after {
+    content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+    background: var(--primary-blue); transition: var(--transition);
+  }
+  .nav-links a:not([style*="background"]):hover:after { width: 100%; }
 
   .hero {
     background-color: var(--primary-dark);
@@ -332,8 +338,8 @@
   .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 30px; color: #d0dbe3; max-width: 90%; }
   .hero-btns { display: flex; gap: 15px; }
   .btn {
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 12px 28px;
+    border-radius: 8px;
     font-family: inherit;
     font-weight: 700;
     font-size: 14px;
@@ -342,12 +348,15 @@
     border: none;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     transition: var(--transition);
+    min-width: 180px;
   }
   .btn-primary { background-color: var(--primary-blue); color: var(--white); }
-  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
   .btn-white { background-color: var(--white); color: var(--primary-dark); }
+  .btn-white:hover { background: #f8fafc; transform: translateY(-2px); }
   .btn-wa { background-color: var(--whatsapp-green); color: var(--white); }
 
   .advantages-card {
@@ -413,8 +422,8 @@
 
   .section-container { padding: 80px 40px; }
   .bg-light { background-color: var(--bg-light); }
-  .section-title { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px; }
-  .section-subtitle { font-size: 15px; color: var(--text-gray); margin-bottom: 30px; }
+  .section-title { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
+  .section-subtitle { font-size: 15px; color: var(--text-gray); margin-bottom: 40px; }
 
   .filters { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
   .filter-btn {
@@ -425,10 +434,10 @@
   .filter-btn.active, .filter-btn:hover { background: var(--primary-dark); color: var(--white); }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-  .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
   .card-img { width: 100%; height: 200px; object-fit: cover; }
-  .card-content { padding: 20px; }
-  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; }
+  .card-content { padding: 24px; }
+  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; color: var(--primary-dark); }
   .card-price { font-weight: 700; color: var(--primary-blue); font-size: 16px; margin-bottom: 15px; display: block; }
 
   .roi-section { display: flex; gap: 40px; flex-wrap: wrap; }
@@ -450,19 +459,20 @@
 
   .sticky-footer {
     position: fixed; bottom: 0;
-    background: var(--primary-dark); color: var(--white); padding: 15px 40px;
+    background: var(--primary-dark); color: var(--white); padding: 12px 40px;
     display: flex; justify-content: space-between; align-items: center; z-index: 2000;
     border-top: 3px solid var(--primary-blue);
+    height: 70px;
   }
   .footer-brand { display: flex; align-items: center; gap: 12px; }
   .footer-brand img { height: 35px; border-radius: 50%; }
   .footer-brand h4 { font-size: 14px; font-weight: 800; }
   .footer-brand p { font-size: 11px; color: #a0b2c0; margin-top: 3px; }
-  .footer-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .footer-actions { display: flex; gap: 15px; align-items: center; }
   
-  .card-action-btn { display: flex; flex-direction: column; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; width: 52px; color: var(--text-gray); font-family: inherit; }
-  .card-action-btn .ca-icon { width: 38px; height: 38px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: var(--transition); }
-  .card-action-btn:hover .ca-icon { background: var(--primary-blue); }
+  .card-action-btn { display: flex; flex-direction: column; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; width: 52px; color: #a0b2c0; font-family: inherit; }
+  .card-action-btn .ca-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: var(--transition); }
+  .card-action-btn:hover .ca-icon { background: var(--primary-blue); color: white; }
   .card-action-btn.wa .ca-icon { background: var(--whatsapp-green); }
   .card-action-btn span.ca-label { font-size: 9px; font-weight: 700; }
   .card-action-btn:disabled { opacity: .4; cursor: not-allowed; }
@@ -868,10 +878,11 @@
   <h2 class="section-title">Experience NestFlex</h2>
   <p class="section-subtitle">Walk through our architectural systems in immersive 3D or watch our latest project reveal.</p>
   
-  <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 480px)); gap: 25px; margin-top: 30px; justify-content: center;">
-    
+  <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px;">
+
     <!-- 3D Tour Card -->
     <div class="card">
+
       <div id="matterportContainer" style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden;">
         <!-- Matterport Cover -->
         <div id="matterportCover" style="position: absolute; inset: 0; background: url('https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png') center/cover; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; transition: var(--transition);">
@@ -1104,13 +1115,15 @@
     <div>
       <h4>NestFlex | Architectural Modular Home Systems</h4>
       <p>Residential | Commercial | Hospitality</p>
-      <p style="opacity:.5;font-size:9px;">build 2026-08-03-GH-PAGES</p>
+      <p style="opacity:.5;font-size:9px;">build 2026-08-14-GH-PAGES</p>
     </div>
   </div>
   <div class="footer-actions">
-    <a href="#" id="footer-chat" class="btn btn-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="#" id="footer-chat" class="btn btn-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Chat</a>
     <a href="#" id="footer-call" class="btn btn-primary"><i class="fas fa-phone-alt"></i> Call</a>
     <a href="#" id="footer-email" class="btn btn-white"><i class="fas fa-envelope"></i> Email</a>
+    <a href="#" id="footer-book" class="btn btn-primary" target="_blank" rel="noopener" style="background: var(--primary-dark);"><i class="fas fa-calendar-alt"></i> Book</a>
+    <button class="btn btn-primary" onclick="openQuotePortal()" style="padding: 10px 20px; min-width: 140px; margin-left: 10px;"><i class="fas fa-file-invoice"></i> Get Quote</button>
   </div>
 </div>
 
@@ -1181,6 +1194,7 @@
     document.getElementById('footer-call').href = agentLinksSetup.actionButtons.call;
     document.getElementById('footer-email').href = agentLinksSetup.actionButtons.email;
     document.getElementById('footer-chat').href = agentLinksSetup.actionButtons.chat;
+    document.getElementById('footer-book').href = agentLinksSetup.actionButtons.book;
     document.getElementById('cfg-fb').href = agentLinksSetup.socialButtons.facebook;
     document.getElementById('cfg-ig').href = agentLinksSetup.socialButtons.instagram;
     document.getElementById('cfg-li').href = agentLinksSetup.socialButtons.linkedin;
