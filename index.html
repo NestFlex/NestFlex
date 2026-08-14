@@ -303,11 +303,11 @@
   .brand img { height: 45px; }
   .brand h1 { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
   .brand p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 14px; position: relative; transition: var(--transition); }
+  .nav-links { display: flex; gap: 30px; align-items: flex-end; padding-bottom: 5px; }
+  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 14px; position: relative; transition: var(--transition); line-height: 1; }
   .nav-links a:not([style*="background"]):hover { color: var(--primary-blue); }
   .nav-links a:not([style*="background"]):after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+    content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px;
     background: var(--primary-blue); transition: var(--transition);
   }
   .nav-links a:not([style*="background"]):hover:after { width: 100%; }
@@ -466,8 +466,8 @@
     height: 70px;
     box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
   }
-  .footer-brand { display: flex; align-items: center; gap: 12px; }
-  .footer-brand img { height: 35px; border-radius: 50%; }
+  .footer-brand { display: flex; align-items: center; gap: 15px; }
+  .footer-brand img { height: 40px; border-radius: 4px; background: white; padding: 2px; }
   .footer-brand h4 { font-size: 14px; font-weight: 800; }
   .footer-brand p { font-size: 11px; color: #a0b2c0; margin-top: 3px; }
   .footer-actions { display: flex; gap: 10px; align-items: center; }
@@ -618,10 +618,10 @@
     </div>
   
     <div class="agent-actions">
-      <a href="#" id="cfg-call" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-phone-alt"></i></div><span class="action-text">Call</span></a>
-      <a href="#" id="cfg-email" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-envelope"></i></div><span class="action-text">Email</span></a>
       <a href="#" id="cfg-chat" class="action-btn whatsapp" target="_blank" rel="noopener"><div class="action-icon"><i class="fab fa-whatsapp"></i></div><span class="action-text">Chat</span></a>
+      <a href="#" id="cfg-call" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-phone-alt"></i></div><span class="action-text">Call</span></a>
       <a href="#" id="cfg-book" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-calendar-alt"></i></div><span class="action-text">Book</span></a>
+      <a href="#" id="cfg-email" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-envelope"></i></div><span class="action-text">Email</span></a>
       <a href="javascript:void(0)" id="cfg-scan" class="action-btn" onclick="openQrModal()"><div class="action-icon"><i class="fas fa-qrcode"></i></div><span class="action-text">Scan</span></a>
       <a href="javascript:void(0)" id="cfg-share" class="action-btn" onclick="shareProfile()"><div class="action-icon"><i class="fas fa-share-alt"></i></div><span class="action-text">Share</span></a>
       <a href="javascript:void(0)" id="cfg-save" class="action-btn" onclick="saveContactCard()"><div class="action-icon"><i class="fas fa-id-card"></i></div><span class="action-text">Save</span></a>
@@ -862,7 +862,7 @@
     <a href="#faq">FAQ</a>
     <a href="#finance">Finance</a>
     <a href="#enquire">Enquire</a>
-    <a href="javascript:void(0)" onclick="openQuotePortal()" style="background:var(--primary-blue); color:white; padding:8px 16px; border-radius:6px; font-weight:700;">Get Quote</a>
+    <button class="btn btn-primary" onclick="openQuotePortal()" style="padding: 8px 16px; min-width: auto;"><i class="fas fa-file-invoice"></i> Get Quote</button>
   </nav>
 </header>
 
@@ -1125,7 +1125,7 @@
 
 <div class="sticky-footer">
   <div class="footer-brand">
-    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png" alt="Only Realty">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idyTC8R-hQ_1.jpeg" alt="Only Realty">
     <div>
       <h4>NestFlex | Architectural Modular Home Systems</h4>
       <p>Residential | Commercial | Hospitality</p>
@@ -1135,8 +1135,8 @@
   <div class="footer-actions">
     <a href="#" id="footer-chat" class="footer-btn wa" target="_blank" rel="noopener"><span class="fb-icon"><i class="fab fa-whatsapp"></i></span><span class="fb-label">Chat</span></a>
     <a href="#" id="footer-call" class="footer-btn"><span class="fb-icon"><i class="fas fa-phone-alt"></i></span><span class="fb-label">Call</span></a>
-    <a href="#" id="footer-email" class="footer-btn"><span class="fb-icon"><i class="fas fa-envelope"></i></span><span class="fb-label">Email</span></a>
     <a href="#" id="footer-book" class="footer-btn" target="_blank" rel="noopener"><span class="fb-icon"><i class="fas fa-calendar-alt"></i></span><span class="fb-label">Book</span></a>
+    <a href="#" id="footer-email" class="footer-btn"><span class="fb-icon"><i class="fas fa-envelope"></i></span><span class="fb-label">Email</span></a>
     <button class="btn btn-primary" onclick="openQuotePortal()" style="margin-left: 10px;"><i class="fas fa-file-invoice"></i> Get Quote</button>
   </div>
 </div>
