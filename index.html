@@ -252,21 +252,21 @@
   .badge-primary { background: var(--primary-dark); color: var(--white); }
   .badge-outline { border: 1px solid #ddd; color: var(--primary-dark); }
   
-  .agent-actions { display: flex; justify-content: space-between; margin-bottom: 30px; text-align: center; }
-  .action-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: var(--text-gray); transition: var(--transition); width: 45px;}
-  .action-icon { width: 42px; height: 42px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; justify-content: center; align-items: center; font-size: 15px; }
+  .agent-actions { display: flex; justify-content: space-between; margin-bottom: 30px; text-align: center; gap: 5px; }
+  .action-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: var(--text-gray); transition: var(--transition); flex: 1; min-width: 0; }
+  .action-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; justify-content: center; align-items: center; font-size: 14px; }
   .action-btn:hover .action-icon { background: var(--primary-blue); }
   .action-btn.whatsapp .action-icon { background: var(--whatsapp-green); }
-  .action-text { font-size: 10px; font-weight: 600; }
-  .agent-socials { padding: 0 20px 30px; }
-  .socials-title { font-size: 12px; color: var(--text-gray); margin-bottom: 15px; }
-  .social-icons-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .action-text { font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  .agent-socials { padding: 0 20px 30px; border-top: 1px solid #f0f0f0; padding-top: 20px; }
+  .socials-title { font-size: 11px; font-weight: 700; color: var(--text-gray); margin-bottom: 15px; text-transform: uppercase; }
+  .social-icons-grid { display: flex; justify-content: space-between; gap: 5px; }
   .social-icon-btn {
-    width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ccc;
-    color: var(--text-gray); display: flex; justify-content: center; align-items: center;
-    text-decoration: none; font-size: 15px; transition: var(--transition);
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd;
+    color: var(--primary-dark); display: flex; justify-content: center; align-items: center;
+    text-decoration: none; font-size: 16px; transition: var(--transition); background: white;
   }
-  .social-icon-btn:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+  .social-icon-btn:hover { border-color: var(--primary-blue); color: var(--primary-blue); transform: translateY(-2px); }
 
   @media (min-width: 993px) {
     body { margin-left: 340px; }
@@ -317,14 +317,16 @@
   .hero-content { flex: 1.2; }
   .hero-badge {
     display: inline-block;
-    border: 1px solid var(--primary-blue);
-    color: var(--primary-blue);
-    padding: 6px 16px;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 18px;
     border-radius: 20px;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     margin-bottom: 25px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 10px rgba(173, 36, 75, 0.2);
   }
   .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
   .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 30px; color: #d0dbe3; max-width: 90%; }
