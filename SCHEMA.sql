@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS leads (
 -- 4. Digitized Quote Portal Tables
 CREATE TABLE IF NOT EXISTS quotes (
   id BIGSERIAL PRIMARY KEY,
+  public_id UUID DEFAULT gen_random_uuid() UNIQUE, -- Added for secure dashboard access
   created_at TIMESTAMPTZ DEFAULT NOW(),
   user_email TEXT NOT NULL,
   full_name TEXT,
@@ -73,6 +74,9 @@ CREATE TABLE IF NOT EXISTS quotes (
   quote_file_url TEXT,
   team_notes TEXT
 );
+
+-- Ensure public_id exists for existing tables
+ALTER TABLE quotes ADD COLUMN IF NOT EXISTS public_id UUID DEFAULT gen_random_uuid() UNIQUE;
 
 CREATE TABLE IF NOT EXISTS quote_documents (
   id BIGSERIAL PRIMARY KEY,
@@ -94,11 +98,12 @@ ALTER TABLE quote_documents ENABLE ROW LEVEL SECURITY;
 -- 6. RLS Policies (Public Access for Client Portal)
 
 -- Quotes Policies
-DROP POLICY IF EXISTS "Users can insert their own quotes" ON quotes;
-CREATE POLICY "Users can insert their own quotes" ON quotes FOR INSERT WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow anon quote insertion" ON quotes;
+CREATE POLICY "Allow anon quote insertion" ON quotes FOR INSERT TO anon WITH CHECK (true);
 
-DROP POLICY IF EXISTS "Users can view their own quotes" ON quotes;
-CREATE POLICY "Users can view their own quotes" ON quotes FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Allow anon select by public_id" ON quotes;
+CREATE POLICY "Allow anon select by public_id" ON quotes FOR SELECT TO anon 
+USING (public_id::text = COALESCE(current_setting('request.headers', true)::json->>'x-quote-public-id', 'none'));
 
 -- Quote Documents Policies
 DROP POLICY IF EXISTS "Users can insert their own docs" ON quote_documents;
@@ -108,8 +113,28 @@ DROP POLICY IF EXISTS "Users can view their own docs" ON quote_documents;
 CREATE POLICY "Users can view their own docs" ON quote_documents FOR SELECT USING (true);
 
 -- Lead Policies
-DROP POLICY IF EXISTS "Insert Leads" ON leads;
-CREATE POLICY "Insert Leads" ON leads FOR INSERT WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow anon lead insertion" ON leads;
+CREATE POLICY "Allow anon lead insertion" ON leads FOR INSERT TO anon WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Restrict anon lead viewing" ON leads;
+CREATE POLICY "Restrict anon lead viewing" ON leads FOR SELECT TO anon USING (false);
+
+-- Storage Policies (oracle-portfolio bucket)
+-- Note: These apply to the storage.objects table in Supabase
+DROP POLICY IF EXISTS "Restricted anon uploads to quote-uploads" ON storage.objects;
+CREATE POLICY "Restricted anon uploads to quote-uploads" ON storage.objects
+FOR INSERT TO anon
+WITH CHECK (
+  bucket_id = 'oracle-portfolio' AND 
+  (storage.foldername(name))[1] = 'quote-uploads' AND
+  (LOWER(storage.extension(name)) = ANY (ARRAY['pdf', 'png', 'jpg', 'jpeg'])) AND
+  (metadata->>'size')::int <= 5242880
+);
+
+DROP POLICY IF EXISTS "Public Read Access" ON storage.objects;
+CREATE POLICY "Public Read Access" ON storage.objects
+FOR SELECT TO anon
+USING (bucket_id = 'oracle-portfolio');
 
 -- Public Read Policies for Product Data
 DROP POLICY IF EXISTS "Public Access" ON products;
