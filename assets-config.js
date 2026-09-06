@@ -12,25 +12,27 @@
 window.ASSETS = {
 
   land: {
-    // The one confirmed-real, already-uploaded site photo.
     heroPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg",
-
-    // Additional site photos — empty until uploaded to Supabase.
     gallery2: "",
     gallery3: "",
-
-    // Google Drive /preview video link. As of this build it returns a
-    // Google 403 — the Drive file's sharing setting is not "Anyone with
-    // the link can view". Fix that in Google Drive, then this will work
-    // as-is; no code change needed.
     videoTour: "https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview",
-
-    // 3dviewer.co share link. As of this build it also returns a Google
-    // 403 — the underlying 3D model file (hosted on Google Drive) isn't
-    // shared as "Anyone with the link" either. Same fix applies.
     model3D: "https://3dviewer.co/share/4Rk0SG1QPj"
   },
 
+  build: {
+    floorPlan: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png",
+    render1_exterior: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/exterior.jpg",
+    render2_living: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/interior-living.jpg",
+    render3_bedroom: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/bedroom.jpg",
+    render4_kitchen: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/kitchen.jpg"
+  },
+
+  agent: {
+    headshot: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/headshot%20jlg.png",
+    coverPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/01-last-elevated-vacant-stand-with-ocean-views-at-15-riebeeck-street-seaview-for-sale.jpg"
+  }
+
+};
   build: {
     // Proposed NestFlex 45m² configuration — floor plan + renders.
     // These already have onerror fallbacks to stock photos baked into
