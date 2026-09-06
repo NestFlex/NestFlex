@@ -22,7 +22,7 @@ window.ASSETS = {
 
   agent: {
     headshot: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/headshot%20jlg.png",
-    coverPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/01-last-elevated-vacant-stand-with-ocean-views-at-15-riebeeck-street-seaview-for-sale.jpg"
+    coverPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg"
   }
 
 };
