@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Asset Manager — Vacant Land & NestFlex Builds</title>
+<style>
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background:#f4f7f6; color:#222; padding:30px; max-width:820px; margin:0 auto; }
+  h1 { font-size:22px; color:#001740; margin-bottom:4px; }
+  p.lead { color:#666; font-size:13px; margin-bottom:24px; }
+  fieldset { border:1px solid #e5e9ea; border-radius:8px; padding:16px 20px; margin-bottom:20px; background:white; }
+  legend { font-weight:800; color:#001740; padding:0 8px; font-size:13px; text-transform:uppercase; letter-spacing:0.4px; }
+  label { display:block; font-size:12px; font-weight:700; color:#001740; margin:12px 0 4px; }
+  label .hint { font-weight:400; color:#888; text-transform:none; letter-spacing:0; }
+  input[type=text] { width:100%; padding:9px 10px; border:1px solid #ccd3d6; border-radius:5px; font-size:12px; box-sizing:border-box; }
+  button { background:#1e3a8a; color:white; border:none; padding:12px 22px; border-radius:6px; font-weight:800; font-size:13px; cursor:pointer; margin-top:10px; }
+  button:hover { opacity:0.9; }
+  #output { margin-top:20px; }
+  textarea { width:100%; height:340px; font-family: monospace; font-size:11px; padding:12px; border-radius:6px; border:1px solid #ccd3d6; box-sizing:border-box; }
+  .note { background:#fff8e6; border-left:4px solid #f0b429; padding:10px 14px; border-radius:4px; font-size:12px; color:#665200; margin-bottom:20px; }
+</style>
+</head>
+<body>
+ 
+<h1>Asset Manager</h1>
+<p class="lead">Every image/video/3D-model URL used on <strong>properties.html</strong>, in one place. Paste real URLs below, click Generate, then save the result as <code>assets-config.js</code> in the same repo folder as <code>properties.html</code> (replacing the old one). Refresh the live page and it picks up the new URLs — no other file needs to change.</p>
+ 
+<div class="note">Leave any field blank if you don't have that asset yet. A blank field shows a clean "coming soon" placeholder on the live page instead of a broken image or an error.</div>
+ 
+<form id="assetForm">
+  <fieldset>
+    <legend>The Land — 15 Riebeeck Street</legend>
+    <label>Hero photo (main pod image) <span class="hint">— already set, only change if you want a different lead photo</span></label>
+    <input type="text" id="land_heroPhoto" placeholder="https://.../your-photo.jpg">
+    <label>Additional site photo #1</label>
+    <input type="text" id="land_gallery2" placeholder="https://...">
+    <label>Additional site photo #2</label>
+    <input type="text" id="land_gallery3" placeholder="https://...">
+    <label>Video tour <span class="hint">— Google Drive /preview link. Must be shared "Anyone with the link"</span></label>
+    <input type="text" id="land_videoTour" placeholder="https://drive.google.com/file/d/XXXX/preview">
+    <label>3D model / walkthrough <span class="hint">— 3dviewer.co (or similar) share link</span></label>
+    <input type="text" id="land_model3D" placeholder="https://3dviewer.co/share/XXXX">
+  </fieldset>
+ 
+  <fieldset>
+    <legend>The Build — Proposed NestFlex Configuration</legend>
+    <label>Floor plan image</label>
+    <input type="text" id="build_floorPlan" placeholder="https://...">
+    <label>Render #1 — Exterior</label>
+    <input type="text" id="build_render1_exterior" placeholder="https://...">
+    <label>Render #2 — Living area</label>
+    <input type="text" id="build_render2_living" placeholder="https://...">
+    <label>Render #3 — Bedroom</label>
+    <input type="text" id="build_render3_bedroom" placeholder="https://...">
+    <label>Render #4 — Kitchen</label>
+    <input type="text" id="build_render4_kitchen" placeholder="https://...">
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Agent Card</legend>
+    <label>Headshot photo</label>
+    <input type="text" id="agent_headshot" placeholder="https://...">
+    <label>Cover photo</label>
+    <input type="text" id="agent_coverPhoto" placeholder="https://...">
+  </fieldset>
+ 
+  <button type="button" onclick="generate()">Generate assets-config.js</button>
+  <button type="button" style="background:#666; margin-left:10px;" onclick="loadCurrent()">Load Current Values</button>
+</form>
+ 
+<div id="output" style="display:none;">
+  <label>Copy everything below into <code>assets-config.js</code>:</label>
+  <textarea id="outputText" readonly onclick="this.select()"></textarea>
+  <button type="button" onclick="downloadFile()">Download assets-config.js</button>
+</div>
+ 
+<script src="assets-config.js"></script>
+<script>
+  function loadCurrent() {
+    if (typeof window.ASSETS === 'undefined') { alert('assets-config.js not found next to this file — starting blank.'); return; }
+    var A = window.ASSETS;
+    document.getElementById('land_heroPhoto').value = A.land.heroPhoto || '';
+    document.getElementById('land_gallery2').value = A.land.gallery2 || '';
+    document.getElementById('land_gallery3').value = A.land.gallery3 || '';
+    document.getElementById('land_videoTour').value = A.land.videoTour || '';
+    document.getElementById('land_model3D').value = A.land.model3D || '';
+    document.getElementById('build_floorPlan').value = A.build.floorPlan || '';
+    document.getElementById('build_render1_exterior').value = A.build.render1_exterior || '';
+    document.getElementById('build_render2_living').value = A.build.render2_living || '';
+    document.getElementById('build_render3_bedroom').value = A.build.render3_bedroom || '';
+    document.getElementById('build_render4_kitchen').value = A.build.render4_kitchen || '';
+    document.getElementById('agent_headshot').value = A.agent.headshot || '';
+    document.getElementById('agent_coverPhoto').value = A.agent.coverPhoto || '';
+  }
+  window.addEventListener('DOMContentLoaded', loadCurrent);
+ 
+  function val(id) { return document.getElementById(id).value.trim(); }
+ 
+  function generate() {
+    var out =
+"// ============================================================\n" +
+"// ASSET CONFIG for properties.html (Vacant Land & NestFlex Builds)\n" +
+"// Generated by asset-manager.html — edit there, or edit this file directly.\n" +
+"// ============================================================\n" +
+"window.ASSETS = {\n\n" +
+"  land: {\n" +
+"    heroPhoto: \"" + val('land_heroPhoto') + "\",\n" +
+"    gallery2: \"" + val('land_gallery2') + "\",\n" +
+"    gallery3: \"" + val('land_gallery3') + "\",\n" +
+"    videoTour: \"" + val('land_videoTour') + "\",\n" +
+"    model3D: \"" + val('land_model3D') + "\"\n" +
+"  },\n\n" +
+"  build: {\n" +
+"    floorPlan: \"" + val('build_floorPlan') + "\",\n" +
+"    render1_exterior: \"" + val('build_render1_exterior') + "\",\n" +
+"    render2_living: \"" + val('build_render2_living') + "\",\n" +
+"    render3_bedroom: \"" + val('build_render3_bedroom') + "\",\n" +
+"    render4_kitchen: \"" + val('build_render4_kitchen') + "\"\n" +
+"  },\n\n" +
+"  agent: {\n" +
+"    headshot: \"" + val('agent_headshot') + "\",\n" +
+"    coverPhoto: \"" + val('agent_coverPhoto') + "\"\n" +
+"  }\n\n" +
+"};\n";
+    document.getElementById('outputText').value = out;
+    document.getElementById('output').style.display = 'block';
+  }
+ 
+  function downloadFile() {
+    var blob = new Blob([document.getElementById('outputText').value], { type: 'text/javascript' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'assets-config.js';
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+  }
+</script>
+</body>
+</html>
+ 
