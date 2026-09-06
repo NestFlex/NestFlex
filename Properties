@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vacant Land For Sale, Seaview | NestFlex x Only Realty">
+<meta property="og:description" content="1,487m² sea-view land in Seaview, Gqeberha — already subdivided into two portions. R685,000 each, or R1,150,000 for both. Optional fast-track NestFlex modular build.">
+<meta property="og:image" content="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg">
+<meta property="og:url" content="https://nestflex.github.io/NestFlex/properties.html">
+<meta property="og:site_name" content="NestFlex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vacant Land For Sale, Seaview | NestFlex x Only Realty">
+<meta name="twitter:description" content="1,487m² sea-view land in Seaview, Gqeberha, already subdivided into two portions. R685,000 each, or R1,150,000 for both.">
+<link rel="icon" type="image/png" href="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png">
+<title>Vacant Land For Sale, Seaview | 15 Riebeeck Street | NestFlex x Only Realty</title>
+<link rel="canonical" href="https://nestflex.github.io/NestFlex/properties.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://nestflex.github.io/NestFlex/properties.html#page",
+      "name": "Vacant Land For Sale & NestFlex Builds",
+      "url": "https://nestflex.github.io/NestFlex/properties.html",
+      "isPartOf": { "@id": "https://nestflex.github.io/NestFlex/#website" }
+    },
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://nestflex.github.io/NestFlex/properties.html#listing-15-riebeek",
+      "name": "Vacant Sea-View Land For Sale, Seaview | 15 Riebeeck Street",
+      "description": "1,487m2 sea-view land in Seaview, Gqeberha, already subdivided into two independent freehold portions of approx. 743.5m2 each. Buy one portion or both together.",
+      "datePosted": "2026-09-06",
+      "url": "https://nestflex.github.io/NestFlex/properties.html#the-land",
+      "image": [ "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg" ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "15 Riebeeck Street",
+        "addressLocality": "Seaview",
+        "addressRegion": "Eastern Cape",
+        "postalCode": "6070",
+        "addressCountry": "ZA"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": -34.01472, "longitude": 25.36079 },
+      "additionalProperty": [
+        { "@type": "PropertyValue", "name": "Erf Number", "value": "24" },
+        { "@type": "PropertyValue", "name": "Legal Description", "value": "ERF 24 CLARENDON MARINE" },
+        { "@type": "PropertyValue", "name": "Total Land Size", "value": "1487", "unitCode": "MTK" },
+        { "@type": "PropertyValue", "name": "Subdivision Status", "value": "Completed - two independent portions of approx. 743.5m2 each" },
+        { "@type": "PropertyValue", "name": "Municipal Value", "value": "R430,000 (NMBM GV2022)" },
+        { "@type": "PropertyValue", "name": "Monthly Rates", "value": "R1,252.08 (pre-subdivision combined erf)" }
+      ],
+      "offers": [
+        { "@type": "Offer", "name": "Both portions together", "price": "1150000", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock", "url": "https://nestflex.github.io/NestFlex/properties.html#the-land", "seller": { "@id": "https://nestflex.github.io/NestFlex/#agent" } },
+        { "@type": "Offer", "name": "Single portion", "price": "685000", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock", "url": "https://nestflex.github.io/NestFlex/properties.html#the-land", "seller": { "@id": "https://nestflex.github.io/NestFlex/#agent" } }
+      ],
+      "broker": { "@id": "https://nestflex.github.io/NestFlex/#agent" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://nestflex.github.io/NestFlex/properties.html#faq-riebeek",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I buy just part of the stand at 15 Riebeeck Street, Seaview?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The subdivision is complete - 15 Riebeeck Street is now two independent freehold portions of approximately 743.5m2 each, at R685,000 per portion. Buying both together costs R1,150,000, a R220,000 saving versus buying separately." }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can I build a house in Seaview?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Using a NestFlex LSF-certified modular home alongside this land purchase, you can bypass the year-long traditional build. NestFlex offers a 12-week factory build cycle and 1 to 3 weeks of on-site installation." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are pets and dogs allowed near 15 Riebeeck Street, Seaview?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nelson Mandela Bay's coastal dog-control policy allows leashed dogs on beaches and public walkways outside the main bathing areas around Maitland's, Beachview and Kini Bay, provided owners can remove dog waste." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEZXL8JXEF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BEZXL8JXEF');
+  gtag('event', 'page_view', { page_title: 'Vacant Land For Sale - Seaview', listing_id: '15-riebeeck-street-seaview' });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --primary-dark: #001740;
+    --primary-blue: #1e3a8a; /* Updated to NestFlex Deep Blue */
+    --accent-red: #AD244B;
+    --text-dark: #222222;
+    --text-gray: #666666;
+    --bg-light: #f4f7f6;
+    --white: #FFFFFF;
+    --whatsapp-green: #25D366;
+    --transition: all 0.3s ease;
+  }
+ 
+  /* Quote Portal Styles */
+  .portal-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,23,64,0.9); z-index: 9000;
+    display: none; justify-content: center; align-items: center;
+    padding: 20px; backdrop-filter: blur(10px);
+  }
+  .portal-modal.show { display: flex; }
+  .portal-content {
+    background: var(--white); width: 100%; max-width: 800px; max-height: 90vh;
+    border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.4);
+  }
+  .portal-header {
+    padding: 24px 32px; background: var(--primary-dark); color: var(--white);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .portal-header h3 { font-size: 20px; font-weight: 800; }
+  .portal-close { background: none; border: none; color: var(--white); font-size: 28px; cursor: pointer; opacity: 0.7; transition: 0.3s; }
+  .portal-close:hover { opacity: 1; }
+  
+  .portal-body { padding: 32px; overflow-y: auto; flex: 1; }
+  .portal-step { display: none; }
+  .portal-step.active { display: block; animation: slideIn 0.4s ease; }
+  
+  @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+ 
+  .portal-nav { display: flex; gap: 12px; margin-bottom: 24px; justify-content: center; }
+  .portal-dot { width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0; transition: 0.3s; }
+  .portal-dot.active { background: var(--primary-blue); }
+ 
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  
+  .input-wrap { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .input-wrap label { font-size: 13px; font-weight: 700; color: var(--primary-dark); }
+  .input-wrap input, .input-wrap select, .input-wrap textarea {
+    padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; font-size: 14px;
+  }
+  
+  .check-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 10px; }
+  .check-item { display: flex; justify-content: space-between; align-items: center; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #f1f5f9; cursor: pointer; }
+  .check-item input { width: 18px; height: 18px; }
+ 
+  .upload-area {
+    border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px 20px; text-align: center;
+    transition: 0.3s; cursor: pointer; margin-top: 10px;
+  }
+  .upload-area:hover { border-color: var(--primary-blue); background: #f8fafc; }
+  .upload-area i { font-size: 32px; color: #94a3b8; margin-bottom: 12px; }
+  .file-list { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+  .file-item { font-size: 12px; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; display: flex; justify-content: space-between; }
+ 
+  .portal-footer { padding: 24px 32px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+  .btn-prev { background: none; border: none; font-weight: 700; cursor: pointer; color: var(--text-gray); padding: 12px 24px; font-family: inherit; font-size: 14px; }
+  .btn-next { background: var(--primary-blue); color: var(--white); padding: 12px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: inherit; font-size: 14px; min-width: 140px; }
+  .btn-next:hover { background: var(--primary-dark); transform: translateY(-2px); }
+ 
+  /* Dashboard Styles */
+  .portal-dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+  .dash-status { font-size: 12px; font-weight: 800; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; background: #e0f2fe; color: #0369a1; }
+  
+  .timeline-list { margin-top: 20px; border-left: 2px solid #e2e8f0; padding-left: 24px; position: relative; }
+  .timeline-item { position: relative; margin-bottom: 30px; }
+  .timeline-item::after {
+    content: ''; position: absolute; left: -31px; top: 0; width: 12px; height: 12px;
+    border-radius: 50%; background: #cbd5e1; border: 3px solid var(--white);
+  }
+  .timeline-item.done::after { background: var(--whatsapp-green); }
+  .timeline-item.active::after { background: var(--primary-blue); box-shadow: 0 0 0 4px rgba(30,58,138,0.2); }
+  .timeline-item h5 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .timeline-item p { font-size: 12px; color: var(--text-gray); line-height: 1.5; }
+ 
+  .quote-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-top: 20px; text-align: center; }
+  .quote-box h4 { font-size: 24px; margin-bottom: 8px; }
+  .quote-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+  .btn-outline { background: var(--white); border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 12px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 14px; min-width: 130px; }
+  .btn-accept { background: var(--whatsapp-green); color: var(--white); border: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 14px; min-width: 130px; }
+ 
+  html {
+    scroll-behavior: smooth;
+  }
+ 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    padding-bottom: 80px; /* Space for sticky footer */
+  }
+ 
+  .agent-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 340px;
+    height: 100vh;
+    background: var(--white);
+    z-index: 2000;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.08);
+    overflow-y: auto;
+  }
+  .agent-cover {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--primary-dark);
+  }
+  .agent-profile-wrap {
+    padding: 0 20px;
+    margin-top: -55px;
+  }
+  .agent-profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    border: 4px solid var(--white);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: var(--white);
+  }
+  
+  .agent-info { padding: 15px 20px; }
+  .agent-name { font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 3px; }
+  .agent-tagline { font-size: 13px; color: var(--text-gray); margin-bottom: 2px; }
+  .agent-role { font-size: 12px; color: #888; }
+  .agent-agency { font-size: 12px; color: var(--text-gray); margin-top: 10px; margin-bottom: 15px; }
+  .agent-badges { display: flex; gap: 8px; margin-bottom: 25px; }
+  .agent-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .badge-primary { background: var(--primary-dark); color: var(--white); }
+  .badge-outline { border: 1px solid #ddd; color: var(--primary-dark); }
+  
+  .agent-actions { display: flex; justify-content: space-between; margin-bottom: 30px; text-align: center; gap: 5px; }
+  .action-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: var(--text-gray); transition: var(--transition); flex: 1; min-width: 0; }
+  .action-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-dark); color: var(--white); display: flex; justify-content: center; align-items: center; font-size: 14px; }
+  .action-btn:hover .action-icon { background: var(--primary-blue); }
+  .action-btn.whatsapp .action-icon { background: var(--whatsapp-green); }
+  .action-text { font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  .agent-socials { padding: 0 20px 30px; border-top: 1px solid #f0f0f0; padding-top: 20px; }
+  .socials-title { font-size: 11px; font-weight: 700; color: var(--text-gray); margin-bottom: 15px; text-transform: uppercase; }
+  .social-icons-grid { display: flex; justify-content: space-between; gap: 5px; }
+  .social-icon-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd;
+    color: var(--primary-dark); display: flex; justify-content: center; align-items: center;
+    text-decoration: none; font-size: 16px; transition: var(--transition); background: white;
+  }
+  .social-icon-btn:hover { border-color: var(--primary-blue); color: var(--primary-blue); transform: translateY(-2px); }
+ 
+  @media (min-width: 993px) {
+    body { margin-left: 340px; }
+    .sticky-footer { width: calc(100% - 340px); left: 340px; }
+  }
+  @media (max-width: 992px) {
+    .agent-panel { position: relative; width: 100%; height: auto; box-shadow: none; border-bottom: 1px solid #eee; z-index: 1;}
+    .sticky-footer { width: 100%; left: 0; }
+  }
+ 
+  .top-bar {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 40px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .top-bar a { color: var(--white); text-decoration: none; margin-right: 20px; }
+ 
+  header {
+    background-color: var(--white);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .brand { display: flex; align-items: center; gap: 15px; }
+  .brand img { height: 45px; }
+  .brand h1 { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+  .brand p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 30px; align-items: flex-end; padding-bottom: 5px; }
+  .nav-links a { text-decoration: none; color: var(--primary-dark); font-weight: 700; font-size: 14px; position: relative; transition: var(--transition); line-height: 1; }
+  .nav-links a:not([style*="background"]):hover { color: var(--primary-blue); }
+  .nav-links a:not([style*="background"]):after {
+    content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px;
+    background: var(--primary-blue); transition: var(--transition);
+  }
+  .nav-links a:not([style*="background"]):hover:after { width: 100%; }
+ 
+  .hero {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 80px 40px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+  }
+  .hero-content { flex: 1.2; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 10px rgba(173, 36, 75, 0.2);
+  }
+  .hero h2 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+  .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 30px; color: #d0dbe3; max-width: 90%; }
+  .hero-btns { display: flex; gap: 15px; }
+  .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    min-width: 120px;
+  }
+  .btn-lg { padding: 12px 28px; font-size: 14px; min-width: 180px; }
+  .btn-primary { background-color: var(--primary-blue); color: var(--white); }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-white { background-color: var(--white); color: var(--primary-dark); }
+  .btn-white:hover { background: #f8fafc; transform: translateY(-2px); }
+  .btn-wa { background-color: var(--whatsapp-green); color: var(--white); }
+ 
+  .advantages-card {
+    flex: 0.8;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 30px;
+    color: var(--primary-dark);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  .advantages-card h3 { font-size: 18px; margin-bottom: 20px; font-weight: 800; }
+  .adv-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  .adv-row:last-child { border-bottom: none; }
+  .adv-row span:last-child { font-weight: 700; text-align: right; }
+ 
+  .features {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 10;
+  }
+  @media (max-width: 992px) {
+    .features {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  .feature-card {
+    background: var(--white);
+    padding: 25px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  .feature-card i { font-size: 28px; color: var(--primary-blue); margin-bottom: 15px; }
+  .feature-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .feature-card p { font-size: 12px; color: var(--text-gray); line-height: 1.5; }
+ 
+  .finance-features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1024px) {
+    .finance-features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .finance-features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+ 
+  .section-container { padding: 80px 40px; }
+  .bg-light { background-color: var(--bg-light); }
+  .section-title { font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
+  .section-subtitle { font-size: 15px; color: var(--text-gray); margin-bottom: 40px; }
+ 
+  .filters { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+  .filter-btn {
+    background: #f0f4f8; border: none; padding: 10px 20px; border-radius: 20px;
+    font-weight: 700; font-size: 13px; color: var(--primary-dark); cursor: pointer;
+    transition: var(--transition);
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--primary-dark); color: var(--white); }
+ 
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+  .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+  .card-img { width: 100%; height: 200px; object-fit: cover; }
+  .card-content { padding: 24px; }
+  .card-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; color: var(--primary-dark); }
+  .card-price { font-weight: 700; color: var(--primary-blue); font-size: 16px; margin-bottom: 15px; display: block; }
+ 
+  .roi-section { display: flex; gap: 40px; flex-wrap: wrap; }
+  .roi-form { flex: 1.2; background: var(--white); padding: 30px; border-radius: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; min-width: 300px; }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group label { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .form-group input, .form-group select, .form-group textarea { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 14px; color: var(--text-dark); background: var(--white); outline: none; transition: border-color 0.3s; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-blue); }
+  .roi-form .btn { grid-column: 1 / -1; justify-content: center; width: 100%; }
+  
+  .roi-results { flex: 0.8; background: var(--white); padding: 30px; border-radius: 10px; min-width: 300px; }
+  .roi-results h3 { font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+  
+  .enquire-section { background-color: var(--primary-dark); color: var(--white); padding: 80px 40px; }
+  .enquire-section .section-title { color: var(--white); }
+  .enquire-section .section-subtitle { color: #d0dbe3; }
+  .contact-form { max-width: 600px; margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .contact-form .full-width { grid-column: 1 / -1; }
+ 
+  .sticky-footer {
+    position: fixed; bottom: 0;
+    background: var(--primary-dark); color: var(--white); padding: 8px 30px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 2000;
+    border-top: 3px solid var(--primary-blue);
+    height: 70px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+  }
+  .footer-brand { display: flex; align-items: center; gap: 15px; }
+  .footer-brand img { height: 40px; border-radius: 4px; background: white; padding: 2px; }
+  .footer-brand h4 { font-size: 14px; font-weight: 800; }
+  .footer-brand p { font-size: 11px; color: #a0b2c0; margin-top: 3px; }
+  .footer-actions { display: flex; gap: 10px; align-items: center; }
+  
+  .footer-btn { 
+    display: flex; flex-direction: column; align-items: center; gap: 4px; 
+    background: none; border: none; cursor: pointer; color: #a0b2c0; 
+    font-family: inherit; text-decoration: none; padding: 4px;
+    transition: var(--transition);
+  }
+  .footer-btn .fb-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.1); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; transition: var(--transition); }
+  .footer-btn:hover { color: white; }
+  .footer-btn:hover .fb-icon { background: var(--primary-blue); }
+  .footer-btn.wa:hover .fb-icon { background: var(--whatsapp-green); }
+  .footer-btn span.fb-label { font-size: 9px; font-weight: 700; text-transform: uppercase; }
+ 
+  .card-action-btn { display: flex; flex-direction: column; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; width: 52px; color: #a0b2c0; font-family: inherit; }
+  .card-action-btn .ca-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: var(--transition); }
+  .card-action-btn:hover .ca-icon { background: var(--primary-blue); color: white; }
+  .card-action-btn.wa .ca-icon { background: var(--whatsapp-green); }
+  .card-action-btn span.ca-label { font-size: 9px; font-weight: 700; }
+  .card-action-btn:disabled { opacity: .4; cursor: not-allowed; }
+ 
+  .card-img-wrap { position: relative; }
+  .cart-toggle {
+    position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.92); border: none; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; font-size: 15px; color: var(--primary-dark); box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    transition: var(--transition);
+  }
+  .cart-toggle:hover { background: var(--primary-blue); color: var(--white); }
+  .cart-toggle.added { background: var(--primary-blue); color: var(--white); }
+ 
+  .wishlist-panel {
+    position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+    z-index: 6000; display: flex; align-items: flex-start;
+  }
+  .wishlist-tab {
+    width: 58px; height: 110px; flex-shrink: 0; background: var(--primary-dark); color: var(--white);
+    border-radius: 10px 0 0 10px; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 6px; cursor: pointer; font-size: 20px;
+    box-shadow: -4px 0 24px rgba(0,0,0,.18);
+  }
+  .wishlist-tab-count {
+    background: var(--primary-blue); border-radius: 50%; width: 22px; height: 22px; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wishlist-body {
+    position: absolute; top: 0; right: 58px; width: 400px; max-height: 90vh; overflow-y: auto;
+    background: var(--white); border-radius: 10px 0 0 10px; box-shadow: -4px 0 24px rgba(0,0,0,.18);
+    padding: 0; opacity: 0; visibility: hidden; transform: translateX(10px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  }
+  .wishlist-panel.expanded .wishlist-body {
+    opacity: 1; visibility: visible; transform: translateX(0); padding: 24px;
+  }
+  .wishlist-body h3 { font-size: 18px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; }
+  .wishlist-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+  .action-sub { font-size: 13px; color: var(--text-gray); margin-bottom: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; }
+  .cart-item-row button { background: none; border: none; color: var(--primary-blue); cursor: pointer; font-size: 16px; }
+  .action-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-gray); cursor: pointer; }
+  @media (max-width: 640px) {
+    .wishlist-body { width: 88vw; }
+  }
+  #loading-state { text-align: center; padding: 40px; font-weight: 700; color: var(--primary-dark); }
+ 
+  .qr-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none;
+    align-items: center; justify-content: center; z-index: 6000; padding: 20px;
+  }
+  .qr-overlay.show { display: flex; }
+  .qr-modal {
+    background: #fff; border-radius: 12px; padding: 30px; text-align: center;
+    max-width: 320px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  }
+  .qr-modal h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 16px; }
+  .qr-modal img { width: 220px; height: 220px; margin: 0 auto 15px; border-radius: 8px; }
+  .qr-modal p { font-size: 12px; color: var(--text-gray); word-break: break-all; margin-bottom: 15px; }
+  .qr-close-btn {
+    background: var(--primary-dark); color: #fff; border: none; padding: 10px 20px;
+    border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer;
+  }
+  .share-toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+    background: var(--primary-dark); color: #fff; padding: 10px 18px; border-radius: 8px;
+    font-size: 13px; z-index: 6000; display: none;
+  }
+  .share-toast.show { display: block; }
+ 
+  /* Gallery Modal Styles */
+  .gallery-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none;
+    flex-direction: column; align-items: center; justify-content: center; z-index: 7000; padding: 20px;
+  }
+  .gallery-overlay.show { display: flex; }
+  .gallery-content { position: relative; max-width: 1000px; width: 100%; text-align: center; }
+  .gallery-img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  .gallery-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 100%;
+    display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none;
+  }
+  .gallery-nav-btn {
+    width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.2);
+    border: none; color: white; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; transition: var(--transition); pointer-events: auto;
+  }
+  .gallery-nav-btn:hover { background: var(--primary-blue); }
+  .gallery-close {
+    position: absolute; top: -50px; right: 0; background: none; border: none;
+    color: white; font-size: 30px; cursor: pointer;
+  }
+  .gallery-counter { color: white; margin-top: 15px; font-size: 14px; font-weight: 600; }
+  .view-gallery-btn {
+    margin-top: 12px; font-size: 12px; font-weight: 700; color: var(--primary-dark);
+    background: #f0f4f8; border: none; padding: 8px 15px; border-radius: 4px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition);
+  }
+  .view-gallery-btn:hover { background: var(--primary-dark); color: white; }
+  .faq-section { background-color: var(--white); }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+  .faq-question { font-weight: 700; font-size: 16px; color: var(--primary-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-top: 15px; display: none; }
+  .faq-item.active .faq-answer { display: block; }
+  .faq-item.active .faq-question i { transform: rotate(180deg); }
+  .faq-question i { transition: transform 0.3s ease; font-size: 12px; }
+ 
+  .featured-package-wrap {
+    display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .featured-card {
+    flex: 1; min-width: 320px; max-width: 450px; background: var(--white); border-radius: 16px;
+    overflow: hidden; border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column;
+  }
+  .fc-media-container {
+    position: relative; height: 280px; background: #111; overflow: hidden;
+  }
+  .fc-media-item {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: none; z-index: 1; transition: opacity 0.3s;
+  }
+  .fc-media-img { object-fit: cover; z-index: 2; }
+  
+  .fc-controls {
+    position: absolute; top: 15px; right: 15px; z-index: 10; display: flex; gap: 5px;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 5px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .fc-ctrl-btn {
+    background: transparent; color: white; border: none; width: 34px; height: 34px; border-radius: 50%;
+    cursor: pointer; font-size: 14px; transition: var(--transition); display: flex; align-items: center; justify-content: center;
+  }
+  .fc-ctrl-btn:hover, .fc-ctrl-btn.active { background: var(--primary-blue); }
+ 
+  .fc-badges {
+    position: absolute; top: 15px; left: 15px; z-index: 10; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+  }
+  .fc-badge {
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); color: white; padding: 6px 12px; border-radius: 20px;
+    font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; width: max-content;
+  }
+  .fc-badge.blue { background: var(--primary-blue); }
+  
+  .fc-price-tag {
+    position: absolute; bottom: 15px; left: 15px; z-index: 10; background: rgba(255,255,255,0.95);
+    padding: 10px 16px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); pointer-events: none;
+  }
+ 
+  .fc-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+  .fc-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+  .fc-spec-item label { display: block; font-size: 10px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .fc-spec-item span { font-size: 14px; font-weight: 700; color: var(--primary-dark); }
+  
+  .fc-pitch-box { background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+  
+  .featured-content { flex: 2; min-width: 320px; }
+  .ai-seo-block { margin-bottom: 40px; }
+  .ai-seo-block h3 { font-size: 24px; font-weight: 800; color: var(--primary-dark); margin-bottom: 15px; }
+  .ai-seo-block p { font-size: 14px; line-height: 1.6; color: var(--text-gray); margin-bottom: 15px; }
+  .ai-seo-block ul { margin-left: 20px; margin-bottom: 20px; font-size: 14px; color: var(--text-gray); }
+  .ai-seo-block li { margin-bottom: 8px; }
+  
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 120px); gap: 12px; }
+  .gg-item { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; background: #eee; }
+  .gg-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .gg-item:hover img { transform: scale(1.08); }
+  .gg-large { grid-column: span 2; grid-row: span 2; }
+  .gg-large img { object-fit: contain; background: white; padding: 15px; border: 1px solid #eee; }
+  .gg-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+  .gg-item:hover .gg-overlay { opacity: 1; }
+  .gg-overlay span { color: white; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+  
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gg-large { grid-column: span 2; height: 200px; }
+  }
+ 
+  /* New rules for the standalone Vacant Land & NestFlex Builds page */
+  .funnel-hero { background: var(--primary-dark); color: var(--white); padding: 60px 40px; text-align:center; }
+  .funnel-hero h2 { font-size: 34px; font-weight: 800; margin-bottom: 14px; }
+  .funnel-hero p { color:#d0dbe3; max-width: 700px; margin: 0 auto 30px; font-size:15px; line-height:1.7; }
+  .funnel-paths { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+  .funnel-path-btn { background: var(--white); color: var(--primary-dark); padding:16px 26px; border-radius:10px; text-decoration:none; font-weight:800; font-size:14px; display:flex; align-items:center; gap:10px; box-shadow:0 8px 20px rgba(0,0,0,0.2); transition: var(--transition); }
+  .funnel-path-btn:hover { transform: translateY(-3px); }
+  .funnel-path-btn.secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.4); box-shadow:none; }
+  .portal-badge { background:#f0f4f8; color:var(--text-gray); font-size:11px; font-weight:700; padding:8px 14px; border-radius:20px; border:1px dashed #c7d2d9; }
+  .portal-badge em { font-style: normal; color:#a0adb5; }
+ 
+  #lbOverlay { position: fixed; inset: 0; background: rgba(0,23,64,0.92); display: none; align-items: center; justify-content: center; z-index: 5000; padding: 20px; flex-direction:column; }
+  #lbOverlay.show { display: flex; }
+  #lbOverlay img { max-width: 90vw; max-height: 78vh; border-radius: 8px; }
+  #lbOverlay #lbTitle { color:white; font-size:13px; margin-top:12px; font-weight:700; }
+  #lbOverlay .lb-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; background: none; border: none; }
+  #lbOverlay .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+  #lbOverlay .lb-prev { left: 20px; }
+  #lbOverlay .lb-next { right: 20px; }
+ 
+  .fc-ctrl-btn.disabled { opacity: 0.35; cursor: not-allowed; }
+</style></head>
+<body>
+ 
+<div class="agent-panel">
+  <div class="agent-cover" style="background-image: url('https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg');"></div>
+  <div class="agent-profile-wrap">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/headshot%20jlg.png" alt="Agent Profile" class="agent-profile-img">
+  </div>
+  <div class="agent-info">
+    <h2 class="agent-name">Jacques La Grange</h2>
+    <div class="agent-tagline">Your Real Estate Expert</div>
+    <div class="agent-role">Property Practitioner</div>
+    <div class="agent-agency">Only Realty Property Group</div>
+  
+    <div class="agent-badges">
+      <div class="agent-badge badge-primary"><i class="fas fa-shield-alt"></i> Premier Agent</div>
+      <div class="agent-badge badge-outline"><i class="fas fa-check-circle"></i> Authorised Agent</div>
+    </div>
+  
+    <div class="agent-actions">
+      <a href="#" id="cfg-chat" class="action-btn whatsapp" target="_blank" rel="noopener"><div class="action-icon"><i class="fab fa-whatsapp"></i></div><span class="action-text">Chat</span></a>
+      <a href="#" id="cfg-call" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-phone-alt"></i></div><span class="action-text">Call</span></a>
+      <a href="#" id="cfg-book" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-calendar-alt"></i></div><span class="action-text">Book</span></a>
+      <a href="#" id="cfg-email" class="action-btn" target="_blank" rel="noopener"><div class="action-icon"><i class="fas fa-envelope"></i></div><span class="action-text">Email</span></a>
+      <a href="javascript:void(0)" id="cfg-scan" class="action-btn" onclick="openQrModal()"><div class="action-icon"><i class="fas fa-qrcode"></i></div><span class="action-text">Scan</span></a>
+      <a href="javascript:void(0)" id="cfg-share" class="action-btn" onclick="shareProfile()"><div class="action-icon"><i class="fas fa-share-alt"></i></div><span class="action-text">Share</span></a>
+      <a href="javascript:void(0)" id="cfg-save" class="action-btn" onclick="saveContactCard()"><div class="action-icon"><i class="fas fa-id-card"></i></div><span class="action-text">Save</span></a>
+    </div>
+  </div>
+   <div class="agent-socials">
+    <div class="socials-title">Connect with me on</div>
+    <div class="social-icons-grid">
+      <a href="#" id="cfg-fb" class="social-icon-btn" title="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" id="cfg-ig" class="social-icon-btn" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="#" id="cfg-li" class="social-icon-btn" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" id="cfg-yt" class="social-icon-btn" title="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      <a href="#" id="cfg-google" class="social-icon-btn" title="Google Business" target="_blank" rel="noopener"><i class="fab fa-google"></i></a>
+      <a href="#" id="cfg-tt" class="social-icon-btn" title="TikTok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+      <a href="#" id="cfg-web" class="social-icon-btn" title="Website" target="_blank" rel="noopener"><i class="fas fa-globe"></i></a>
+    </div>
+  </div>
+</div>
+ 
+<div class="qr-overlay" id="qrOverlay">
+  <div class="qr-modal">
+    <h3>Scan to save contact</h3>
+    <img id="qrImage" src="" alt="QR code">
+    <p id="qrUrlText"></p>
+    <button class="qr-close-btn" onclick="closeQrModal()">Close</button>
+  </div>
+</div>
+<div class="share-toast" id="shareToast">Link copied to clipboard</div>
+ 
+ 
+<div class="top-bar">
+  <div>
+    <a href="tel:+27791785335"><i class="fas fa-phone-alt"></i> +27 41 378 1124</a>
+    <a href="mailto:jacques@onlyrealty.co.za"><i class="fas fa-envelope"></i> jacques@onlyrealty.co.za</a>
+  </div>
+  <div>Only Realty Group</div>
+</div>
+ 
+<header>
+  <div class="brand">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idyTC8R-hQ_1.jpeg" alt="Only Realty Property Group">
+    <div>
+      <h1>Vacant Land For Sale &amp; NestFlex Builds</h1>
+      <p>Powered by Only Realty Group</p>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">NestFlex Home</a>
+    <a href="#the-land">The Land</a>
+    <a href="#the-build">The Build</a>
+    <a href="#faq">FAQ</a>
+    <a href="javascript:void(0)" class="btn btn-primary" style="padding: 8px 16px; min-width: auto;" onclick="window.location.href='index.html#enquire'"><i class="fas fa-file-invoice"></i> Get Quote</a>
+  </nav>
+</header>
+ 
+<!-- ============================================================
+  FUNNEL INTRO: "Buy the Land. The Views Are Free."
+  Logical flow: find the land -> choose a path -> The Land (15 Riebeeck)
+  or The Build (NestFlex, secondary suggestion).
+============================================================= -->
+<section class="funnel-hero">
+  <h2>Buy the Land. The Views Are Free.</h2>
+  <p>One of the last sea-view stands in Seaview is on the market, already subdivided into two independent portions. From here there are two paths: look at the land on its own, or see what a fast, warrantied NestFlex build could look like on it. Neither path is a hard sell &mdash; pick whichever answers your question first.</p>
+  <div class="funnel-paths">
+    <a href="#the-land" class="funnel-path-btn"><i class="fas fa-map-marked-alt"></i> Find the Land &mdash; 15 Riebeeck Street</a>
+    <a href="#the-build" class="funnel-path-btn secondary"><i class="fas fa-cube"></i> See a NestFlex Build Suggestion</a>
+  </div>
+</section>
+ 
+<!-- ============================================================
+  THE LAND — 15 Riebeeck Street (real pod, moved from index.html,
+  plus the additions Jacques asked for: gallery, write-up, map, portals)
+============================================================= -->
+<section id="the-land" class="section-container bg-white">
+  <div style="margin-bottom: 30px;">
+    <span style="color: var(--primary-blue); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Exclusive Listing Opportunity</span>
+    <h2 class="section-title" style="margin-bottom: 5px;">15 Riebeeck Street, Seaview</h2>
+    <p class="section-subtitle">One of the last sea-view stands left in Seaview. Already subdivided &mdash; buy one portion or both.</p>
+  </div>
+ 
+  <div class="featured-package-wrap">
+<article class="featured-card group">
+      <div class="fc-media-container" id="fc-media-15">
+        
+        <!-- Default Image -->
+        <img id="fc-img-15" class="fc-media-item fc-media-img" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg" alt="1,487m² elevated sea-view land for sale in Seaview, Gqeberha at 15 Riebeeck Street" loading="lazy">
+        
+        <!-- Embedded 3D Viewer (Hidden by default) -->
+        <iframe id="fc-3d-15" class="fc-media-item" src="https://3dviewer.co/share/4Rk0SG1QPj" allow="autoplay; fullscreen; vr" style="display:none; pointer-events: auto;"></iframe>
+        
+        <!-- Embedded Google Drive Video (Modified to /preview) -->
+        <iframe id="fc-vid-15" class="fc-media-item" src="https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview" allow="autoplay; fullscreen" style="display:none; pointer-events: auto;"></iframe>
+ 
+        <!-- Media Controls Overlay -->
+        <div class="fc-controls">
+          <button class="fc-ctrl-btn active" id="btn-img-15" onclick="switchFeaturedMedia('img')" title="View Photo"><i class="fas fa-image"></i></button>
+          <button class="fc-ctrl-btn" id="btn-3d-15" onclick="switchFeaturedMedia('3d')" title="Interactive 3D Model"><i class="fas fa-cube"></i></button>
+          <button class="fc-ctrl-btn" id="btn-vid-15" onclick="switchFeaturedMedia('vid')" title="Watch Video Tour"><i class="fas fa-play"></i></button>
+        </div>
+ 
+        <!-- Badges -->
+        <div class="fc-badges">
+          <span class="fc-badge">Vacant Land</span>
+          <span class="fc-badge blue"><i class="fas fa-bolt"></i> NestFlex Ready</span>
+        </div>
+        
+        <!-- Dynamic Price Box -->
+        <div class="fc-price-tag">
+          <span style="font-size:10px; color:var(--text-gray); font-weight:800; text-transform:uppercase;">Both Portions</span>
+          <h4 style="font-size:22px; font-weight:800; color:var(--primary-dark); line-height:1;">R1,150,000</h4>
+        </div>
+      </div>
+ 
+      <!-- Content Payload -->
+      <div class="fc-content">
+        <h3 style="font-size:24px; font-weight:800; color:var(--primary-dark); margin-bottom:5px;">15 Riebeeck St.</h3>
+        <p style="font-size:13px; color:var(--text-gray); display:flex; align-items:center; gap:5px; margin-bottom:20px;">
+          <i class="fas fa-map-marker-alt" style="color:var(--primary-blue);"></i> Seaview, Gqeberha
+        </p>
+ 
+        <!-- Technical Specs -->
+        <div class="fc-specs">
+          <div class="fc-spec-item"><label>Erf Size</label><span>1,487 m²</span></div>
+          <div class="fc-spec-item"><label>Subdivision</label><span>Completed — 2 x &plusmn;743.5m&sup2; (R685k ea.)</span></div>
+          <div class="fc-spec-item"><label>Title</label><span>Full Title (Freehold)</span></div>
+          <div class="fc-spec-item"><label>Views</label><span>Panoramic Ocean</span></div>
+        </div>
+ 
+        <!-- Fast Track Pitch -->
+        <div class="fc-pitch-box">
+          <p style="font-size:12px; font-weight:800; color:var(--primary-blue); margin-bottom:8px;">Skip the year-long build.</p>
+          <div style="font-size:11px; color:var(--text-gray); display:flex; flex-direction:column; gap:4px;">
+            <span style="display:flex; align-items:center; gap:5px;"><i class="fas fa-check-circle" style="color:var(--whatsapp-green);"></i> 12-week factory cycle</span>
+            <span style="display:flex; align-items:center; gap:5px;"><i class="fas fa-check-circle" style="color:var(--whatsapp-green);"></i> 1-3 weeks on-site installation</span>
+          </div>
+        </div>
+ 
+        <div style="display:flex; gap:10px; margin-top:auto;">
+          <!-- Links out to generate quote -->
+          <button class="btn btn-primary" style="flex:1;" onclick="window.location.href='index.html#enquire'"><i class="fas fa-file-invoice"></i> Quote a NestFlex Build</button>
+          <a href="https://wa.me/27791785335?text=Hi%20Jacques%2C%20I%27d%20like%20to%20enquire%20about%2015%20Riebeeck%20Street%2C%20Seaview." target="_blank" rel="noopener" class="btn btn-white" style="flex:1; border: 1px solid #ddd; text-align:center;">Enquire Land</a>
+        </div>
+      </div>
+    </article>
+ 
+    <div class="featured-content">
+<article class="ai-seo-block">
+        <h3>Buy the Land. The Views Are Free.</h3>
+        <p>Stands like this don't come up in Seaview often — and lately, they're not coming up at all. 15 Riebeeck Street offers elevated, uninterrupted sea views in one of Nelson Mandela Bay's most tightly held coastal villages.</p>
+        
+        <p><strong>Can I buy just part of the stand?</strong><br>
+        Yes — the subdivision is complete. 15 Riebeeck Street is now two independent, freehold portions of &plusmn;743.5m&sup2; each, at <strong>R685,000 per portion</strong>. Buy both together for <strong>R1,150,000</strong> and save R220,000 on the combined price.</p>
+        
+        <p><strong>How fast can you build in Seaview?</strong><br>
+        By integrating this land purchase with a NestFlex modular home, you skip the standard bonded build timelines. Sign for the land this month, be living in your new home by autumn. All systems feature:</p>
+        <ul>
+          <li><strong>Compliance:</strong> Exceeds SANS 10400 (structural, thermal, fire)</li>
+          <li><strong>Warranty:</strong> Lifetime structural guarantee on LSF core</li>
+          <li><strong>Zero Transitional Risk:</strong> No sectional title rules or body corporates</li>
+        </ul>
+      </article>
+<!-- Real site-photo gallery: 1 confirmed real photo + honest "coming soon" tiles (no fake images) -->
+<div style="margin-top:30px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Site Photos</h4>
+  <div class="gallery-grid">
+    <div class="gg-item gg-large" onclick="openLandGallery(0)">
+      <img id="landImg0" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg" alt="Elevated sea-view vacant land at 15 Riebeeck Street, Seaview">
+      <div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View</span></div>
+    </div>
+    <div class="gg-item" id="landSlot2" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
+      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-camera" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>More photos<br>coming soon</span>
+    </div>
+    <div class="gg-item" id="landSlot3" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
+      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-camera" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>More photos<br>coming soon</span>
+    </div>
+    <div class="gg-item" id="landVideoSlot" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
+      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-video" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>Video tour<br>coming soon</span>
+    </div>
+  </div>
+</div>
+ 
+<!-- Property write-up: sqm / price / rates & taxes / address, Property24-style -->
+<div style="margin-top:30px; background:var(--white); border:1px solid #eee; border-radius:12px; padding:24px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px;">Property Details</h4>
+  <div class="fc-specs" style="grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); border-bottom:none; margin:0 0 16px;">
+    <div class="fc-spec-item"><label>Erf Size (Total)</label><span>1,487 m²</span></div>
+    <div class="fc-spec-item"><label>Price (Both Portions)</label><span>R1,150,000</span></div>
+    <div class="fc-spec-item"><label>Price (Per Portion)</label><span>R685,000</span></div>
+    <div class="fc-spec-item"><label>Municipal Value</label><span>R430,000</span></div>
+    <div class="fc-spec-item"><label>Monthly Rates</label><span>&plusmn;R1,252.08</span></div>
+    <div class="fc-spec-item"><label>Zoning</label><span>Residential</span></div>
+  </div>
+  <p style="font-size:11px; color:var(--text-gray); margin-bottom:0;">Rates reflect the pre-subdivision combined erf (NMBM General Valuation 2022, market value reduced from R710,000 on a successfully completed objection). Each new portion will be re-valued and billed separately once NMBM updates its roll — confirm current figures with the agent before relying on them for budgeting.</p>
+</div>
+ 
+<!-- Interactive map (live embed, no API key required) -->
+<div style="margin-top:30px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Address &amp; Map</h4>
+  <p style="font-size:13px; color:var(--text-gray); margin-bottom:12px;"><i class="fas fa-map-marker-alt" style="color:var(--primary-blue);"></i> 15 Riebeeck Street, Seaview, Gqeberha, 6070, Eastern Cape</p>
+  <div style="border-radius:12px; overflow:hidden; border:1px solid #eee;">
+    <iframe src="https://www.google.com/maps?q=-34.01472,25.36079&output=embed" width="100%" height="320" style="border:0; display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map location of 15 Riebeeck Street, Seaview"></iframe>
+  </div>
+</div>
+ 
+<!-- Portal links — badges only, NOT hyperlinked yet: the listing is not live on these
+     portals as of this build. Wire in the real URLs the moment each listing goes live;
+     do not fabricate placeholder links. -->
+<div style="margin-top:30px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Also Listed On</h4>
+  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+    <span class="portal-badge" title="Live shortly — link will be added once published">Property24 <em>— pending</em></span>
+    <span class="portal-badge" title="Live shortly — link will be added once published">Private Property <em>— pending</em></span>
+    <span class="portal-badge" title="Live shortly — link will be added once published">Only Realty <em>— pending</em></span>
+  </div>
+  <p style="font-size:11px; color:var(--text-gray); margin-top:8px;">These portal listings are being published now. As soon as each is live, its badge here becomes a direct link — ask Jacques to send the three URLs once available and they'll be wired in immediately.</p>
+</div>
+ 
+<div style="margin-top:30px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Living in Seaview</h4>
+  <p style="font-size:13px; line-height:1.7; color:var(--text-dark); margin-bottom:12px;">Seaview is one of three small coastal villages — Beachview, Seaview and Kini Bay — roughly 800 homes together, about 25km / 30 minutes from the Gqeberha CBD and airport. Close-knit and family-oriented rather than built for tourists: a small local shopping centre, and the Grass Roof Coffee Shop &amp; Farm Stall on Seaview Road for a Saturday coffee. Dolphins are a regular sight offshore, whales pass close inshore from around June through year-end, and the coastline still has tidal pools, fishing spots and stretches of undisturbed beach.</p>
+  <p style="font-size:13px; line-height:1.7; color:var(--text-dark); margin-bottom:12px;"><strong>Safe and settled:</strong> the Seaview Neighbourhood Watch is the community's own volunteer eyes and ears on the street, backed by Atlas Security's 24/7 armed response and patrols. Residents raise anything suspicious via the local area response line (041 378 1218) or straight to Atlas Security.</p>
+  <p style="font-size:13px; line-height:1.7; color:var(--text-dark); margin-bottom:0;"><strong>Bring the dog:</strong> leashed walks down to Maitland's River mouth, along Beachview's footpaths, or across the grassed stretches at Kini Bay. NMBM's coastal bylaws keep it dog-friendly outside the main bathing areas — leash on, poop bag in hand, dunes off-limits (nesting oystercatchers).</p>
+</div>
+ 
+<div style="margin-top:30px;">
+  <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Viewings</h4>
+  <p style="font-size:13px; line-height:1.7; color:var(--text-dark); margin-bottom:0;">Available seven days a week, Monday to Sunday — just give a little advance notice. The agent lives right next door to the stand, so turnaround is fast. In-person, video call walkthrough, or virtual meeting — whichever suits you.</p>
+</div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ============================================================
+  THE BUILD — NestFlex, positioned as a secondary suggestion, not a push.
+  Contains the real "Proposed Modular Configuration" gallery (moved from
+  index.html) and the real matterport/video showcase, retitled.
+============================================================= -->
+<section id="the-build" class="section-container bg-light">
+  <div style="margin-bottom: 30px;">
+    <span style="color: var(--accent-red); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Optional &mdash; Not Required to Buy the Land</span>
+    <h2 class="section-title" style="margin-bottom: 5px;">Or, Build Fast With NestFlex</h2>
+    <p class="section-subtitle">If you'd rather not wait out a year-long conventional build, here's what's possible on this stand. Entirely optional &mdash; the land stands on its own.</p>
+  </div>
+ 
+<!-- Proposed Modular Gallery Block -->
+      <div>
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Proposed Modular Configuration (45m²)</h4>
+        <div class="gallery-grid">
+          <!-- Floor Plan (Large) -->
+          <div class="gg-item gg-large" onclick="openProposedGallery(0)">
+            <img id="buildImg0" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png" alt="NestFlex 45m2 Floor Plan">
+            <div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View Plan</span></div>
+            <span style="position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:white; font-size:9px; padding:4px 8px; border-radius:4px; font-weight:700;">FLOOR PLAN</span>
+          </div>
+          
+          <!-- Exterior Render -->
+          <div class="gg-item" onclick="openProposedGallery(1)">
+            <img id="buildImg1" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/exterior.jpg" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800';" alt="Exterior Setup">
+            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
+          </div>
+          
+          <!-- Living Area Render -->
+          <div class="gg-item" onclick="openProposedGallery(2)">
+            <img id="buildImg2" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/interior-living.jpg" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800';" alt="Living Area">
+            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
+          </div>
+          
+          <!-- Bedroom Render -->
+          <div class="gg-item" onclick="openProposedGallery(3)">
+            <img id="buildImg3" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/bedroom.jpg" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=800';" alt="Bedroom">
+            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
+          </div>
+          
+          <!-- Kitchen Render -->
+          <div class="gg-item" onclick="openProposedGallery(4)">
+            <img id="buildImg4" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/kitchen.jpg" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800';" alt="Kitchen">
+            <div class="gg-overlay"><span><i class="fas fa-images"></i> View All</span></div>
+          </div>
+        </div>
+      </div>
+ 
+ 
+</section>
+ 
+<section class="section-container bg-light" style="padding: 50px 20px;">
+  <h2 class="section-title">Just a Suggestion: See What NestFlex Could Build Here</h2>
+  <p class="section-subtitle">Not a hard sell — if a fast, warrantied build interests you, this is what a NestFlex home looks and feels like. Walk through it in 3D or watch the project reveal.</p>
+  
+  <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px;">
+ 
+    <!-- 3D Tour Card -->
+    <div class="card">
+ 
+      <div id="matterportContainer" style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden;">
+        <!-- Matterport Cover -->
+        <div id="matterportCover" style="position: absolute; inset: 0; background: url('https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png') center/cover; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; transition: var(--transition);">
+          <div style="background: rgba(0,0,0,0.6); position: absolute; inset: 0;"></div>
+          <button onclick="start3DTour()" style="position: relative; z-index: 3; background: var(--primary-blue); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: transform 0.3s;">
+            <i class="fas fa-play"></i> Start 3D Tour
+          </button>
+        </div>
+        <iframe id="matterportFrame" data-src="https://my.matterport.com/show/?m=iTG4P1799jg" frameborder="0" allowfullscreen allow="xr-spatial-tracking" style="width: 100%; height: 100%; display: none;"></iframe>
+      </div>
+      <div class="card-content">
+        <span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">3D Experience</span>
+        <h4 class="card-title">Interactive 3D Tour</h4>
+        <p style="font-size: 13px; color: var(--text-gray); line-height: 1.5; margin-top: 5px;">
+          Explore every detail of our modular systems from the comfort of your screen. Fully interactive 3D environment.
+        </p>
+      </div>
+    </div>
+ 
+    <!-- Video Tour Card -->
+    <div class="card">
+      <div style="background: #000; width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; overflow: hidden;">
+        <video controls poster="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png" style="width: 100%; height: 100%; object-fit: cover;">
+          <source src="https://www.oracle3d.co.za/wp-content/uploads/2024/07/onebedroom.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="card-content">
+        <span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">Video Showcase</span>
+        <h4 class="card-title">Project Reveal Walkthrough</h4>
+        <p style="font-size: 13px; color: var(--text-gray); line-height: 1.5; margin-top: 5px;">
+          A comprehensive video walkthrough of our 1-Bedroom Pod, showcasing build quality and design aesthetics.
+        </p>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+ 
+<!-- ============================================================
+  FAQ
+============================================================= -->
+<section id="faq" class="section-container bg-white">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div style="max-width:800px;">
+    <div style="margin-bottom:20px;">
+      <h4 style="font-size:14px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">Can I buy just part of the stand?</h4>
+      <p style="font-size:13px; color:var(--text-gray); line-height:1.6;">Yes. The subdivision is complete &mdash; 15 Riebeeck Street is now two independent freehold portions of approximately 743.5m² each, at R685,000 per portion. Buying both together costs R1,150,000, a R220,000 saving versus buying separately.</p>
+    </div>
+    <div style="margin-bottom:20px;">
+      <h4 style="font-size:14px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">How fast can I build a house in Seaview?</h4>
+      <p style="font-size:13px; color:var(--text-gray); line-height:1.6;">Using a NestFlex LSF-certified modular home alongside this land purchase, you can bypass the year-long traditional build. NestFlex offers a 12-week factory build cycle and 1&ndash;3 weeks of on-site installation.</p>
+    </div>
+    <div style="margin-bottom:0;">
+      <h4 style="font-size:14px; font-weight:800; color:var(--primary-dark); margin-bottom:6px;">Are pets and dogs allowed near 15 Riebeeck Street?</h4>
+      <p style="font-size:13px; color:var(--text-gray); line-height:1.6;">Yes. Nelson Mandela Bay's coastal dog-control policy allows leashed dogs on beaches and public walkways outside the main bathing areas around Maitland's, Beachview and Kini Bay, provided owners can remove dog waste.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- Lightbox overlay (shared by the land photo gallery and the NestFlex build gallery) -->
+<div id="lbOverlay">
+  <button class="lb-close" onclick="closeLightbox()">&times;</button>
+  <button class="lb-nav lb-prev" onclick="lbStep(-1)"><i class="fas fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="Gallery image">
+  <button class="lb-nav lb-next" onclick="lbStep(1)"><i class="fas fa-chevron-right"></i></button>
+  <div id="lbTitle"></div>
+</div>
+ 
+<div class="sticky-footer">
+  <div class="footer-brand">
+    <img src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idyTC8R-hQ_1.jpeg" alt="Only Realty">
+    <div>
+      <h4>Vacant Land &amp; NestFlex Builds</h4>
+      <p>Powered by Only Realty Group</p>
+    </div>
+  </div>
+  <div class="footer-actions">
+    <a href="https://wa.me/27791785335" target="_blank" rel="noopener" class="footer-btn wa"><span class="fb-icon"><i class="fab fa-whatsapp"></i></span><span class="fb-label">Chat</span></a>
+    <a href="tel:+27791785335" class="footer-btn"><span class="fb-icon"><i class="fas fa-phone-alt"></i></span><span class="fb-label">Call</span></a>
+    <a href="mailto:jacques@onlyrealty.co.za" class="footer-btn"><span class="fb-icon"><i class="fas fa-envelope"></i></span><span class="fb-label">Email</span></a>
+    <a href="index.html" class="footer-btn"><span class="fb-icon"><i class="fas fa-building"></i></span><span class="fb-label">NestFlex</span></a>
+  </div>
+</div>
+ 
+<script src="assets-config.js"></script>
+<script>
+  // ---- Featured land pod: photo / 3D / video toggle (real embeds, unchanged from live site) ----
+  function switchFeaturedMedia(type) {
+    document.getElementById('fc-img-15').style.display = 'none';
+    document.getElementById('fc-3d-15').style.display = 'none';
+    document.getElementById('fc-vid-15').style.display = 'none';
+ 
+    document.getElementById('btn-img-15').classList.remove('active');
+    document.getElementById('btn-3d-15').classList.remove('active');
+    document.getElementById('btn-vid-15').classList.remove('active');
+ 
+    document.getElementById('fc-' + type + '-15').style.display = 'block';
+    document.getElementById('btn-' + type + '-15').classList.add('active');
+  }
+ 
+  // ---- Self-contained lightbox (this page is standalone, so it doesn't reuse index.html's
+  // Supabase-driven gallery modal — this is a deliberate, lightweight replacement) ----
+  var lbSets = {};
+  var lbCurrentSet = null;
+  var lbIndex = 0;
+ 
+  function registerLightboxSet(name, images) { lbSets[name] = images; }
+ 
+  function openLightboxSet(name, index, title) {
+    lbCurrentSet = name;
+    lbIndex = index || 0;
+    document.getElementById('lbTitle').innerText = title || '';
+    updateLbImg();
+    document.getElementById('lbOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lbOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function lbStep(dir) {
+    var imgs = lbSets[lbCurrentSet];
+    lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
+    updateLbImg();
+  }
+  function updateLbImg() {
+    var imgs = lbSets[lbCurrentSet];
+    var img = document.getElementById('lbImg');
+    img.src = imgs[lbIndex];
+  }
+ 
+  // Proposed NestFlex build gallery (real assets from the live site: floor plan + renders,
+  // exactly as they exist on nestflex.github.io/NestFlex/ today, onerror fallbacks preserved)
+  registerLightboxSet('build', [
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png',
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/exterior.jpg',
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/interior-living.jpg',
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/bedroom.jpg',
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/kitchen.jpg'
+  ]);
+  function openProposedGallery(index) {
+    openLightboxSet('build', index, 'Proposed Build: NestFlex 45m² Configuration');
+  }
+ 
+  // 15 Riebeeck Street site photos.
+  // ONLY the first URL below is a confirmed real, already-uploaded photo (same one used in the
+  // fc-img-15 pod above). Do NOT add more entries here until the real Supabase Storage URLs
+  // exist — placeholders are intentionally left OUT rather than faked. Jacques: once you upload
+  // the rest of the site photos (see image-metadata-index-v3 for the shortlist and alt text),
+  // add their real URLs to this array in the same order and the gallery will pick them up
+  // automatically — no other code changes needed.
+  registerLightboxSet('land', [
+    'https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg'
+  ]);
+  function openLandGallery(index) {
+    openLightboxSet('land', index, '15 Riebeeck Street — Site Photos');
+  }
+ 
+  document.addEventListener('DOMContentLoaded', function () {
+    var ov = document.getElementById('lbOverlay');
+    if (ov) ov.addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
+  });
+ 
+  // ---- Matterport (real embed, unchanged) ----
+  function start3DTour() {
+    var frame = document.getElementById('matterportFrame');
+    var cover = document.getElementById('matterportCover');
+    frame.src = frame.getAttribute('data-src');
+    frame.style.display = 'block';
+    cover.style.opacity = '0';
+    setTimeout(function () { cover.style.display = 'none'; }, 300);
+  }
+</script>
+ 
+<script>
+  var agentLinksSetup = {
+    actionButtons: {
+      call: "tel:+27791785335",
+      email: "mailto:jacques@onlyrealty.co.za",
+      chat: "https://wa.me/27791785335",
+      book: "https://calendar.app.google/zx8uqExAY9EqDoeV8"
+    },
+    socialButtons: {
+      facebook: "https://facebook.com/OnlyRealty",
+      instagram: "https://instagram.com/OnlyRealty",
+      linkedin: "https://linkedin.com/company/only-realty",
+      youtube: "https://www.youtube.com/@onlyrealty9935",
+      googleBusiness: "https://share.google/1CG08IikzyDdD4RW6",
+      tiktok: "https://www.tiktok.com/@onlyrealtycoastal",
+      website: "https://www.onlyrealty.co.za"
+    }
+  };
+ 
+  function applyAgentLinks() {
+    document.getElementById('cfg-call').href = agentLinksSetup.actionButtons.call;
+    document.getElementById('cfg-email').href = agentLinksSetup.actionButtons.email;
+    document.getElementById('cfg-chat').href = agentLinksSetup.actionButtons.chat;
+    document.getElementById('cfg-book').href = agentLinksSetup.actionButtons.book;
+    document.getElementById('cfg-fb').href = agentLinksSetup.socialButtons.facebook;
+    document.getElementById('cfg-ig').href = agentLinksSetup.socialButtons.instagram;
+    document.getElementById('cfg-li').href = agentLinksSetup.socialButtons.linkedin;
+    document.getElementById('cfg-yt').href = agentLinksSetup.socialButtons.youtube;
+    document.getElementById('cfg-google').href = agentLinksSetup.socialButtons.googleBusiness;
+    document.getElementById('cfg-tt').href = agentLinksSetup.socialButtons.tiktok;
+    document.getElementById('cfg-web').href = agentLinksSetup.socialButtons.website;
+  }
+ 
+  function openQrModal() {
+    var vcard = [
+      'BEGIN:VCARD','VERSION:3.0','N:La Grange;Jacques;;;','FN:Jacques La Grange',
+      'ORG:Only Realty Property Group','TITLE:Property Practitioner',
+      'TEL;TYPE=WORK,VOICE:+27791785335','EMAIL:jacques@onlyrealty.co.za',
+      'URL:https://www.onlyrealty.co.za',
+      'PHOTO;VALUE=uri:https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png',
+      'END:VCARD'
+    ].join('\n');
+    var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(vcard);
+    document.getElementById('qrImage').src = qrApi;
+    document.getElementById('qrUrlText').textContent = 'Scan to save Jacques La Grange to your contacts';
+    document.getElementById('qrOverlay').classList.add('show');
+  }
+  function closeQrModal() { document.getElementById('qrOverlay').classList.remove('show'); }
+ 
+  async function shareProfile() {
+    var shareData = { title: 'Jacques La Grange - Only Realty Group', text: 'Vacant Land For Sale - Seaview | Only Realty Group', url: window.location.href };
+    if (navigator.share) { try { await navigator.share(shareData); } catch (e) {} return; }
+    try { await navigator.clipboard.writeText(shareData.url); }
+    catch (e) {
+      var temp = document.createElement('textarea');
+      temp.value = shareData.url;
+      document.body.appendChild(temp); temp.select(); document.execCommand('copy'); document.body.removeChild(temp);
+    }
+    showToastMsg('Link copied to clipboard');
+  }
+ 
+  function saveContactCard() {
+    var vcard = [
+      'BEGIN:VCARD','VERSION:3.0','N:La Grange;Jacques;;;','FN:Jacques La Grange',
+      'ORG:Only Realty Property Group','TITLE:Property Practitioner',
+      'TEL;TYPE=WORK,VOICE:+27791785335','EMAIL:jacques@onlyrealty.co.za',
+      'URL:https://www.onlyrealty.co.za',
+      'PHOTO;VALUE=uri:https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/Only_Realty_idIKjxVG5Y_0.png',
+      'END:VCARD'
+    ].join('\n');
+    var blob = new Blob([vcard], { type: 'text/vcard' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Jacques-La-Grange-OnlyRealty.vcf';
+    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+  }
+ 
+  function showToastMsg(msg) {
+    var toast = document.getElementById('shareToast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 3000);
+  }
+ 
+  document.addEventListener('DOMContentLoaded', applyAgentLinks);
+</script>
+ 
+<script>
+  // ============================================================
+  // Populate every image/video/3D slot from assets-config.js.
+  // Anything left "" in that file gets a clean placeholder here
+  // instead of a broken image or a dead iframe.
+  // ============================================================
+  function initAssetsFromConfig() {
+    if (typeof window.ASSETS === 'undefined') {
+      console.warn('assets-config.js not loaded — using the defaults baked into the HTML.');
+      return;
+    }
+    var A = window.ASSETS;
+ 
+    // ---- Land: hero photo + 3D + video ----
+    if (A.land.heroPhoto) document.getElementById('fc-img-15').src = A.land.heroPhoto;
+ 
+    var has3D = !!A.land.model3D;
+    var hasVid = !!A.land.videoTour;
+    if (has3D) document.getElementById('fc-3d-15').setAttribute('data-src', A.land.model3D);
+    if (hasVid) document.getElementById('fc-vid-15').src = A.land.videoTour;
+ 
+    var btn3d = document.getElementById('btn-3d-15');
+    var btnVid = document.getElementById('btn-vid-15');
+    if (!has3D) { btn3d.classList.add('disabled'); btn3d.title = 'Coming soon'; }
+    if (!hasVid) { btnVid.classList.add('disabled'); btnVid.title = 'Coming soon'; }
+ 
+    // ---- Land: extra gallery photos (landSlot2 / landSlot3) ----
+    registerLightboxSet('land', [A.land.heroPhoto, A.land.gallery2, A.land.gallery3].filter(Boolean));
+    fillGallerySlot('landSlot2', A.land.gallery2, 1, 'Additional site photo');
+    fillGallerySlot('landSlot3', A.land.gallery3, 2, 'Additional site photo');
+ 
+    // ---- Build: floor plan + 4 renders ----
+    var buildKeys = ['floorPlan','render1_exterior','render2_living','render3_bedroom','render4_kitchen'];
+    var buildUrls = buildKeys.map(function(k){ return A.build[k]; });
+    registerLightboxSet('build', buildUrls.filter(Boolean));
+    for (var i = 0; i < buildKeys.length; i++) {
+      var url = A.build[buildKeys[i]];
+      var img = document.getElementById('buildImg' + i);
+      if (url && img) img.src = url;
+    }
+ 
+    // ---- Agent photo/cover ----
+    if (A.agent.headshot) {
+      var h = document.querySelector('.agent-profile-img');
+      if (h) h.src = A.agent.headshot;
+    }
+    if (A.agent.coverPhoto) {
+      var c = document.querySelector('.agent-cover');
+      if (c) c.style.backgroundImage = "url('" + A.agent.coverPhoto + "')";
+    }
+  }
+ 
+  function fillGallerySlot(slotId, url, lightboxIndex, altText) {
+    var slot = document.getElementById(slotId);
+    if (!slot || !url) return; // leave the "coming soon" placeholder as-is
+    slot.style.background = '';
+    slot.style.cursor = 'pointer';
+    slot.innerHTML = '<img src="' + url + '" alt="' + altText + '">' +
+      '<div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View</span></div>';
+    slot.setAttribute('onclick', 'openLandGallery(' + lightboxIndex + ')');
+  }
+ 
+  // Wrap switchFeaturedMedia so a "coming soon" button shows a toast
+  // instead of switching to an empty iframe.
+  var _switchFeaturedMediaOriginal = switchFeaturedMedia;
+  switchFeaturedMedia = function(type) {
+    var btn = document.getElementById('btn-' + type + '-15');
+    if (btn && btn.classList.contains('disabled')) {
+      if (typeof showToastMsg === 'function') showToastMsg('Coming soon');
+      return;
+    }
+    if (type === '3d') {
+      var frame = document.getElementById('fc-3d-15');
+      var real = frame.getAttribute('data-src');
+      if (real && !frame.getAttribute('src')) frame.src = real;
+    }
+    _switchFeaturedMediaOriginal(type);
+  };
+ 
+  document.addEventListener('DOMContentLoaded', initAssetsFromConfig);
+</script>
+ 
+ 
+</body>
+</html>
