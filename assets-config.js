@@ -35,7 +35,7 @@ window.ASSETS = {
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-11.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-12.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-13.jpg",
-      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/08-serene-sea-sunset-silhouettes-seaview-port-elizabeth.jpg",
+      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-14.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-15.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-16.jpg"
     ]
