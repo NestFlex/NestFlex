@@ -11,7 +11,7 @@ window.ASSETS = {
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/04-sea-waves-framed-by-coastal-flora-15-riebeeck-street-seaview.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/05-dramatic-sunset-coastal-sky-seaview-port-elizabeth.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/06-lush-coastal-vegetation-vacant-plot-seaview-clarendon-marine.jpg",
-      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/06-lush-coastal-vegetation-vacant-plot-seaview-clarendon-marine.jpg",
+      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/07-indigenous-coastal-ground-cover-15-riebeeck-street-clarendon-marine.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/08-serene-sea-sunset-silhouettes-seaview-port-elizabeth.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/03-elevated-vacant-stand-sloping-terrain-and-ocean-outlooks-seaview.jpg"
     ],
