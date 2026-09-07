@@ -652,6 +652,8 @@
   .gg-item:hover img { transform: scale(1.08); }
   .gg-large { grid-column: span 2; grid-row: span 2; }
   .gg-large img { object-fit: contain; background: white; padding: 15px; border: 1px solid #eee; }
+  /* Photos (not floor plans) should fill and crop the large tile, not letterbox */
+  .gg-large.gg-photo img { object-fit: cover; background: none; padding: 0; border: none; }
   .gg-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
   .gg-item:hover .gg-overlay { opacity: 1; }
   .gg-overlay span { color: white; font-size: 12px; font-weight: 700; text-transform: uppercase; }
@@ -671,6 +673,17 @@
   .funnel-path-btn.secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.4); box-shadow:none; }
   .portal-badge { background:#f0f4f8; color:var(--text-gray); font-size:11px; font-weight:700; padding:8px 14px; border-radius:20px; border:1px dashed #c7d2d9; }
   .portal-badge em { font-style: normal; color:#a0adb5; }
+  .portal-badge.live { border-style:solid; text-decoration:none; display:inline-flex; align-items:center; gap:6px; cursor:pointer; transition: var(--transition); }
+  .portal-badge.live:hover { transform: translateY(-2px); }
+  .portal-badge.live em { color: inherit; opacity: 0.85; }
+  /* Property24 brand colors verified via brandfetch.com/prop24.com */
+  .portal-badge.p24 { background:#0F0F0F; color:#fff; border-color:#0F0F0F; }
+  .portal-badge.p24 em { color:#F04432; }
+  /* Private Property: exact brand hex not verified — neutral placeholder color, flagged to Jacques */
+  .portal-badge.pp { background:#1f6f4a; color:#fff; border-color:#1f6f4a; }
+  /* Only Realty: verified — matches this site's own brand variables */
+  .portal-badge.or { background:var(--primary-dark); color:#fff; border-color:var(--primary-dark); }
+  .portal-badge.or em { color: var(--accent-red); }
 
   #lbOverlay { position: fixed; inset: 0; background: rgba(0,23,64,0.92); display: none; align-items: center; justify-content: center; z-index: 5000; padding: 20px; flex-direction:column; }
   #lbOverlay.show { display: flex; }
@@ -867,24 +880,10 @@
           <li><strong>Zero Transitional Risk:</strong> No sectional title rules or body corporates</li>
         </ul>
       </article>
-<!-- Real site-photo gallery: 1 confirmed real photo + honest "coming soon" tiles (no fake images) -->
+<!-- Real site-photo gallery — fully dynamic, unlimited photos, rendered from assets-config.js -->
 <div style="margin-top:30px;">
   <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Site Photos</h4>
-  <div class="gallery-grid">
-    <div class="gg-item gg-large" onclick="openLandGallery(0)">
-      <img id="landImg0" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg" alt="Elevated sea-view vacant land at 15 Riebeeck Street, Seaview">
-      <div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View</span></div>
-    </div>
-    <div class="gg-item" id="landSlot2" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
-      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-camera" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>More photos<br>coming soon</span>
-    </div>
-    <div class="gg-item" id="landSlot3" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
-      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-camera" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>More photos<br>coming soon</span>
-    </div>
-    <div class="gg-item" id="landVideoSlot" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default;">
-      <span style="font-size:11px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-video" style="display:block; font-size:18px; margin-bottom:6px; color:#c7d2d9;"></i>Video tour<br>coming soon</span>
-    </div>
-  </div>
+  <div class="gallery-grid" id="landGalleryGrid"></div>
 </div>
 
 <!-- Property write-up: sqm / price / rates & taxes / address, Property24-style -->
@@ -915,12 +914,8 @@
      do not fabricate placeholder links. -->
 <div style="margin-top:30px;">
   <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Also Listed On</h4>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <span class="portal-badge" title="Live shortly — link will be added once published">Property24 <em>— pending</em></span>
-    <span class="portal-badge" title="Live shortly — link will be added once published">Private Property <em>— pending</em></span>
-    <span class="portal-badge" title="Live shortly — link will be added once published">Only Realty <em>— pending</em></span>
-  </div>
-  <p style="font-size:11px; color:var(--text-gray); margin-top:8px;">These portal listings are being published now. As soon as each is live, its badge here becomes a direct link — ask Jacques to send the three URLs once available and they'll be wired in immediately.</p>
+  <div id="portalBadges" style="display:flex; gap:12px; flex-wrap:wrap;"></div>
+  <p style="font-size:11px; color:var(--text-gray); margin-top:8px;">Add the real URLs in assets-config.js (or via asset-manager.html) once each listing is live — the badges below switch from grey/pending to a clickable, branded link automatically.</p>
 </div>
 
 <div style="margin-top:30px;">
@@ -951,41 +946,10 @@
     <p class="section-subtitle">If you'd rather not wait out a year-long conventional build, here's what's possible on this stand. Entirely optional &mdash; the land stands on its own.</p>
   </div>
 
-<!-- Proposed Modular Gallery Block -->
+<!-- Proposed Modular Gallery Block — fully dynamic, unlimited renders, rendered from assets-config.js -->
       <div>
-        <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Proposed Modular Configuration (45m²)</h4>
-        <div class="gallery-grid">
-          <!-- Floor Plan (Large) -->
-          <div class="gg-item gg-large" onclick="openProposedGallery(0)">
-            <img id="buildImg0" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png" alt="NestFlex 45m2 Floor Plan">
-            <div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View Plan</span></div>
-            <span style="position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:white; font-size:9px; padding:4px 8px; border-radius:4px; font-weight:700;">FLOOR PLAN</span>
-          </div>
-          
-          <!-- Exterior Render -->
-          <div class="gg-item" onclick="openProposedGallery(1)">
-            <img id="buildImg1" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/exterior.jpg" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800';" alt="Exterior Setup">
-            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
-          </div>
-          
-          <!-- Living Area Render -->
-          <div class="gg-item" onclick="openProposedGallery(2)">
-            <img id="buildImg2" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/interior-living.jpg" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800';" alt="Living Area">
-            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
-          </div>
-          
-          <!-- Bedroom Render -->
-          <div class="gg-item" onclick="openProposedGallery(3)">
-            <img id="buildImg3" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/bedroom.jpg" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=800';" alt="Bedroom">
-            <div class="gg-overlay"><span><i class="fas fa-expand"></i></span></div>
-          </div>
-          
-          <!-- Kitchen Render -->
-          <div class="gg-item" onclick="openProposedGallery(4)">
-            <img id="buildImg4" src="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/kitchen.jpg" onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800';" alt="Kitchen">
-            <div class="gg-overlay"><span><i class="fas fa-images"></i> View All</span></div>
-          </div>
-        </div>
+        <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Proposed Modular Configuration</h4>
+        <div class="gallery-grid" id="buildGalleryGrid"></div>
       </div>
 
 
@@ -1270,38 +1234,41 @@
   // ============================================================
   function initAssetsFromConfig() {
     if (typeof window.ASSETS === 'undefined') {
-      console.warn('assets-config.js not loaded — using the defaults baked into the HTML.');
+      console.warn('assets-config.js not loaded — nothing will render in the galleries.');
       return;
     }
     var A = window.ASSETS;
 
-    // ---- Land: hero photo + 3D + video ----
-    if (A.land.heroPhoto) document.getElementById('fc-img-15').src = A.land.heroPhoto;
+    // ---- Land: hero photo (first in array) + 3D + video ----
+    var landPhotos = (A.land.photos || []).filter(Boolean);
+    if (landPhotos.length) document.getElementById('fc-img-15').src = landPhotos[0];
 
     var has3D = !!A.land.model3D;
     var hasVid = !!A.land.videoTour;
-    if (has3D) document.getElementById('fc-3d-15').setAttribute('data-src', A.land.model3D);
+    document.getElementById('fc-3d-15').setAttribute('data-src', A.land.model3D || '');
+    document.getElementById('fc-vid-15').removeAttribute('src');
     if (hasVid) document.getElementById('fc-vid-15').src = A.land.videoTour;
 
     var btn3d = document.getElementById('btn-3d-15');
     var btnVid = document.getElementById('btn-vid-15');
-    if (!has3D) { btn3d.classList.add('disabled'); btn3d.title = 'Coming soon'; }
-    if (!hasVid) { btnVid.classList.add('disabled'); btnVid.title = 'Coming soon'; }
+    btn3d.classList.toggle('disabled', !has3D);
+    btn3d.title = has3D ? '' : 'Coming soon';
+    btnVid.classList.toggle('disabled', !hasVid);
+    btnVid.title = hasVid ? '' : 'Coming soon';
 
-    // ---- Land: extra gallery photos (landSlot2 / landSlot3) ----
-    registerLightboxSet('land', [A.land.heroPhoto, A.land.gallery2, A.land.gallery3].filter(Boolean));
-    fillGallerySlot('landSlot2', A.land.gallery2, 1, 'Additional site photo');
-    fillGallerySlot('landSlot3', A.land.gallery3, 2, 'Additional site photo');
+    // ---- Land gallery: unlimited photos, first = large hero tile ----
+    registerLightboxSet('land', landPhotos);
+    renderGallery('landGalleryGrid', landPhotos, 'openLandGallery', 'Site photo of 15 Riebeeck Street, Seaview');
 
-    // ---- Build: floor plan + 4 renders ----
-    var buildKeys = ['floorPlan','render1_exterior','render2_living','render3_bedroom','render4_kitchen'];
-    var buildUrls = buildKeys.map(function(k){ return A.build[k]; });
-    registerLightboxSet('build', buildUrls.filter(Boolean));
-    for (var i = 0; i < buildKeys.length; i++) {
-      var url = A.build[buildKeys[i]];
-      var img = document.getElementById('buildImg' + i);
-      if (url && img) img.src = url;
-    }
+    // ---- Build gallery: floor plan (always first, large, uncropped) + unlimited renders ----
+    var buildItems = [];
+    if (A.build.floorPlan) buildItems.push({ url: A.build.floorPlan, isPlan: true });
+    (A.build.photos || []).filter(Boolean).forEach(function (u) { buildItems.push({ url: u, isPlan: false }); });
+    registerLightboxSet('build', buildItems.map(function (i) { return i.url; }));
+    renderGallery('buildGalleryGrid', buildItems, 'openProposedGallery', 'NestFlex proposed build image', true);
+
+    // ---- Portal badges ----
+    renderPortalBadges('portalBadges', A.portals || {});
 
     // ---- Agent photo/cover ----
     if (A.agent.headshot) {
@@ -1314,14 +1281,81 @@
     }
   }
 
-  function fillGallerySlot(slotId, url, lightboxIndex, altText) {
-    var slot = document.getElementById(slotId);
-    if (!slot || !url) return; // leave the "coming soon" placeholder as-is
-    slot.style.background = '';
-    slot.style.cursor = 'pointer';
-    slot.innerHTML = '<img src="' + url + '" alt="' + altText + '">' +
-      '<div class="gg-overlay"><span><i class="fas fa-search-plus"></i> View</span></div>';
-    slot.setAttribute('onclick', 'openLandGallery(' + lightboxIndex + ')');
+  // Renders a gallery-grid of any length. `items` is either an array of
+  // URL strings (plain photos) or, when buildMode=true, an array of
+  // {url, isPlan} objects so the floor plan gets the "contain, no crop"
+  // treatment while renders get "cover, cropped". First item is always
+  // the large tile. If the array is empty, shows one honest placeholder
+  // tile instead of leaving a blank grid.
+  function renderGallery(containerId, items, openFnName, altPrefix, buildMode) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = '';
+
+    if (!items || !items.length) {
+      el.innerHTML = '<div class="gg-item" style="display:flex; align-items:center; justify-content:center; background:#f0f4f8; cursor:default; grid-column: span 2; grid-row: span 2;">' +
+        '<span style="font-size:12px; color:var(--text-gray); text-align:center; padding:8px;"><i class="fas fa-camera" style="display:block; font-size:22px; margin-bottom:6px; color:#c7d2d9;"></i>Photos coming soon</span></div>';
+      return;
+    }
+
+    items.forEach(function (item, i) {
+      var url = buildMode ? item.url : item;
+      var isPlan = buildMode ? item.isPlan : false;
+      var isLarge = (i === 0);
+      var div = document.createElement('div');
+      div.className = 'gg-item' + (isLarge ? (isPlan ? ' gg-large' : ' gg-large gg-photo') : '');
+      div.setAttribute('onclick', openFnName + '(' + i + ')');
+
+      var img = document.createElement('img');
+      img.src = url;
+      img.alt = altPrefix + ' ' + (i + 1);
+      img.loading = 'lazy';
+      div.appendChild(img);
+
+      var overlay = document.createElement('div');
+      overlay.className = 'gg-overlay';
+      overlay.innerHTML = '<span><i class="fas fa-search-plus"></i> View</span>';
+      div.appendChild(overlay);
+
+      if (isPlan) {
+        var tag = document.createElement('span');
+        tag.style.cssText = 'position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:white; font-size:9px; padding:4px 8px; border-radius:4px; font-weight:700;';
+        tag.textContent = 'FLOOR PLAN';
+        div.appendChild(tag);
+      }
+      el.appendChild(div);
+    });
+  }
+
+  // Renders portal badges: a real branded, clickable link when a URL is
+  // set; a grey "pending" badge (no link) when it isn't.
+  function renderPortalBadges(containerId, portals) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = '';
+    var defs = [
+      { key: 'property24', label: 'Property24', cls: 'p24' },
+      { key: 'privateProperty', label: 'Private Property', cls: 'pp' },
+      { key: 'onlyRealty', label: 'Only Realty', cls: 'or' }
+    ];
+    defs.forEach(function (d) {
+      var url = portals[d.key];
+      if (url) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'portal-badge live ' + d.cls;
+        a.innerHTML = d.label + ' <em>&rarr; View Listing</em>';
+        el.appendChild(a);
+      } else {
+        var span = document.createElement('span');
+        span.className = 'portal-badge';
+        span.title = 'Live shortly — link will be added once published';
+        span.innerHTML = d.label + ' <em>— pending</em>';
+        el.appendChild(span);
+      }
+    });
   }
 
   // Wrap switchFeaturedMedia so a "coming soon" button shows a toast
