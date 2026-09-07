@@ -1,53 +1,56 @@
 // ============================================================
 // ASSET CONFIG for properties.html (Vacant Land & NestFlex Builds)
 // ------------------------------------------------------------
-// Edit the values below directly, OR open asset-manager.html,
-// paste each URL into its labeled field, and click "Generate" to
-// download an updated copy of this exact file.
+// Add as many photos as you want to either "photos" array below —
+// the gallery grid grows automatically, no limit. Leave any single
+// value as "" for anything not ready — the page shows a clean
+// "coming soon" placeholder instead of a broken image or error.
 //
-// Leave a value as "" (empty string) for anything not ready yet —
-// the page will show a clean "Coming soon" placeholder instead of
-// a broken image or a 403 error. Nothing here is faked.
+// Every URL in this file was fetched and checked before being put
+// here. Nothing is a guess or a stand-in dressed up as real.
 // ============================================================
 window.ASSETS = {
 
   land: {
-    // The one confirmed-real, already-uploaded site photo.
-    heroPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg",
+    // Verified real and live (fetched 2026-09-07).
+    photos: [
+      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/01-last-elevated-vacant-stand-with-ocean-views-at-15-riebeeck-street-seaview-for-sale.jpg",
+      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/02-spectacular-sunset-ocean-views-15-riebeeck-street-seaview-gqeberha.jpg",
+      "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/04-sea-waves-framed-by-coastal-flora-15-riebeeck-street-seaview.jpg"
+    ],
 
-    // Additional site photos — empty until uploaded to Supabase.
-    gallery2: "",
-    gallery3: "",
+    // Left empty on purpose. The URL previously here was checked and
+    // turned out to be a 3D model file (a NestFlex product pod), not a
+    // video of this property. There is currently no real video tour.
+    videoTour: "",
 
-    // Google Drive /preview video link. As of this build it returns a
-    // Google 403 — the Drive file's sharing setting is not "Anyone with
-    // the link can view". Fix that in Google Drive, then this will work
-    // as-is; no code change needed.
-    videoTour: "https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview",
-
-    // 3dviewer.co share link. As of this build it also returns a Google
-    // 403 — the underlying 3D model file (hosted on Google Drive) isn't
-    // shared as "Anyone with the link" either. Same fix applies.
+    // Real 3D model page (verified it loads). The model itself is a
+    // Google Drive file that isn't shared "Anyone with the link" yet —
+    // fix that in Drive and this will start working with no code change.
     model3D: "https://3dviewer.co/share/4Rk0SG1QPj"
   },
 
   build: {
-    // Proposed NestFlex 45m² configuration — floor plan + renders.
-    // These already have onerror fallbacks to stock photos baked into
-    // properties.html, so a broken URL here never shows a broken image —
-    // it just falls back to a generic stock photo until you replace it.
+    // Verified real and live.
     floorPlan: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png",
-    render1_exterior: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/exterior.jpg",
-    render2_living:   "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/interior-living.jpg",
-    render3_bedroom:  "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/bedroom.jpg",
-    render4_kitchen:  "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/kitchen.jpg"
+
+    // Checked and confirmed these do NOT exist (400 errors) - removed
+    // rather than left in to silently fall back to stock photos.
+    // Add real render URLs here once you have them; unlimited count.
+    photos: []
   },
 
   agent: {
-    // Already real and working — only change these if you want a
-    // different photo.
     headshot: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/headshot%20jlg.png",
     coverPhoto: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/WhatsApp%20Image%202026-06-28%20at%2018.23.46.jpeg"
+  },
+
+  // Portal listing links. Blank = shows a grey "pending" badge.
+  // Fill in once each listing is actually live.
+  portals: {
+    property24: "",
+    privateProperty: "",
+    onlyRealty: ""
   }
 
 };
