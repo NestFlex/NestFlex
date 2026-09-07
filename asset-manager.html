@@ -14,117 +14,167 @@
   input[type=text] { width:100%; padding:9px 10px; border:1px solid #ccd3d6; border-radius:5px; font-size:12px; box-sizing:border-box; }
   button { background:#1e3a8a; color:white; border:none; padding:12px 22px; border-radius:6px; font-weight:800; font-size:13px; cursor:pointer; margin-top:10px; }
   button:hover { opacity:0.9; }
+  button.small { padding:6px 12px; font-size:11px; background:#f0f4f8; color:#001840; margin-top:6px; }
+  button.remove { background:#fdecea; color:#c0392b; padding:5px 10px; font-size:11px; margin:0 0 0 8px; }
   #output { margin-top:20px; }
   textarea { width:100%; height:340px; font-family: monospace; font-size:11px; padding:12px; border-radius:6px; border:1px solid #ccd3d6; box-sizing:border-box; }
   .note { background:#fff8e6; border-left:4px solid #f0b429; padding:10px 14px; border-radius:4px; font-size:12px; color:#665200; margin-bottom:20px; }
+  .photo-row { display:flex; align-items:center; margin-bottom:6px; }
+  .photo-row input { flex:1; }
+  .photo-row .tag { font-size:10px; font-weight:800; color:#888; width:60px; flex-shrink:0; }
 </style>
 </head>
 <body>
- 
+
 <h1>Asset Manager</h1>
-<p class="lead">Every image/video/3D-model URL used on <strong>properties.html</strong>, in one place. Paste real URLs below, click Generate, then save the result as <code>assets-config.js</code> in the same repo folder as <code>properties.html</code> (replacing the old one). Refresh the live page and it picks up the new URLs — no other file needs to change.</p>
- 
-<div class="note">Leave any field blank if you don't have that asset yet. A blank field shows a clean "coming soon" placeholder on the live page instead of a broken image or an error.</div>
- 
-<form id="assetForm">
-  <fieldset>
-    <legend>The Land — 15 Riebeeck Street</legend>
-    <label>Hero photo (main pod image) <span class="hint">— already set, only change if you want a different lead photo</span></label>
-    <input type="text" id="land_heroPhoto" placeholder="https://.../your-photo.jpg">
-    <label>Additional site photo #1</label>
-    <input type="text" id="land_gallery2" placeholder="https://...">
-    <label>Additional site photo #2</label>
-    <input type="text" id="land_gallery3" placeholder="https://...">
-    <label>Video tour <span class="hint">— Google Drive /preview link. Must be shared "Anyone with the link"</span></label>
-    <input type="text" id="land_videoTour" placeholder="https://drive.google.com/file/d/XXXX/preview">
-    <label>3D model / walkthrough <span class="hint">— 3dviewer.co (or similar) share link</span></label>
-    <input type="text" id="land_model3D" placeholder="https://3dviewer.co/share/XXXX">
-  </fieldset>
- 
-  <fieldset>
-    <legend>The Build — Proposed NestFlex Configuration</legend>
-    <label>Floor plan image</label>
-    <input type="text" id="build_floorPlan" placeholder="https://...">
-    <label>Render #1 — Exterior</label>
-    <input type="text" id="build_render1_exterior" placeholder="https://...">
-    <label>Render #2 — Living area</label>
-    <input type="text" id="build_render2_living" placeholder="https://...">
-    <label>Render #3 — Bedroom</label>
-    <input type="text" id="build_render3_bedroom" placeholder="https://...">
-    <label>Render #4 — Kitchen</label>
-    <input type="text" id="build_render4_kitchen" placeholder="https://...">
-  </fieldset>
- 
-  <fieldset>
-    <legend>Agent Card</legend>
-    <label>Headshot photo</label>
-    <input type="text" id="agent_headshot" placeholder="https://...">
-    <label>Cover photo</label>
-    <input type="text" id="agent_coverPhoto" placeholder="https://...">
-  </fieldset>
- 
-  <button type="button" onclick="generate()">Generate assets-config.js</button>
-  <button type="button" style="background:#666; margin-left:10px;" onclick="loadCurrent()">Load Current Values</button>
-</form>
- 
+<p class="lead">Every image/video/3D-model/portal-link used on <strong>properties.html</strong>. Add as many photos as you like to Land or Build — there's no limit. Fill in, click Generate, save the result as <code>assets-config.js</code> next to <code>properties.html</code> (replacing the old one), refresh the live page.</p>
+
+<div class="note">Leave a field blank if you don't have it yet. Blank fields show a clean "coming soon" placeholder on the live page instead of a broken image or a dead link.</div>
+
+<fieldset>
+  <legend>The Land — 15 Riebeeck Street — Photos</legend>
+  <p style="font-size:11px; color:#888; margin-bottom:8px;">First photo is the large hero tile. Add or remove as many as you need.</p>
+  <div id="landPhotoRows"></div>
+  <button type="button" class="small" onclick="addPhotoRow('landPhotoRows', 'Land')">+ Add another land photo</button>
+
+  <label style="margin-top:20px;">Video tour <span class="hint">— Google Drive /preview link, must be shared "Anyone with the link"</span></label>
+  <input type="text" id="land_videoTour" placeholder="https://drive.google.com/file/d/XXXX/preview">
+  <label>3D model / walkthrough <span class="hint">— 3dviewer.co (or similar) share link</span></label>
+  <input type="text" id="land_model3D" placeholder="https://3dviewer.co/share/XXXX">
+</fieldset>
+
+<fieldset>
+  <legend>The Build — Proposed NestFlex Configuration</legend>
+  <label>Floor plan image <span class="hint">— always shown first, uncropped</span></label>
+  <input type="text" id="build_floorPlan" placeholder="https://...">
+  <p style="font-size:11px; color:#888; margin:14px 0 8px;">Render photos — add as many as you like.</p>
+  <div id="buildPhotoRows"></div>
+  <button type="button" class="small" onclick="addPhotoRow('buildPhotoRows', 'Build')">+ Add another render</button>
+</fieldset>
+
+<fieldset>
+  <legend>Agent Card</legend>
+  <label>Headshot photo</label>
+  <input type="text" id="agent_headshot" placeholder="https://...">
+  <label>Cover photo</label>
+  <input type="text" id="agent_coverPhoto" placeholder="https://...">
+</fieldset>
+
+<fieldset>
+  <legend>Portal Listing Links</legend>
+  <p style="font-size:11px; color:#888; margin-bottom:8px;">Leave blank until each listing is actually live — badges show as "pending" until filled in.</p>
+  <label>Property24 listing URL</label>
+  <input type="text" id="portal_property24" placeholder="https://www.property24.com/...">
+  <label>Private Property listing URL</label>
+  <input type="text" id="portal_privateProperty" placeholder="https://www.privateproperty.co.za/...">
+  <label>Only Realty listing URL</label>
+  <input type="text" id="portal_onlyRealty" placeholder="https://www.onlyrealty.co.za/...">
+</fieldset>
+
+<button type="button" onclick="generate()">Generate assets-config.js</button>
+<button type="button" style="background:#666; margin-left:10px;" onclick="loadCurrent()">Load Current Values</button>
+
 <div id="output" style="display:none;">
   <label>Copy everything below into <code>assets-config.js</code>:</label>
   <textarea id="outputText" readonly onclick="this.select()"></textarea>
   <button type="button" onclick="downloadFile()">Download assets-config.js</button>
 </div>
- 
+
 <script src="assets-config.js"></script>
 <script>
+  function addPhotoRow(containerId, tag, value) {
+    var container = document.getElementById(containerId);
+    var row = document.createElement('div');
+    row.className = 'photo-row';
+    row.innerHTML =
+      '<span class="tag">' + tag + ' #' + (container.children.length + 1) + '</span>' +
+      '<input type="text" value="' + (value ? value.replace(/"/g, '&quot;') : '') + '" placeholder="https://...">' +
+      '<button type="button" class="remove" onclick="this.parentElement.remove(); renumberRows(\'' + containerId + '\', \'' + tag + '\')">Remove</button>';
+    container.appendChild(row);
+  }
+
+  function renumberRows(containerId, tag) {
+    var rows = document.getElementById(containerId).children;
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].querySelector('.tag').textContent = tag + ' #' + (i + 1);
+    }
+  }
+
+  function getPhotoArray(containerId) {
+    var inputs = document.getElementById(containerId).querySelectorAll('input');
+    var out = [];
+    inputs.forEach(function (inp) { if (inp.value.trim()) out.push(inp.value.trim()); });
+    return out;
+  }
+
   function loadCurrent() {
-    if (typeof window.ASSETS === 'undefined') { alert('assets-config.js not found next to this file — starting blank.'); return; }
+    document.getElementById('landPhotoRows').innerHTML = '';
+    document.getElementById('buildPhotoRows').innerHTML = '';
+
+    if (typeof window.ASSETS === 'undefined') {
+      alert('assets-config.js not found next to this file — starting blank.');
+      addPhotoRow('landPhotoRows', 'Land');
+      addPhotoRow('buildPhotoRows', 'Build');
+      return;
+    }
     var A = window.ASSETS;
-    document.getElementById('land_heroPhoto').value = A.land.heroPhoto || '';
-    document.getElementById('land_gallery2').value = A.land.gallery2 || '';
-    document.getElementById('land_gallery3').value = A.land.gallery3 || '';
+    (A.land.photos || []).forEach(function (u) { addPhotoRow('landPhotoRows', 'Land', u); });
+    if (!(A.land.photos || []).length) addPhotoRow('landPhotoRows', 'Land');
+
+    (A.build.photos || []).forEach(function (u) { addPhotoRow('buildPhotoRows', 'Build', u); });
+    if (!(A.build.photos || []).length) addPhotoRow('buildPhotoRows', 'Build');
+
     document.getElementById('land_videoTour').value = A.land.videoTour || '';
     document.getElementById('land_model3D').value = A.land.model3D || '';
     document.getElementById('build_floorPlan').value = A.build.floorPlan || '';
-    document.getElementById('build_render1_exterior').value = A.build.render1_exterior || '';
-    document.getElementById('build_render2_living').value = A.build.render2_living || '';
-    document.getElementById('build_render3_bedroom').value = A.build.render3_bedroom || '';
-    document.getElementById('build_render4_kitchen').value = A.build.render4_kitchen || '';
     document.getElementById('agent_headshot').value = A.agent.headshot || '';
     document.getElementById('agent_coverPhoto').value = A.agent.coverPhoto || '';
+    var p = A.portals || {};
+    document.getElementById('portal_property24').value = p.property24 || '';
+    document.getElementById('portal_privateProperty').value = p.privateProperty || '';
+    document.getElementById('portal_onlyRealty').value = p.onlyRealty || '';
   }
   window.addEventListener('DOMContentLoaded', loadCurrent);
- 
+
   function val(id) { return document.getElementById(id).value.trim(); }
- 
+  function arrLiteral(arr) {
+    if (!arr.length) return '[]';
+    return '[\n' + arr.map(function (u) { return '      "' + u.replace(/"/g, '\\"') + '"'; }).join(',\n') + '\n    ]';
+  }
+
   function generate() {
+    var landPhotos = getPhotoArray('landPhotoRows');
+    var buildPhotos = getPhotoArray('buildPhotoRows');
+
     var out =
 "// ============================================================\n" +
 "// ASSET CONFIG for properties.html (Vacant Land & NestFlex Builds)\n" +
-"// Generated by asset-manager.html — edit there, or edit this file directly.\n" +
+"// Generated by asset-manager.html\n" +
 "// ============================================================\n" +
 "window.ASSETS = {\n\n" +
 "  land: {\n" +
-"    heroPhoto: \"" + val('land_heroPhoto') + "\",\n" +
-"    gallery2: \"" + val('land_gallery2') + "\",\n" +
-"    gallery3: \"" + val('land_gallery3') + "\",\n" +
+"    photos: " + arrLiteral(landPhotos) + ",\n" +
 "    videoTour: \"" + val('land_videoTour') + "\",\n" +
 "    model3D: \"" + val('land_model3D') + "\"\n" +
 "  },\n\n" +
 "  build: {\n" +
 "    floorPlan: \"" + val('build_floorPlan') + "\",\n" +
-"    render1_exterior: \"" + val('build_render1_exterior') + "\",\n" +
-"    render2_living: \"" + val('build_render2_living') + "\",\n" +
-"    render3_bedroom: \"" + val('build_render3_bedroom') + "\",\n" +
-"    render4_kitchen: \"" + val('build_render4_kitchen') + "\"\n" +
+"    photos: " + arrLiteral(buildPhotos) + "\n" +
 "  },\n\n" +
 "  agent: {\n" +
 "    headshot: \"" + val('agent_headshot') + "\",\n" +
 "    coverPhoto: \"" + val('agent_coverPhoto') + "\"\n" +
+"  },\n\n" +
+"  portals: {\n" +
+"    property24: \"" + val('portal_property24') + "\",\n" +
+"    privateProperty: \"" + val('portal_privateProperty') + "\",\n" +
+"    onlyRealty: \"" + val('portal_onlyRealty') + "\"\n" +
 "  }\n\n" +
 "};\n";
     document.getElementById('outputText').value = out;
     document.getElementById('output').style.display = 'block';
   }
- 
+
   function downloadFile() {
     var blob = new Blob([document.getElementById('outputText').value], { type: 'text/javascript' });
     var link = document.createElement('a');
@@ -135,4 +185,3 @@
 </script>
 </body>
 </html>
- 
