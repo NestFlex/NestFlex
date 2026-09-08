@@ -20,7 +20,7 @@ window.ASSETS = {
   },
 
   build: {
-    floorPlan: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/4/4pln-con-2b-45.png",
+    floorPlan: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/5/5pln-con-1b-36.png",
     photos: [
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-1.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-2.jpg",
