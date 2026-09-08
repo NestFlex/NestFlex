@@ -684,15 +684,31 @@
   /* Only Realty: verified — matches this site's own brand variables */
   .portal-badge.or { background:var(--primary-dark); color:#fff; border-color:var(--primary-dark); }
   .portal-badge.or em { color: var(--accent-red); }
+  /* Real portal logos fetched live from Brandfetch. If a logo can't load
+     (offline, no Brandfetch client ID configured) the JS below falls back
+     to the coloured text badges above automatically — never a broken image. */
+  .portal-badge.logo { background:#fff; border:1px solid #e2e8f0; display:inline-flex; align-items:center; gap:10px; padding:8px 14px; }
+  .portal-badge.logo img { height:20px; width:auto; max-width:110px; object-fit:contain; display:block; }
+  .portal-badge.logo span.pb-status { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.4px; color:var(--text-gray); }
+  .portal-badge.logo.live span.pb-status { color: var(--primary-blue); }
 
   #lbOverlay { position: fixed; inset: 0; background: rgba(0,23,64,0.92); display: none; align-items: center; justify-content: center; z-index: 5000; padding: 20px; flex-direction:column; }
   #lbOverlay.show { display: flex; }
-  #lbOverlay img { max-width: 90vw; max-height: 78vh; border-radius: 8px; }
-  #lbOverlay #lbTitle { color:white; font-size:13px; margin-top:12px; font-weight:700; }
-  #lbOverlay .lb-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; background: none; border: none; }
-  #lbOverlay .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+  #lbOverlay img { max-width: 90vw; max-height: 66vh; border-radius: 8px; }
+  #lbOverlay #lbCounter { color:#cdd8e6; font-size:11px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; margin-top:14px; }
+  #lbOverlay #lbTitle { color:white; font-size:14px; margin-top:4px; font-weight:700; text-align:center; max-width:80vw; }
+  #lbOverlay #lbTitle .lb-desc { display:block; font-weight:400; font-size:12px; color:#b9c6d6; margin-top:4px; max-width:640px; }
+  #lbOverlay .lb-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; background: none; border: none; z-index: 5010; }
+  #lbOverlay .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 5010; }
   #lbOverlay .lb-prev { left: 20px; }
   #lbOverlay .lb-next { right: 20px; }
+  #lbThumbs { display:flex; gap:8px; margin-top:16px; max-width:90vw; overflow-x:auto; padding:6px 2px 10px; scrollbar-width: thin; }
+  #lbThumbs::-webkit-scrollbar { height:6px; }
+  #lbThumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius:6px; }
+  .lb-thumb { flex: 0 0 auto; width:64px; height:48px; border-radius:6px; overflow:hidden; cursor:pointer; opacity:0.5; border:2px solid transparent; transition: var(--transition); background:#000; }
+  .lb-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .lb-thumb:hover { opacity:0.85; }
+  .lb-thumb.active { opacity:1; border-color: var(--primary-blue); }
 
   .fc-ctrl-btn.disabled { opacity: 0.35; cursor: not-allowed; }
 </style></head>
@@ -809,8 +825,11 @@
         <!-- Embedded 3D Viewer (Hidden by default) -->
         <iframe id="fc-3d-15" class="fc-media-item" src="https://3dviewer.co/share/4Rk0SG1QPj" allow="autoplay; fullscreen; vr" style="display:none; pointer-events: auto;"></iframe>
         
-        <!-- Embedded Google Drive Video (Modified to /preview) -->
-        <iframe id="fc-vid-15" class="fc-media-item" src="https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview" allow="autoplay; fullscreen" style="display:none; pointer-events: auto;"></iframe>
+        <!-- Video slot: a plain container, filled with either an <iframe>
+             (YouTube / Google Drive / Vimeo) or a <video> (direct file link)
+             the first time it's opened — see loadVideoInto() further down.
+             This is what lets a Google Drive share link actually play here. -->
+        <div id="fc-vid-15" class="fc-media-item" data-raw-src="https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview" style="display:none; background:#000;"></div>
 
         <!-- Media Controls Overlay -->
         <div class="fc-controls">
@@ -946,60 +965,73 @@
     <p class="section-subtitle">If you'd rather not wait out a year-long conventional build, here's what's possible on this stand. Entirely optional &mdash; the land stands on its own.</p>
   </div>
 
-<!-- Proposed Modular Gallery Block — fully dynamic, unlimited renders, rendered from assets-config.js -->
-      <div>
-        <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Proposed Modular Configuration</h4>
-        <div class="gallery-grid" id="buildGalleryGrid"></div>
-      </div>
+<!-- Proposed NestFlex build — same featured-card layout as "The Land" above:
+     a media box on the left (photo / 3D matterport tour / video walkthrough,
+     all toggled with the same controls as the land pod) and the write-up +
+     full render gallery on the right. Everything here is config-driven from
+     assets-config.js (build.matterport / build.videoTour / build.floorPlan /
+     build.photos) — this replaces the old standalone "Just a Suggestion"
+     cards further down the page, which weren't wired to asset-manager.html
+     and pointed at broken embeds. -->
+      <div class="featured-package-wrap">
+        <article class="featured-card group">
+          <div class="fc-media-container" id="fc-media-16">
 
+            <!-- Default: first render / floor plan image -->
+            <img id="fc-img-16" class="fc-media-item fc-media-img" src="" alt="Proposed NestFlex modular configuration for 15 Riebeeck Street" loading="lazy">
 
-</section>
+            <!-- Matterport 3D tour (only loads once switched to, same pattern as the land 3D viewer) -->
+            <iframe id="fc-3d-16" class="fc-media-item" data-src="" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen style="display:none; pointer-events:auto;"></iframe>
 
-<section class="section-container bg-light" style="padding: 50px 20px;">
-  <h2 class="section-title">Just a Suggestion: See What NestFlex Could Build Here</h2>
-  <p class="section-subtitle">Not a hard sell — if a fast, warrantied build interests you, this is what a NestFlex home looks and feels like. Walk through it in 3D or watch the project reveal.</p>
-  
-  <div class="showcase-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px;">
+            <!-- Video walkthrough — same generic container as the land box;
+                 works for YouTube, Google Drive, Vimeo, or a direct file link. -->
+            <div id="fc-vid-16" class="fc-media-item" data-raw-src="" style="display:none; background:#000;"></div>
 
-    <!-- 3D Tour Card -->
-    <div class="card">
+            <!-- Media Controls Overlay -->
+            <div class="fc-controls">
+              <button class="fc-ctrl-btn active" id="btn-img-16" onclick="switchFeaturedMedia('img', '16')" title="View Renders &amp; Floor Plan"><i class="fas fa-image"></i></button>
+              <button class="fc-ctrl-btn" id="btn-3d-16" onclick="switchFeaturedMedia('3d', '16')" title="Interactive 3D Tour"><i class="fas fa-cube"></i></button>
+              <button class="fc-ctrl-btn" id="btn-vid-16" onclick="switchFeaturedMedia('vid', '16')" title="Project Reveal Walkthrough"><i class="fas fa-play"></i></button>
+            </div>
 
-      <div id="matterportContainer" style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden;">
-        <!-- Matterport Cover -->
-        <div id="matterportCover" style="position: absolute; inset: 0; background: url('https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png') center/cover; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; transition: var(--transition);">
-          <div style="background: rgba(0,0,0,0.6); position: absolute; inset: 0;"></div>
-          <button onclick="start3DTour()" style="position: relative; z-index: 3; background: var(--primary-blue); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: transform 0.3s;">
-            <i class="fas fa-play"></i> Start 3D Tour
-          </button>
+            <!-- Badges -->
+            <div class="fc-badges">
+              <span class="fc-badge">Proposed Build</span>
+              <span class="fc-badge blue"><i class="fas fa-bolt"></i> NestFlex</span>
+            </div>
+          </div>
+
+          <div class="fc-content">
+            <h3 style="font-size:24px; font-weight:800; color:var(--primary-dark); margin-bottom:5px;">NestFlex 1-Bed Configuration</h3>
+            <p style="font-size:13px; color:var(--text-gray); display:flex; align-items:center; gap:5px; margin-bottom:20px;">
+              <i class="fas fa-cube" style="color:var(--primary-blue);"></i> Modular &middot; LSF Core &middot; 12-Week Build
+            </p>
+            <div class="fc-pitch-box">
+              <p style="font-size:12px; font-weight:800; color:var(--primary-blue); margin-bottom:8px;">Explore it before you commit to anything.</p>
+              <div style="font-size:11px; color:var(--text-gray); display:flex; flex-direction:column; gap:4px;">
+                <span style="display:flex; align-items:center; gap:5px;"><i class="fas fa-check-circle" style="color:var(--whatsapp-green);"></i> Fully interactive 3D walkthrough</span>
+                <span style="display:flex; align-items:center; gap:5px;"><i class="fas fa-check-circle" style="color:var(--whatsapp-green);"></i> Real project reveal video</span>
+                <span style="display:flex; align-items:center; gap:5px;"><i class="fas fa-check-circle" style="color:var(--whatsapp-green);"></i> Full render gallery &amp; floor plan</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:auto;">
+              <button class="btn btn-primary" style="flex:1;" onclick="window.location.href='index.html#enquire'"><i class="fas fa-file-invoice"></i> Quote a NestFlex Build</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="featured-content">
+          <article class="ai-seo-block">
+            <h3>Proposed Modular Configuration</h3>
+            <p>Not a hard sell — if a fast, warrantied build interests you, this is what a NestFlex home looks and feels like on this exact stand. Walk through it in 3D, watch the project reveal, or browse every render and the floor plan below. Entirely optional — the land stands on its own.</p>
+          </article>
+          <div style="margin-top:30px;">
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; border-bottom: 2px solid #eee; padding-bottom: 8px;">Renders &amp; Floor Plan</h4>
+            <div class="gallery-grid" id="buildGalleryGrid"></div>
+          </div>
         </div>
-        <iframe id="matterportFrame" data-src="https://my.matterport.com/show/?m=iTG4P1799jg" frameborder="0" allowfullscreen allow="xr-spatial-tracking" style="width: 100%; height: 100%; display: none;"></iframe>
       </div>
-      <div class="card-content">
-        <span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">3D Experience</span>
-        <h4 class="card-title">Interactive 3D Tour</h4>
-        <p style="font-size: 13px; color: var(--text-gray); line-height: 1.5; margin-top: 5px;">
-          Explore every detail of our modular systems from the comfort of your screen. Fully interactive 3D environment.
-        </p>
-      </div>
-    </div>
 
-    <!-- Video Tour Card -->
-    <div class="card">
-      <div style="background: #000; width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; overflow: hidden;">
-        <video controls poster="https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/General%20Profiles/NESTFLEX.png" style="width: 100%; height: 100%; object-fit: cover;">
-          <source src="https://www.oracle3d.co.za/wp-content/uploads/2024/07/onebedroom.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="card-content">
-        <span style="font-size:11px; color:var(--primary-blue); font-weight:700; text-transform:uppercase;">Video Showcase</span>
-        <h4 class="card-title">Project Reveal Walkthrough</h4>
-        <p style="font-size: 13px; color: var(--text-gray); line-height: 1.5; margin-top: 5px;">
-          A comprehensive video walkthrough of our 1-Bedroom Pod, showcasing build quality and design aesthetics.
-        </p>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 
@@ -1030,7 +1062,9 @@
   <button class="lb-nav lb-prev" onclick="lbStep(-1)"><i class="fas fa-chevron-left"></i></button>
   <img id="lbImg" src="" alt="Gallery image">
   <button class="lb-nav lb-next" onclick="lbStep(1)"><i class="fas fa-chevron-right"></i></button>
+  <div id="lbCounter"></div>
   <div id="lbTitle"></div>
+  <div id="lbThumbs"></div>
 </div>
 
 <div class="sticky-footer">
@@ -1049,20 +1083,83 @@
   </div>
 </div>
 
+<script src="photo-metadata.js"></script>
 <script src="assets-config.js"></script>
 <script>
   // ---- Featured land pod: photo / 3D / video toggle (real embeds, unchanged from live site) ----
-  function switchFeaturedMedia(type) {
-    document.getElementById('fc-img-15').style.display = 'none';
-    document.getElementById('fc-3d-15').style.display = 'none';
-    document.getElementById('fc-vid-15').style.display = 'none';
+  // Shared by both featured-card media boxes: the land pod (id "15") and the
+  // proposed NestFlex build pod (id "16"). `id` defaults to "15" so none of
+  // the land box's existing onclick="switchFeaturedMedia('img')" calls need
+  // to change.
+  function switchFeaturedMedia(type, id) {
+    id = id || '15';
+    ['img', '3d', 'vid'].forEach(function (t) {
+      var el = document.getElementById('fc-' + t + '-' + id);
+      if (el) el.style.display = 'none';
+      var btn = document.getElementById('btn-' + t + '-' + id);
+      if (btn) btn.classList.remove('active');
+    });
+    var target = document.getElementById('fc-' + type + '-' + id);
+    if (target) target.style.display = (type === 'vid') ? 'block' : 'block';
+    var targetBtn = document.getElementById('btn-' + type + '-' + id);
+    if (targetBtn) targetBtn.classList.add('active');
+  }
 
-    document.getElementById('btn-img-15').classList.remove('active');
-    document.getElementById('btn-3d-15').classList.remove('active');
-    document.getElementById('btn-vid-15').classList.remove('active');
+  // Works out how a given video URL needs to be embedded. Handles the real
+  // links actually in use: a YouTube link (build.videoTour) and a Google
+  // Drive share link (land.videoTour) — plus Vimeo and direct file links
+  // (.mp4/.webm/.mov) for whatever gets added later via asset-manager.html.
+  function classifyVideoUrl(url) {
+    if (!url) return null;
+    url = url.trim();
+    var m;
+    if (/youtu\.be\/|youtube\.com\//i.test(url)) {
+      m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/) ||
+          url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/) ||
+          url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/) ||
+          url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{6,})/);
+      return { kind: 'iframe', src: m ? ('https://www.youtube.com/embed/' + m[1]) : url };
+    }
+    if (/drive\.google\.com/i.test(url)) {
+      var embed = url.replace(/\/(view|edit)(\?.*)?$/i, '/preview');
+      if (!/\/preview(\?.*)?$/i.test(embed)) embed = embed.replace(/\/?(\?.*)?$/, '/preview');
+      return { kind: 'iframe', src: embed };
+    }
+    if (/vimeo\.com/i.test(url)) {
+      m = url.match(/vimeo\.com\/(\d+)/);
+      return { kind: 'iframe', src: m ? ('https://player.vimeo.com/video/' + m[1]) : url };
+    }
+    if (/\.(mp4|webm|mov|m4v|ogg)(\?.*)?$/i.test(url)) {
+      return { kind: 'file', src: url };
+    }
+    // Unknown host/format — best effort, try it as an iframe embed.
+    return { kind: 'iframe', src: url };
+  }
 
-    document.getElementById('fc-' + type + '-15').style.display = 'block';
-    document.getElementById('btn-' + type + '-15').classList.add('active');
+  // Lazily fills a video slot (a plain <div>) with either a <video> or an
+  // <iframe>, based on classifyVideoUrl() above. Only runs once per slot.
+  function loadVideoInto(containerId, rawUrl) {
+    var container = document.getElementById(containerId);
+    if (!container || container.getAttribute('data-loaded') === '1' || !rawUrl) return;
+    var info = classifyVideoUrl(rawUrl);
+    if (!info) return;
+    container.setAttribute('data-loaded', '1');
+    if (info.kind === 'file') {
+      var v = document.createElement('video');
+      v.controls = true;
+      v.style.cssText = 'width:100%; height:100%; object-fit:cover; background:#000; display:block;';
+      var s = document.createElement('source');
+      s.src = info.src;
+      v.appendChild(s);
+      container.appendChild(v);
+    } else {
+      var f = document.createElement('iframe');
+      f.src = info.src;
+      f.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; xr-spatial-tracking');
+      f.allowFullscreen = true;
+      f.style.cssText = 'width:100%; height:100%; border:0; display:block;';
+      container.appendChild(f);
+    }
   }
 
   // ---- Self-contained lightbox (this page is standalone, so it doesn't reuse index.html's
@@ -1070,13 +1167,58 @@
   var lbSets = {};
   var lbCurrentSet = null;
   var lbIndex = 0;
+  var lbSetTitle = '';
+
+  // Turns a filename/URL into a real, readable caption — e.g.
+  // ".../02-spectacular-sunset-ocean-views-15-riebeeck-street-seaview-gqeberha.jpg"
+  // becomes "Spectacular Sunset Ocean Views 15 Riebeeck Street Seaview Gqeberha".
+  // This is the metadata (the file name) driving alt text, captions and the
+  // lightbox title — nothing here is generic placeholder text.
+  function deriveCaptionFromUrl(url) {
+    if (!url) return '';
+    try {
+      var last = url.split('?')[0].split('#')[0].split('/').pop() || '';
+      var noExt = last.replace(/\.[a-zA-Z0-9]+$/, '');
+      var decoded = decodeURIComponent(noExt);
+      decoded = decoded.replace(/^\d+[-_]+/, ''); // strip leading ordering number, e.g. "01-"
+      var words = decoded.replace(/[-_]+/g, ' ').trim();
+      if (!words) return '';
+      return words.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    } catch (e) { return ''; }
+  }
 
   function registerLightboxSet(name, images) { lbSets[name] = images; }
+
+  // Resolves the SEO filename slug from a URL (no path, no extension) —
+  // the key photo-metadata.js and the Supabase storage paths both use.
+  function getPhotoSlug(url) {
+    if (!url) return '';
+    var last = url.split('?')[0].split('#')[0].split('/').pop() || '';
+    try { return decodeURIComponent(last.replace(/\.[a-zA-Z0-9]+$/, '')); }
+    catch (e) { return last.replace(/\.[a-zA-Z0-9]+$/, ''); }
+  }
+
+  // The real per-photo metadata (title, alt text, description, SEO
+  // keywords), sourced straight from the photographer's metadata index via
+  // photo-metadata.js. Falls back to a filename-derived caption for any
+  // photo not in that index (build renders, agent photos, future uploads).
+  function getPhotoMeta(url) {
+    var slug = getPhotoSlug(url);
+    var meta = (window.PHOTO_METADATA && window.PHOTO_METADATA[slug]) || null;
+    var fallback = deriveCaptionFromUrl(url);
+    return {
+      title: (meta && meta.title) || fallback,
+      alt: (meta && meta.alt) || fallback,
+      description: (meta && meta.description) || '',
+      keywords: (meta && meta.keywords) || '',
+      prime: !!(meta && meta.prime)
+    };
+  }
 
   function openLightboxSet(name, index, title) {
     lbCurrentSet = name;
     lbIndex = index || 0;
-    document.getElementById('lbTitle').innerText = title || '';
+    lbSetTitle = title || '';
     updateLbImg();
     document.getElementById('lbOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
@@ -1090,11 +1232,53 @@
     lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
     updateLbImg();
   }
+  function lbJumpTo(i) { lbIndex = i; updateLbImg(); }
   function updateLbImg() {
-    var imgs = lbSets[lbCurrentSet];
+    var imgs = lbSets[lbCurrentSet] || [];
+    if (!imgs.length) return;
+    var url = imgs[lbIndex];
+    var meta = getPhotoMeta(url);
     var img = document.getElementById('lbImg');
-    img.src = imgs[lbIndex];
+    img.src = url;
+    img.alt = meta.alt || lbSetTitle || 'Gallery image';
+    if (typeof attachImgFallback === 'function') attachImgFallback(img);
+
+    document.getElementById('lbTitle').innerHTML =
+      '<strong>' + (meta.title || lbSetTitle || '') + '</strong>' +
+      (meta.description ? '<span class="lb-desc">' + meta.description + '</span>' : '');
+    document.getElementById('lbCounter').textContent =
+      (lbSetTitle ? lbSetTitle + ' — ' : '') + 'Image ' + (lbIndex + 1) + ' of ' + imgs.length;
+
+    renderLbThumbs(imgs);
   }
+  // Thumbnail strip for every image in the current set, so people can see
+  // where they are and jump straight to any photo instead of stepping
+  // through one at a time.
+  function renderLbThumbs(imgs) {
+    var wrap = document.getElementById('lbThumbs');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    if (imgs.length < 2) return; // no point showing a strip for a single photo
+    imgs.forEach(function (url, i) {
+      var d = document.createElement('div');
+      d.className = 'lb-thumb' + (i === lbIndex ? ' active' : '');
+      d.setAttribute('onclick', 'lbJumpTo(' + i + ')');
+      var im = document.createElement('img');
+      im.src = url;
+      im.loading = 'lazy';
+      im.alt = getPhotoMeta(url).alt || ('Thumbnail ' + (i + 1));
+      d.appendChild(im);
+      wrap.appendChild(d);
+    });
+    var activeEl = wrap.querySelector('.lb-thumb.active');
+    if (activeEl && activeEl.scrollIntoView) activeEl.scrollIntoView({ inline: 'center', block: 'nearest' });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lbOverlay').classList.contains('show')) return;
+    if (e.key === 'ArrowLeft') lbStep(-1);
+    else if (e.key === 'ArrowRight') lbStep(1);
+    else if (e.key === 'Escape') closeLightbox();
+  });
 
   // Proposed NestFlex build gallery (real assets from the live site: floor plan + renders,
   // exactly as they exist on nestflex.github.io/NestFlex/ today, onerror fallbacks preserved)
@@ -1128,15 +1312,7 @@
     if (ov) ov.addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
   });
 
-  // ---- Matterport (real embed, unchanged) ----
-  function start3DTour() {
-    var frame = document.getElementById('matterportFrame');
-    var cover = document.getElementById('matterportCover');
-    frame.src = frame.getAttribute('data-src');
-    frame.style.display = 'block';
-    cover.style.opacity = '0';
-    setTimeout(function () { cover.style.display = 'none'; }, 300);
-  }
+
 </script>
 
 <script>
@@ -1241,13 +1417,12 @@
 
     // ---- Land: hero photo (first in array) + 3D + video ----
     var landPhotos = (A.land.photos || []).filter(Boolean);
-    if (landPhotos.length) document.getElementById('fc-img-15').src = landPhotos[0];
+    if (landPhotos.length) { document.getElementById('fc-img-15').src = landPhotos[0]; attachImgFallback(document.getElementById('fc-img-15')); }
 
     var has3D = !!A.land.model3D;
     var hasVid = !!A.land.videoTour;
     document.getElementById('fc-3d-15').setAttribute('data-src', A.land.model3D || '');
-    document.getElementById('fc-vid-15').removeAttribute('src');
-    if (hasVid) document.getElementById('fc-vid-15').src = A.land.videoTour;
+    document.getElementById('fc-vid-15').setAttribute('data-raw-src', A.land.videoTour || '');
 
     var btn3d = document.getElementById('btn-3d-15');
     var btnVid = document.getElementById('btn-vid-15');
@@ -1260,12 +1435,35 @@
     registerLightboxSet('land', landPhotos);
     renderGallery('landGalleryGrid', landPhotos, 'openLandGallery', 'Site photo of 15 Riebeeck Street, Seaview');
 
+    // ---- Feed every real photo + its filename-derived caption into the
+    // page's structured data, so search/AI crawlers see the same metadata
+    // people do — not just the one hardcoded hero image. ----
+    updateJsonLdImages(landPhotos);
+
     // ---- Build gallery: floor plan (always first, large, uncropped) + unlimited renders ----
     var buildItems = [];
     if (A.build.floorPlan) buildItems.push({ url: A.build.floorPlan, isPlan: true });
     (A.build.photos || []).filter(Boolean).forEach(function (u) { buildItems.push({ url: u, isPlan: false }); });
     registerLightboxSet('build', buildItems.map(function (i) { return i.url; }));
     renderGallery('buildGalleryGrid', buildItems, 'openProposedGallery', 'NestFlex proposed build image', true);
+
+    // ---- Build featured pod (fc-media-16): hero image + matterport 3D + video ----
+    // Same media box as the land pod above, now actually driven by
+    // assets-config.js (build.matterport / build.videoTour) instead of
+    // hardcoded, unmanaged embeds.
+    var buildHero = buildItems.length ? buildItems[0].url : '';
+    var fcImg16 = document.getElementById('fc-img-16');
+    if (fcImg16 && buildHero) { fcImg16.src = buildHero; attachImgFallback(fcImg16); }
+    var hasBuild3D = !!A.build.matterport;
+    var hasBuildVid = !!A.build.videoTour;
+    var fc3d16 = document.getElementById('fc-3d-16');
+    var fcVid16 = document.getElementById('fc-vid-16');
+    if (fc3d16) fc3d16.setAttribute('data-src', A.build.matterport || '');
+    if (fcVid16) fcVid16.setAttribute('data-raw-src', A.build.videoTour || '');
+    var btn3d16 = document.getElementById('btn-3d-16');
+    var btnVid16 = document.getElementById('btn-vid-16');
+    if (btn3d16) { btn3d16.classList.toggle('disabled', !hasBuild3D); btn3d16.title = hasBuild3D ? 'Interactive 3D Tour' : 'Coming soon'; }
+    if (btnVid16) { btnVid16.classList.toggle('disabled', !hasBuildVid); btnVid16.title = hasBuildVid ? 'Project Reveal Walkthrough' : 'Coming soon'; }
 
     // ---- Portal badges ----
     renderPortalBadges('portalBadges', A.portals || {});
@@ -1279,6 +1477,44 @@
       var c = document.querySelector('.agent-cover');
       if (c) c.style.backgroundImage = "url('" + A.agent.coverPhoto + "')";
     }
+  }
+
+  // Rewrites the RealEstateListing JSON-LD block so its "image"/"photo"
+  // metadata reflects every real site photo — with a caption derived from
+  // its filename — instead of the single hardcoded hero image. This is
+  // the metadata search engines and AI crawlers actually read.
+  function updateJsonLdImages(photoUrls) {
+    if (!photoUrls || !photoUrls.length) return;
+    try {
+      var script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) return;
+      var data = JSON.parse(script.textContent);
+      var listing = (data['@graph'] || []).filter(function (n) { return n['@type'] === 'RealEstateListing'; })[0];
+      if (!listing) return;
+      listing.image = photoUrls;
+      listing.photo = photoUrls.map(function (url) {
+        var meta = getPhotoMeta(url);
+        var obj = { '@type': 'ImageObject', 'contentUrl': url };
+        if (meta.title) obj.name = meta.title;
+        if (meta.description) obj.caption = meta.description;
+        else if (meta.title) obj.caption = meta.title;
+        if (meta.keywords) obj.keywords = meta.keywords;
+        return obj;
+      });
+      script.textContent = JSON.stringify(data);
+    } catch (e) { /* structured-data enrichment must never break the page */ }
+  }
+
+  // If an image URL fails to load, swap it for a clean inline placeholder
+  // instead of leaving the browser's ugly broken-image icon on screen.
+  function attachImgFallback(img) {
+    img.onerror = function () {
+      img.onerror = null;
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">' +
+        '<rect width="100%" height="100%" fill="#f0f4f8"/>' +
+        '<text x="50%" y="50%" font-family="sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">Image unavailable</text></svg>';
+      img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    };
   }
 
   // Renders a gallery-grid of any length. `items` is either an array of
@@ -1308,8 +1544,11 @@
 
       var img = document.createElement('img');
       img.src = url;
-      img.alt = altPrefix + ' ' + (i + 1);
+      var meta = getPhotoMeta(url);
+      img.alt = meta.alt || (altPrefix + ' ' + (i + 1));
+      img.title = meta.title || '';
       img.loading = 'lazy';
+      attachImgFallback(img);
       div.appendChild(img);
 
       var overlay = document.createElement('div');
@@ -1322,57 +1561,81 @@
         tag.style.cssText = 'position:absolute; top:10px; left:10px; background:rgba(0,0,0,0.8); color:white; font-size:9px; padding:4px 8px; border-radius:4px; font-weight:700;';
         tag.textContent = 'FLOOR PLAN';
         div.appendChild(tag);
+      } else if (meta.prime) {
+        // Flags the photographer's own "prime listing candidate" picks
+        // (from image-metadata-index-v3.xlsx) rather than guessing.
+        var star = document.createElement('span');
+        star.style.cssText = 'position:absolute; top:10px; left:10px; background:rgba(0,55,145,0.85); color:white; font-size:9px; padding:4px 8px; border-radius:4px; font-weight:700; letter-spacing:0.3px;';
+        star.innerHTML = '<i class="fas fa-star" style="font-size:8px;"></i> FEATURED';
+        div.appendChild(star);
       }
       el.appendChild(div);
     });
   }
 
-  // Renders portal badges: a real branded, clickable link when a URL is
-  // set; a grey "pending" badge (no link) when it isn't.
+  // Renders portal badges: real branded logos fetched live from Brandfetch
+  // (cdn.brandfetch.io), clickable when a listing URL is set. If a logo
+  // can't be fetched (offline, no Brandfetch client ID on this account,
+  // etc.) it falls back automatically to the coloured text badge — never
+  // a broken image icon.
   function renderPortalBadges(containerId, portals) {
     var el = document.getElementById(containerId);
     if (!el) return;
     el.innerHTML = '';
     var defs = [
-      { key: 'property24', label: 'Property24', cls: 'p24' },
-      { key: 'privateProperty', label: 'Private Property', cls: 'pp' },
-      { key: 'onlyRealty', label: 'Only Realty', cls: 'or' }
+      { key: 'property24', label: 'Property24', cls: 'p24', domain: 'property24.com' },
+      { key: 'privateProperty', label: 'Private Property', cls: 'pp', domain: 'privateproperty.co.za' },
+      { key: 'onlyRealty', label: 'Only Realty', cls: 'or', domain: 'onlyrealty.co.za' }
     ];
     defs.forEach(function (d) {
       var url = portals[d.key];
-      if (url) {
-        var a = document.createElement('a');
-        a.href = url;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.className = 'portal-badge live ' + d.cls;
-        a.innerHTML = d.label + ' <em>&rarr; View Listing</em>';
-        el.appendChild(a);
-      } else {
-        var span = document.createElement('span');
-        span.className = 'portal-badge';
-        span.title = 'Live shortly — link will be added once published';
-        span.innerHTML = d.label + ' <em>— pending</em>';
-        el.appendChild(span);
-      }
+      var badge = url ? document.createElement('a') : document.createElement('span');
+      if (url) { badge.href = url; badge.target = '_blank'; badge.rel = 'noopener'; }
+      else { badge.title = 'Live shortly — link will be added once published'; }
+      badge.className = 'portal-badge logo' + (url ? ' live' : '');
+
+      var img = document.createElement('img');
+      img.src = 'https://cdn.brandfetch.io/' + d.domain + '/w/240/h/64/logo';
+      img.alt = d.label + ' logo';
+      img.loading = 'lazy';
+      img.onerror = function () {
+        badge.classList.remove('logo');
+        badge.classList.add(d.cls);
+        badge.innerHTML = d.label + (url ? ' <em>&rarr; View Listing</em>' : ' <em>— pending</em>');
+      };
+
+      var status = document.createElement('span');
+      status.className = 'pb-status';
+      status.textContent = url ? 'View Listing' : 'Pending';
+
+      badge.appendChild(img);
+      badge.appendChild(status);
+      el.appendChild(badge);
     });
   }
 
   // Wrap switchFeaturedMedia so a "coming soon" button shows a toast
-  // instead of switching to an empty iframe.
+  // instead of switching to an empty iframe/video, and so the 3D tour /
+  // video for either media box (land "15" or proposed build "16") only
+  // loads the first time someone actually opens it.
   var _switchFeaturedMediaOriginal = switchFeaturedMedia;
-  switchFeaturedMedia = function(type) {
-    var btn = document.getElementById('btn-' + type + '-15');
+  switchFeaturedMedia = function(type, id) {
+    id = id || '15';
+    var btn = document.getElementById('btn-' + type + '-' + id);
     if (btn && btn.classList.contains('disabled')) {
       if (typeof showToastMsg === 'function') showToastMsg('Coming soon');
       return;
     }
     if (type === '3d') {
-      var frame = document.getElementById('fc-3d-15');
-      var real = frame.getAttribute('data-src');
+      var frame = document.getElementById('fc-3d-' + id);
+      var real = frame && frame.getAttribute('data-src');
       if (real && !frame.getAttribute('src')) frame.src = real;
+    } else if (type === 'vid') {
+      var container = document.getElementById('fc-vid-' + id);
+      var raw = container && container.getAttribute('data-raw-src');
+      if (raw) loadVideoInto('fc-vid-' + id, raw);
     }
-    _switchFeaturedMediaOriginal(type);
+    _switchFeaturedMediaOriginal(type, id);
   };
 
   document.addEventListener('DOMContentLoaded', initAssetsFromConfig);
