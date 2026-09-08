@@ -15,12 +15,14 @@ window.ASSETS = {
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/08-serene-sea-sunset-silhouettes-seaview-port-elizabeth.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/15-riebeek-street-seaview/03-elevated-vacant-stand-sloping-terrain-and-ocean-outlooks-seaview.jpg"
     ],
-    videoTour: "",
+    videoTour: "https://drive.google.com/file/d/1NVqwsxqFpgfMdOko19bpAQHUAjRVUJmB/preview",
     model3D: "https://3dviewer.co/share/4Rk0SG1QPj"
   },
 
   build: {
     floorPlan: "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/product-plan/5/5pln-con-1b-36.png",
+    matterport: "",
+    videoTour: "https://youtu.be/UGUsSlB9QVA?si=fj_FmB1NFjawCFjB",
     photos: [
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-1.jpg",
       "https://jmztkqukornrftdbeyto.supabase.co/storage/v1/object/public/oracle-portfolio/CurrentProject/con-1bed-1bath/com-1b-2.jpg",
