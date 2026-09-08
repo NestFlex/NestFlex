@@ -37,8 +37,8 @@
   <div id="landPhotoRows"></div>
   <button type="button" class="small" onclick="addPhotoRow('landPhotoRows', 'Land')">+ Add another land photo</button>
 
-  <label style="margin-top:20px;">Video tour <span class="hint">— Google Drive /preview link, must be shared "Anyone with the link"</span></label>
-  <input type="text" id="land_videoTour" placeholder="https://drive.google.com/file/d/XXXX/preview">
+  <label style="margin-top:20px;">Video tour <span class="hint">— paste a YouTube link, a Google Drive share link (must be shared "Anyone with the link"), a Vimeo link, or a direct .mp4 URL. Any of these work.</span></label>
+  <input type="text" id="land_videoTour" placeholder="https://youtu.be/XXXX or https://drive.google.com/file/d/XXXX/view">
   <label>3D model / walkthrough <span class="hint">— 3dviewer.co (or similar) share link</span></label>
   <input type="text" id="land_model3D" placeholder="https://3dviewer.co/share/XXXX">
 </fieldset>
@@ -47,6 +47,10 @@
   <legend>The Build — Proposed NestFlex Configuration</legend>
   <label>Floor plan image <span class="hint">— always shown first, uncropped</span></label>
   <input type="text" id="build_floorPlan" placeholder="https://...">
+  <label>Matterport 3D tour <span class="hint">— my.matterport.com/show/?m=XXXX share link</span></label>
+  <input type="text" id="build_matterport" placeholder="https://my.matterport.com/show/?m=XXXX">
+  <label>Video walkthrough <span class="hint">— paste a YouTube link, a Google Drive share link, a Vimeo link, or a direct .mp4 URL. Any of these work.</span></label>
+  <input type="text" id="build_videoTour" placeholder="https://youtu.be/XXXX">
   <p style="font-size:11px; color:#888; margin:14px 0 8px;">Render photos — add as many as you like.</p>
   <div id="buildPhotoRows"></div>
   <button type="button" class="small" onclick="addPhotoRow('buildPhotoRows', 'Build')">+ Add another render</button>
@@ -127,6 +131,8 @@
     document.getElementById('land_videoTour').value = A.land.videoTour || '';
     document.getElementById('land_model3D').value = A.land.model3D || '';
     document.getElementById('build_floorPlan').value = A.build.floorPlan || '';
+    document.getElementById('build_matterport').value = A.build.matterport || '';
+    document.getElementById('build_videoTour').value = A.build.videoTour || '';
     document.getElementById('agent_headshot').value = A.agent.headshot || '';
     document.getElementById('agent_coverPhoto').value = A.agent.coverPhoto || '';
     var p = A.portals || {};
@@ -159,6 +165,8 @@
 "  },\n\n" +
 "  build: {\n" +
 "    floorPlan: \"" + val('build_floorPlan') + "\",\n" +
+"    matterport: \"" + val('build_matterport') + "\",\n" +
+"    videoTour: \"" + val('build_videoTour') + "\",\n" +
 "    photos: " + arrLiteral(buildPhotos) + "\n" +
 "  },\n\n" +
 "  agent: {\n" +
